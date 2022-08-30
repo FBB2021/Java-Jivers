@@ -9,8 +9,6 @@ import TableList from 'src/pages/TableList.vue'
 import Typography from 'src/pages/Typography.vue'
 import Icons from 'src/pages/Icons.vue'
 import Maps from 'src/pages/Maps.vue'
-import Notifications from 'src/pages/Notifications.vue'
-import Upgrade from 'src/pages/Upgrade.vue'
 
 const routes = [
   {
@@ -52,16 +50,6 @@ const routes = [
         path: 'maps',
         name: 'Maps',
         component: Maps
-      },
-      {
-        path: 'notifications',
-        name: 'Notifications',
-        component: Notifications
-      },
-      {
-        path: 'upgrade',
-        name: 'Upgrade to PRO',
-        component: Upgrade
       }
     ]
   },

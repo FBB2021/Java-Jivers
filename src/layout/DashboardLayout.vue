@@ -22,14 +22,10 @@
         <i class="nc-icon nc-atom"></i>
         <p>Analytics</p>
       </sidebar-link>
-      <sidebar-link to="/admin/notifications">
-        <i class="nc-icon nc-bell-55"></i>
-        <p>Notifications</p>
-      </sidebar-link>
 
       <template slot="bottom-links">
         <sidebar-link class="active"
-                      to="/admin/upgrade">
+                      to="/admin/NotFoundPage">
           <i class="nc-icon nc-settings-gear-64"></i>
           <p>Settings</p>
         </sidebar-link>
