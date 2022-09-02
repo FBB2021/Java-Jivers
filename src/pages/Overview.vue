@@ -1,3 +1,5 @@
+<!-- This is the homepage -->
+
 <template>
   <div class="content">
     <div class="container-fluid">
@@ -12,7 +14,7 @@
             </template>
             <template slot="footer">
               <div class="legend">
-                <i class="fa fa-circle text-info"></i> Open
+                <i class="fa fa-circle text-info"></i> Freezer stock
               </div>
               <hr>
               <div class="stats">
@@ -23,6 +25,7 @@
         </div>
 
       </div>
+<!--       
       <div class="row">
         <div class="col-md-8">
           <chart-card :chart-data="pieChart.data" chart-type="Pie">
@@ -43,8 +46,8 @@
             </template>
           </chart-card>
         </div>
-      </div>
-
+      </div> -->
+<!-- 
       <div class="row">
         <div class="col-md-6">
           <chart-card
@@ -102,8 +105,8 @@
             </div>
           </card>
 
-        </div>
-      </div>
+        </div> -->
+      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -130,7 +133,8 @@
         },
         lineChart: {
           data: {
-            labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'],
+            // need to get data from the database
+            labels: ['25/08', '26/08', '27/08', '28/08', '29/08', '30/08', '31/08', '01/09'],
             series: [
               [287, 385, 490, 492, 554, 586, 698, 695],
               [67, 152, 143, 240, 287, 335, 435, 437],
@@ -189,19 +193,19 @@
             }]
           ]
         },
-        tableData: {
-          data: [
-            {title: 'Sign contract for "What are conference organizers afraid of?"', checked: false},
-            {title: 'Lines From Great Russian Literature? Or E-mails From My Boss?', checked: true},
-            {
-              title: 'Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit',
-              checked: true
-            },
-            {title: 'Create 4 Invisible User Experiences you Never Knew About', checked: false},
-            {title: 'Read "Following makes Medium better"', checked: false},
-            {title: 'Unfollow 5 enemies from twitter', checked: false}
-          ]
-        }
+        // tableData: {
+        //   data: [
+        //     {title: 'Sign contract for "What are conference organizers afraid of?"', checked: false},
+        //     {title: 'Lines From Great Russian Literature? Or E-mails From My Boss?', checked: true},
+        //     {
+        //       title: 'Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit',
+        //       checked: true
+        //     },
+        //     {title: 'Create 4 Invisible User Experiences you Never Knew About', checked: false},
+        //     {title: 'Read "Following makes Medium better"', checked: false},
+        //     {title: 'Unfollow 5 enemies from twitter', checked: false}
+        //   ]
+        // }
       }
     }
   }

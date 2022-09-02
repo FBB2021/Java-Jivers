@@ -11,8 +11,8 @@
       <div class="copyright text-center">
         &copy; Coded with
         <i class="fa fa-heart heart"></i> by
-        <a href="https://binarcode.com" target="_blank">BinarCode</a>.
-        Designed by <a href="https://www.creative-tim.com/?ref=pdf-vuejs" target="_blank">Creative Tim</a>.
+        <a href="https://javajivers.atlassian.net/wiki/spaces/MAIN/overview" target="_blank">JavaJivers Team</a>.
+        Template by <a href="https://www.creative-tim.com/?ref=pdf-vuejs" target="_blank">Creative Tim</a>.
       </div>
     </div>
   </footer>

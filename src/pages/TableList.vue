@@ -7,7 +7,7 @@
                 body-classes="table-full-width table-responsive"
           >
             <template slot="header">
-              <h4 class="card-title">Striped Table with Hover</h4>
+              <h4 class="card-title">Product list</h4>
               <p class="card-category">Here is a subtitle for this table</p>
             </template>
             <l-table class="table-hover table-striped"
