@@ -1,43 +1,26 @@
-# [Vue Light Bootstrap Dashboard](http://vuejs.creative-tim.com/vue-light-bootstrap-dashboard) [![version][version-badge]][CHANGELOG] [![license][license-badge]][LICENSE]
+# Team 058 - JavaJivers
+This project is to create a warehouse inventory system to help manager to keep on track of the inventory items. 
 
-> Admin dashboard based on light bootstrap dashboard UI template + vue-router
+| Member | Student ID | Role |
+| ------ | ------ | ----- |
+|  plz type ur name |  |   /    | 
+| ha|  ||
+| ha|  ||
+| ha|  ||
+| ha|  ||
 
-This project is a vue version of [Light bootstrap dashboard](https://www.creative-tim.com/product/light-bootstrap-dashboard)
-designed for vue js. The dashboard includes Bootstrap 4, vue-router, chartist, google-maps and several other plugins/components.
+We used a pre-exit templete [Vue Light Bootstrap Dashboard](http://vuejs.creative-tim.com/vue-light-bootstrap-dashboard) [![version][version-badge]][CHANGELOG] [![license][license-badge]][LICENSE] to build our front end part.
 
-Check the [Live Demo here](http://vuejs.creative-tim.com/vue-light-bootstrap-dashboard).
+To look at our current progress:
+1. Make sure you have ` node.js`  installed
+2. Then in the same folder where ` "package.json"` i is located
+3. Type in terminal
+```sh
+npm run dev
+```
 
-![](public/Dashboard.PNG)
-## :rocket: Getting started
 
-Vue Light Bootstrap Dashboard is built on top of Bootstrap 4, Vuejs and Vue-router. To get started do the following steps:
-1. Download the project
-2. Make sure you have node.js (https://nodejs.org/en/) installed
-3. Type `npm install` in the source folder where `package.json` is located
-4. Type `npm run dev` to start the development server
 
-The repo uses [vue-cli](https://github.com/vuejs/vue-cli) scaffolding which takes care of the development setup with webpack and all the necessary modern tools to make web development faster and easier.
-
-## [Documentation](https://demos.creative-tim.com/vue-light-bootstrap-dashboard/documentation/#/buttons)
-
-## :cloud: Build Setup
-
-### install dependencies
-`npm install`
-### serve with hot reload at localhost:8000
-`npm run dev`
-### build for production with minification
-`npm run build`
-### run unit tests
-`npm run unit`
-### run and watch unit tests
-`npm run unit:watch`
-
-## :clipboard: Contribution guide
-* `npm install` or `yarn install`
-* Please don't use jQuery or jQuery based plugins since there are many pure Vue alternatives
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 [CHANGELOG]: ./CHANGELOG.md
 [LICENSE]: ./LICENSE.md
