@@ -6,8 +6,8 @@ import NotFound from '../pages/NotFoundPage.vue'
 import Overview from 'src/pages/Overview.vue'
 import UserProfile from 'src/pages/UserProfile.vue'
 import TableList from 'src/pages/TableList.vue'
-import Typography from 'src/pages/Typography.vue'
-import Icons from 'src/pages/Icons.vue'
+import Account from 'src/pages/Account.vue'
+import Analytics from 'src/pages/analytics.vue'
 import Maps from 'src/pages/Maps.vue'
 
 const routes = [
@@ -37,14 +37,14 @@ const routes = [
         component: TableList
       },
       {
-        path: 'typography',
-        name: 'Typography',
-        component: Typography
+        path: 'account',
+        name: 'Account',
+        component: Account
       },
       {
-        path: 'icons',
-        name: 'Icons',
-        component: Icons
+        path: 'analytics',
+        name: 'Analytics',
+        component: Analytics
       },
       {
         path: 'maps',
