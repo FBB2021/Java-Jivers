@@ -4,7 +4,7 @@ This project is to create a warehouse inventory system to help manager to keep o
 | Member | Student ID | Role |
 | ------ | ------ | ----- |
 |  plz type ur name |  |   /    | 
-| ha|  ||
+| Feng Bao| 1069609 |Back-end|
 | ha|  ||
 | ha|  ||
 | ha|  ||
