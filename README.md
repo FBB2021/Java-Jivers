@@ -5,7 +5,7 @@ This project is to create a warehouse inventory system to help manager to keep o
 | ------ | ------ | ----- |
 |  plz type ur name |  |   /    | 
 | Feng Bao| 1069609 |Back-end|
-| ha|  ||
+| Leyi Zhang| 1213961 |Back-end|
 | ha|  ||
 | Ziyu Han| 1139489 |Front-end|
 
