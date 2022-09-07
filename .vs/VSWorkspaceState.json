@@ -1,16 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\documentation\\css",
     "\\public",
     "\\src",
-    "\\src\\components",
-    "\\src\\components\\Cards",
-    "\\src\\directives",
-    "\\src\\layout",
-    "\\src\\pages",
+    "\\src\\pages\\Maps",
+    "\\src\\pages\\UserProfile",
     "\\src\\routes"
   ],
-  "SelectedNode": "\\src\\components\\Cards\\ChartCard.vue",
+  "SelectedNode": "\\src\\routes\\routes.js",
   "PreviewInSolutionExplorer": false
 }
