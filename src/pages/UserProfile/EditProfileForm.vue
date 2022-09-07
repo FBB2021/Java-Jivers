@@ -1,13 +1,13 @@
 <template>
   <card>
-    <h4 slot="header" class="card-title">Edit Profile</h4>
+    <h4 slot="header" class="card-title">Product Detail</h4>
     <form>
       <div class="row">
         <div class="col-md-5">
           <base-input type="text"
-                    label="Company"
+                    label="item name"
                     :disabled="true"
-                    placeholder="Light dashboard"
+                    placeholder="type item name here "
                     v-model="user.company">
           </base-input>
         </div>
@@ -108,16 +108,16 @@
     data () {
       return {
         user: {
-          company: 'Light dashboard',
-          username: 'michael23',
+          company: 'input item name here ',
+          username: '',
           email: '',
-          firstName: 'Mike',
-          lastName: 'Andrew',
-          address: 'Melbourne, Australia',
-          city: 'melbourne',
-          country: 'Australia',
+          firstName: '',
+          lastName: '',
+          address: '',
+          city: '',
+          country: '',
           postalCode: '',
-          aboutMe: `Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.`
+          aboutMe: ` Mercy, Your chick she so thirsty, I'm in that two seat Lambo.`
         }
       }
     },

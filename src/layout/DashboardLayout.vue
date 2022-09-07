@@ -14,11 +14,11 @@
         <i class="nc-icon nc-notes"></i>
         <p>Load</p>
       </sidebar-link>
-      <sidebar-link to="/admin/typography">
+      <sidebar-link to="/admin/account">
         <i class="nc-icon nc-paper-2"></i>
         <p>Account</p>
       </sidebar-link>
-      <sidebar-link to="/admin/icons">
+      <sidebar-link to="/admin/analytics">
         <i class="nc-icon nc-atom"></i>
         <p>Analytics</p>
       </sidebar-link>
