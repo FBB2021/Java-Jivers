@@ -26,14 +26,32 @@
         </div>
 
         <div class="row">
-          <div class="col-xl-6 col-md-6">
-            <button type="submit" class="btn btn-info btn-fill float-center">
-              Sign in
-            </button>
+          <div class="col-md-2">
+            <base-checkbox></base-checkbox>
           </div>
+          
+          <div class="col-md-10">
+            <div class="row">
+              <div class="col-md-10">
+                Remember me
+                </div>
+              </div>
+            </div>
+
           </div>
+
+          <div class="row">
+            <div class="col-xl-12 col-md-12">
+              <button type="submit" class="btn btn-info btn-fill float-center">
+                Sign in
+              </button>
+            </div>
+          </div>
+
+
           <div class="clearfix"></div>
           <div class="clearfix"></div>
+
 </form>
     </card>
   </div>
@@ -45,7 +63,7 @@
     components: {
       Card
     },
-    data () {
+    data() {
       return {
         user: {
           company: 'input item name here ',
@@ -62,11 +80,12 @@
       }
     },
     methods: {
-      updateProfile () {
+      updateProfile() {
         alert('Your data: ' + JSON.stringify(this.user))
       }
     }
   }
+
 
 </script>
 <style>
@@ -76,5 +95,4 @@
     justify-content: center;
     height: 100vh;
   }
-
 </style>
