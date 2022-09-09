@@ -1,5 +1,6 @@
 <template>
-  <div class="login">
+  <div class="login"
+       data-image="background-image">
     <card>
       <h4 slot="header" class="card-title">Sign In</h4>
       <form>
@@ -26,13 +27,13 @@
         </div>
 
         <div class="row">
-          <div class="col-md-2">
+          <div class="col-md-3">
             <base-checkbox></base-checkbox>
           </div>
           
-          <div class="col-md-10">
+          <div class="col-md-9">
             <div class="row">
-              <div class="col-md-10">
+              <div class="col-md-9">
                 Remember me
                 </div>
               </div>
@@ -62,6 +63,12 @@
   export default {
     components: {
       Card
+    },
+    props: {
+      backgroundImage: {
+        type: String,
+        default: 'img/adrian-sulyok-sczNLg6rrhQ-unsplash'
+      },
     },
     data() {
       return {
