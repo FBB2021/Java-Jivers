@@ -1,12 +1,12 @@
 # Team 058 - JavaJivers
-This project is to create a warehouse inventory system to help manager to keep on track of the inventory items. 
+This project is to create a warehouse inventory system to help manager to keep on track of the inventory items.
 
 | Member | Student ID | Role |
 | ------ | ------ | ----- |
-|  plz type ur name |  |   /    | 
+|  plz type ur name |  |   /    |
 | Feng Bao| 1069609 |Back-end|
 | Leyi Zhang| 1213961 |Back-end|
-| ha|  ||
+| Jordan King| 914011 |Front-end|
 | Ziyu Han| 1139489 |Front-end|
 
 We used a pre-exit templete [Vue Light Bootstrap Dashboard](http://vuejs.creative-tim.com/vue-light-bootstrap-dashboard) [![version][version-badge]][CHANGELOG] [![license][license-badge]][LICENSE] to build our front end part.

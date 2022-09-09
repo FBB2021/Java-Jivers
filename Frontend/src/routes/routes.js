@@ -9,6 +9,7 @@ import TableList from 'src/pages/TableList.vue'
 import Account from 'src/pages/Account.vue'
 import Analytics from 'src/pages/analytics.vue'
 import Maps from 'src/pages/Maps.vue'
+import Login from 'src/pages/Login.vue'
 
 const routes = [
   {
@@ -50,6 +51,11 @@ const routes = [
         path: 'maps',
         name: 'Maps',
         component: Maps
+      },
+      {
+        path: '/login',
+        name: 'Login',
+        component: Login
       }
     ]
   },
