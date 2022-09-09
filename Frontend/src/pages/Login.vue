@@ -1,37 +1,42 @@
 <template>
-  <card>
-    <h4 slot="header" class="card-title">Sign In</h4>
-    <form>
-      <div class="row">
-        <div class="col-md-5">
-          <base-input type="text"
-                    label="item name"
-                    :disabled="true"
-                    placeholder="type item name here "
-                    v-model="user.company">
-          </base-input>
+  <div class="login">
+    <card>
+      <h4 slot="header" class="card-title">Sign In</h4>
+      <form>
+        <div class="row">
+          <div class="col-md-20">
+            <base-input type="text"
+                        label="Email"
+                        :disabled="false"
+                        placeholder="type email address here"
+                        v-model="user.email">
+            </base-input>
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-5">
-          <base-input type="text"
-                    label="Address"
-                    :disabled="true"
-                    placeholder="Home Address"
-                    v-model="user.address">
-          </base-input>
+        <div class="row">
+          <div class="col-md-20">
+            <base-input type="text"
+                        label="Password"
+                        :disabled="false"
+                        placeholder="type password here"
+                        v-model="user.password">
+            </base-input>
+          </div>
         </div>
-      </div>
 
-      <div class="text-center">
-        <button type="submit" class="btn btn-info btn-fill float-right" @click.prevent="updateProfile">
-          Update Profile
-        </button>
-      </div>
-      <div class="clearfix"></div>
-    </form>
-  </card>
+        <div class="row">
+          <div class="col-xl-6 col-md-6">
+            <button type="submit" class="btn btn-info btn-fill float-center">
+              Sign in
+            </button>
+          </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="clearfix"></div>
+</form>
+    </card>
+  </div>
 </template>
 <script>
   import Card from 'src/components/Cards/Card.vue'
@@ -65,5 +70,11 @@
 
 </script>
 <style>
+  .login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
 
 </style>
