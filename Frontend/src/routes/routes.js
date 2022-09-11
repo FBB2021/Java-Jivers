@@ -4,6 +4,7 @@ import NotFound from '../pages/NotFoundPage.vue'
 
 // Admin pages
 import Overview from 'src/pages/Overview.vue'
+import User_overview from 'src/pages/User/Overview.vue'
 import UserProfile from 'src/pages/UserProfile.vue'
 import TableList from 'src/pages/TableList.vue'
 import Account from 'src/pages/Account.vue'
@@ -26,6 +27,48 @@ const routes = [
         path: 'overview',
         name: 'Overview',
         component: Overview
+      },
+      {
+        path: 'user',
+        name: 'User',
+        component: UserProfile
+      },
+      {
+        path: 'table-list',
+        name: 'Table List',
+        component: TableList
+      },
+      {
+        path: 'account',
+        name: 'Account',
+        component: Account
+      },
+      {
+        path: 'analytics',
+        name: 'Analytics',
+        component: Analytics
+      },
+      {
+        path: 'maps',
+        name: 'Maps',
+        component: Maps
+      },
+      {
+        path: '/login',
+        name: 'Login',
+        component: Login
+      }
+    ]
+  },
+  {
+    path: '/user',
+    component: DashboardLayout,
+    redirect: '/user/overview',
+    children: [
+      {
+        path: 'overview',
+        name: 'User_overview',
+        component: User_overview
       },
       {
         path: 'user',
