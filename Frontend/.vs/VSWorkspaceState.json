@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\components",
+    "\\src\\components\\Cards",
+    "\\src\\components\\SidebarPlugin",
+    "\\src\\layout",
+    "\\src\\pages",
+    "\\src\\pages\\Maps",
+    "\\src\\routes"
+  ],
+  "SelectedNode": "\\src\\components\\SidebarPlugin\\SideBar.vue",
+  "PreviewInSolutionExplorer": false
+}

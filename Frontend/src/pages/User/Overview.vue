@@ -3,7 +3,7 @@
 <template>
   <div class="content">
 
-    <div class="row">
+    <div class="search-bar">
       <div class="col-md-6 col-xl-6">
         <base-input type="text"
                     label="Search"
@@ -78,4 +78,10 @@
   }
 </script>
 <style>
+  .search-bar{
+    color: rgb(54, 53, 56);
+  }
+  .search-bar label{
+    margin: 10px;
+  }
 </style>
