@@ -15,8 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.urls import re_path as url
+
+from Login import views
+# upload image
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('a/', include("inventory.urls")),
-]
+    url(r'^user$', views.userApi),
+    url(r'^user/([0-9]+)$', views.userApi),
+    url(r'^user/savefile', views.SaveFile)
+] +static(settings.MEDIA_URL, documnet_root = settings.MEDIA_ROOT)
