@@ -37,8 +37,8 @@ def userApi(request, id=0):
         user_serializer = UserSerializer(user, data = user_data)
         if user_serializer.is_valid():
             user_serializer.save()
-            return JsonResponse("Add Successfully", safe = False)
-        return JsonResponse("Failed to add", safe = False)
+            return JsonResponse("Updated Successfully", safe = False)
+        return JsonResponse("Failed to update", safe = False)
 
     # delete user through UserId, not the objectId
     elif request.method=='DELETE':

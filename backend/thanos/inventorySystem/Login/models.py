@@ -13,3 +13,8 @@ class User(models.Model):
     FirstName = models.CharField(max_length=500, blank=True)
     LastName = models.CharField(max_length=500, blank=True)
     ContactNumber = models.CharField(max_length=500, blank=True)
+
+
+    # to show name of the User when called.
+    def __str__(self) -> str:
+        return self.Username
