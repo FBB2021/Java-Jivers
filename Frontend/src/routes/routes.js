@@ -12,11 +12,20 @@ import Analytics from 'src/pages/analytics.vue'
 import Maps from 'src/pages/Maps.vue'
 import Login from 'src/pages/Login.vue'
 
+// Imports for tools to conditionally render objects only if logged in
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+
 const routes = [
   {
     path: '/',
-    component: DashboardLayout,
-    redirect: '/admin/overview'
+    component: Login,
+    redirect: '/login'
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
   },
   {
     path: '/admin',
@@ -52,11 +61,6 @@ const routes = [
         path: 'maps',
         name: 'Maps',
         component: Maps
-      },
-      {
-        path: '/login',
-        name: 'Login',
-        component: Login
       }
     ]
   },
@@ -94,11 +98,6 @@ const routes = [
         path: 'maps',
         name: 'Maps',
         component: Maps
-      },
-      {
-        path: '/login',
-        name: 'Login',
-        component: Login
       }
     ]
   },
