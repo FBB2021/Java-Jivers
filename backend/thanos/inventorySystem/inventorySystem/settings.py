@@ -85,11 +85,23 @@ WSGI_APPLICATION = 'inventorySystem.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+'''
+
+DATABASES = {
+       'default': {
+           'ENGINE': 'djongo',
+           'CLIENT': {
+                "host": "mongodb+srv://FBB:QazWsx123@cluster0.rvyikhz.mongodb.net/?retryWrites=true&w=majority",
+                "name": "WarehouseV2"
+           }
+       }
 }
 
 
