@@ -8,6 +8,7 @@ This project is to create a warehouse inventory system to help manager to keep o
 | Leyi Zhang| 1213961 |Back-end|
 | Jordan King| 914011 |Front-end|
 | Ziyu Han| 1139489 |Front-end|
+| Weishen Tan | 1160715 |Back-end|
 
 We used a pre-exit templete [Vue Light Bootstrap Dashboard](http://vuejs.creative-tim.com/vue-light-bootstrap-dashboard) [![version][version-badge]][CHANGELOG] [![license][license-badge]][LICENSE] to build our front end part.
 
