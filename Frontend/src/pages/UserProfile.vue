@@ -21,23 +21,79 @@
             </div>
         </div>   
       </div>
-
+<!-- Filter Button -->
       <div class="col">
         <button type="button" class="btn btn-secondary btn-fill float-center btn-block">
                        Filter    
               </button>    
       </div>
+      <!-- Add item button -->
       <div class="col-sm">
-          <button type="button" class="btn btn-info btn-fill float-center btn-block ">
-              + New Item
-              </button>
+          <button type="button" class="btn btn-info btn-fill float-center btn-block">
+              + New Item </button>
       </div>
+      <!-- Delete item button -->
       <div class="col-sm">
           <button type="button" class="btn btn-warning btn-fill float-center btn-block">
                 - Delete Item
               </button>    
       </div>
     </div>
+    <div class = "row">
+      <div class = "col-12">
+          <table class="table table-bordered mt5 table-hover">
+            <thead class="thead-dark">
+              <tr>
+                  <th> Item Name </th>
+                  <th> Brand</th>
+                  <th> Category </th>
+                  <th> Location </th>
+                  <th> Quantity </th>
+                  <th> </th>
+
+
+              </tr>
+            </thead>
+            <tbody>
+                <tr v-for = "(item,i) in todoList" :key = "i">
+                    <td class = "align-middle w-75"> 
+                        {{  item.Name  }}
+                    </td>
+                    <td class = "align-middle text-center w-70" > 
+                        {{  item.Brand  }}
+                    </td>
+                    <td class = "align-middle text-center w-70" > 
+                        {{  item.Category  }}
+                    </td>
+                    <td class = "align-middle text-center w-60" > 
+                        {{  item.Location  }}
+                    </td>
+                    <td class = "align-middle text-center w-60" > 
+                        {{  item.Quantity  }}
+                    </td>
+                    <td class = "align-middle text-center w-60" > 
+                      >
+                      <button
+                        class = "btn btn-info btn-sm mx-1"
+                        @click = "handleEdit(item.Name)"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        class = "btn btn-danger btn-sm mx-1"
+                        @click = "handleDelete(item.Name)"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+
+      </div>
+
+    </div>
+    
 
 </div>
 </template>
@@ -45,13 +101,36 @@
 
 <script>
 
-  export default {
-    components: {
+import Axios from "axios";
+const todoUrl = "http://localhost:3500/todo";
 
-    }
-  }
+  export default {
+    data(){
+      return{
+        todoList: [],
+        todoItem: {},
+        editMode: false
+      }
+    },
+    methods:{
+      handleEdit(Name){
+        this.editMode = true;
+        this.todoItem = this.todoList.find((item) => item.Name = Name);
+      },
+      async handleDelete(Name){
+          await Axios.delete(`${todoUrl}/${Name}`);
+          Axios.get(todoUrl).then((response) => (this.todoList = response.data));
+      }
+
+    },
+    created(){
+      Axios.get(todoUrl).then((response) => (this.todoList = response.data));
+    },
+
+  };
 
 </script>
+
 <style>
 
 </style>
