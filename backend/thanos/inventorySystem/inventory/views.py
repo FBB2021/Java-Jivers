@@ -11,7 +11,31 @@ from django.core.files.storage import default_storage
 
 # Create your views here.
 def index(request):
-    return render(request, "t_inventory/index.html")
+    context = {
+        "title": "Home Page"
+    }
+    return render(request, "t_inventory/index.html", context=context)
+
+def manager(request):
+    ##return HttpResponse('Manager mode')
+    context = {
+        "title": "Manager Page"
+    }
+    return render(request, "t_inventory/manager.html", context=context)
+
+def product(request):
+    ##return HttpResponse('Manager mode')
+    context = {
+        "title": "Product Page"
+    }
+    return render(request, "t_inventory/product.html", context=context)
+
+def area(request):
+    ##return HttpResponse('Manager mode')
+    context = {
+        "title": "Area Page"
+    }
+    return render(request, "t_inventory/area.html", context=context)
 
 @csrf_exempt
 def itemApi(request, id=0):

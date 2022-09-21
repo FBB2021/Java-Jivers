@@ -20,11 +20,19 @@ class Inventory(models.Model):
     def __str__(self) -> str:
         return self.name
 '''
+CATEGORY = (
+    ('Computer', 'Computer'),
+    ('Shoes', 'Shoes'),
+    ('Clothes', 'Clothes'),
+    ('Food', 'Food'),
+)
 
 class Item(models.Model):
     idItem = models.AutoField(primary_key=True)
     name = models.CharField(max_length = 32, null = False, blank = False)
     nameBrand = models.CharField(max_length = 32, null=False, blank=False,default="default")
+    category = models.CharField(max_length=20, choices=CATEGORY, null=False, blank=False,default="default")
+    quantity = models.IntegerField(null=False, blank=False)
     weight = models.DecimalField(max_digits=8, decimal_places=2,null=True, blank=True)
     nameLocation = models.CharField(max_length=16,null=False, blank=False,default="default")
     # pillow need to be installed to use ImageField

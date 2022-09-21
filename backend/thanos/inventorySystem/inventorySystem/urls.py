@@ -26,7 +26,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('a/', include("inventory.urls")),
+    path("", include("inventory.urls")),
     url(r'^item$', viewsInventory.itemApi),
     url(r'^item/([0-9]+)$', viewsInventory.itemApi),
     url(r'^user$', viewsLogin.userApi),
