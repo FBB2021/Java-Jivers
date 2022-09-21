@@ -1,3 +1,7 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+
+Vue.use (Router); 
 <template>
   <div class="login"
        data-image="background-image">
@@ -10,7 +14,7 @@
                         label="Email"
                         :disabled="false"
                         placeholder="type email address here"
-                        v-model="user.email">
+                        v-model="input.email">
             </base-input>
           </div>
         </div>
@@ -21,7 +25,7 @@
                         label="Password"
                         :disabled="false"
                         placeholder="type password here"
-                        v-model="user.password">
+                        v-model="input.password">
             </base-input>
           </div>
         </div>
@@ -43,7 +47,7 @@
 
           <div class="row">
             <div class="col-xl-12 col-md-12">
-              <button type="submit" class="btn btn-info btn-fill float-center">
+              <button type="submit" @click="login()" class="btn btn-info btn-fill float-center" >
                 Sign in
               </button>
             </div>
@@ -83,12 +87,30 @@
           country: '',
           postalCode: '',
           aboutMe: ` Mercy, Your chick she so thirsty, I'm in that two seat Lambo.`
-        }
+        },
+        input: {
+          email: "",
+          password: ""
+        },
+        login_details : {
+          user: {email: 'useremail', password: 'password'},
+         admin: {email: 'adminemail', password: 'password'}
+      }
       }
     },
     methods: {
-      updateProfile() {
-        alert('Your data: ' + JSON.stringify(this.user))
+      login() {
+        if(this.input.email != "" && this.input.password != ""){
+          if(this.input.email == 'useremail' && this.input.password == 'password'){
+            // Not secure yet
+            router.push('/user/overview');
+          }
+          else{
+            console.log("The email and / or password is incorrect");
+          }
+        }
+        else{
+        }
       }
     }
   }
