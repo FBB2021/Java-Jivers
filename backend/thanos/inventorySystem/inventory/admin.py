@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Item
+from .models import Item, Location, Region, Brand, Category
 # Register your models here.
 
 class ProductAdmin(admin.ModelAdmin):
@@ -8,4 +8,8 @@ class ProductAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Item, ProductAdmin)
+admin.site.register(Region)
+admin.site.register(Location)
+admin.site.register(Brand)
+admin.site.register(Category)
 #admin.site.unregister(Group)
