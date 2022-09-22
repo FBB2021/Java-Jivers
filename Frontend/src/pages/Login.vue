@@ -1,7 +1,3 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-
-Vue.use (Router); 
 <template>
   <div class="login"
        data-image="background-image">
@@ -103,7 +99,7 @@ Vue.use (Router);
         if(this.input.email != "" && this.input.password != ""){
           if(this.input.email == 'useremail' && this.input.password == 'password'){
             // Not secure yet
-            router.push('/user/overview');
+            this.$router.push('/user/overview');
           }
           else{
             console.log("The email and / or password is incorrect");

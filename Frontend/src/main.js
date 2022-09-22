@@ -24,6 +24,7 @@ import LightBootstrap from './light-bootstrap-main'
 import routes from './routes/routes'
 
 import './registerServiceWorker'
+import { apply } from 'v-tooltip'
 // plugin setup
 Vue.use(VueRouter)
 Vue.use(LightBootstrap)
@@ -47,3 +48,5 @@ new Vue({
   render: h => h(App),
   router
 })
+
+App.use(router)

@@ -12,9 +12,7 @@ import Analytics from 'src/pages/analytics.vue'
 import Maps from 'src/pages/Maps.vue'
 import Login from 'src/pages/Login.vue'
 
-// Imports for tools to conditionally render objects only if logged in
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+
 
 const routes = [
   {
@@ -112,5 +110,6 @@ function view(name) {
    var res= require('../components/Dashboard/Views/' + name + '.vue');
    return res;
 };**/
+
 
 export default routes
