@@ -2,7 +2,8 @@
   <div class="content">
     <div class="container">
     <div class="row">
-      <p class="h1">Products</p>
+     <h3> Products</h3>
+
     </div>
 
 <!-- The black row at the top of product page, showing the total statics -->
@@ -39,6 +40,7 @@
               </button>    
       </div>
     </div>
+    <!-- Display of table -->
     <div class = "row">
       <div class = "col-12">
           <table class="table table-bordered mt5 table-hover">
@@ -50,8 +52,6 @@
                   <th> Location </th>
                   <th> Quantity </th>
                   <th> </th>
-
-
               </tr>
             </thead>
             <tbody>
@@ -71,6 +71,7 @@
                     <td class = "align-middle text-center w-60" > 
                         {{  item.Quantity  }}
                     </td>
+                    <!-- Last column that contains two button -->
                     <td class = "align-middle text-center w-60" > 
                       >
                       <button
@@ -100,7 +101,7 @@
 
 
 <script>
-
+// put the Url here
 import Axios from "axios";
 const todoUrl = "http://localhost:3500/todo";
 
@@ -112,10 +113,12 @@ const todoUrl = "http://localhost:3500/todo";
         editMode: false
       }
     },
+    // Most of the method doesn't work yet, wokring on to fix it 
     methods:{
       handleEdit(Name){
-        this.editMode = true;
-        this.todoItem = this.todoList.find((item) => item.Name = Name);
+        // this.editMode = true;
+        this.todoItem = this.todoList.find(((item) => item.Name = Name));
+        console.log(this.todoItem);
       },
       async handleDelete(Name){
           await Axios.delete(`${todoUrl}/${Name}`);
@@ -123,8 +126,10 @@ const todoUrl = "http://localhost:3500/todo";
       }
 
     },
+    // The get request at the begining to get all data
     created(){
       Axios.get(todoUrl).then((response) => (this.todoList = response.data));
+      
     },
 
   };
