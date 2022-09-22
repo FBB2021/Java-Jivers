@@ -6,8 +6,13 @@
 </template>
 
 <script>
-  export default {}
+
+import Axios from "axios";
+const todoUrl = "http://localhost:3500/todo";
+
+export default {};
 </script>
+
 <style lang="scss">
   .vue-notifyjs.notifications{
     .list-move {
