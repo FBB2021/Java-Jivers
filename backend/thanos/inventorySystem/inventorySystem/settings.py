@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 ######
 from pathlib import Path
 import os
+
+# This allow to save images
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+MEDIA_URL='/Photos/'
+MEDIA_ROOT=os.path.join(BASE_DIR, "Photos")
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,11 +33,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# API
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 # Application definition
 
 INSTALLED_APPS = [
-    'inventory.apps.InventoryConfig',
+    'inventory.apps.InventoryConfig', # App "inventory"
+    'Login.apps.LoginConfig', # App "Login"
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +51,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', # API
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -74,11 +85,23 @@ WSGI_APPLICATION = 'inventorySystem.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+'''
+
+DATABASES = {
+       'default': {
+           'ENGINE': 'djongo',
+           'CLIENT': {
+                "host": "mongodb+srv://FBB:QazWsx123@cluster0.rvyikhz.mongodb.net/?retryWrites=true&w=majority",
+                "name": "WarehouseV2"
+           }
+       }
 }
 
 
