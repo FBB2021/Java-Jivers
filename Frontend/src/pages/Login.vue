@@ -71,56 +71,42 @@
         user_login_data: [],
         input: {
           email: "",
-          password: ""
+          password: "",
+          type: "general_user"
         }
       }
     },
     methods: {
       login() {
         if(this.input.email != "" && this.input.password != ""){
-          user_type = this.getUserType(this.input.email, this.input.password);
-          if(user_type == general_user){
+          let user_type = this.getUserType();
+          if(user_type == "general_user"){
             // Not secure yet
             this.$router.push('/user/overview');
           }
-          else if(user_type == admin_user){
+          else if(user_type == "admin_user"){
             this.$router.push('/admin/overview');
           }
           else{
-            console.log("The email and / or password is incorrect");
+            console.log("The email and / or password is incorrect" + user_type);
           }
         }
       },
       // Returns the type of user, either admin or general, from the server database given a username/email and password
-      getUserType(email, password){
+      getUserType(){
        // First check if it is in the database, if not return -1
-       let user = this.user_login_data.find((user) => user.email == email);
+       let user = this.user_login_data.indexOf(this.input);
        if (user == -1){
+        console.log("incorrect formatting " + toString(this.input));
         return -1;
        }
        else {
-        return this.checkIdenticalPassword(user, password);
+        return "general_user";
        }
-      },/*
-      checkIdenticalEmail(email){
-        if (this.email == email){
-          return 1;
-        }
-        else{
-          return -1;
-        }
-      },*/
-      checkIdenticalPassword(user, password){
-        if(user.password == password){
-          return this.type;
-        }
-        else{
-          return -1;
-        }
       }
     },
     created(){
-      Axios.get(todoUrl).then(response=>{this.user_login_data = response.data.data});
+      Axios.get(todoUrl).then(response=>{this.user_login_data = response.data});
     }
   }
 
