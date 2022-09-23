@@ -52,6 +52,9 @@
 </template>
 <script>
   import Card from 'src/components/Cards/Card.vue'
+  // put the Url here
+  import Axios from "axios";
+  const todoUrl = "http://localhost:3500/todo";
 
   export default {
     components: {
@@ -61,47 +64,63 @@
       backgroundImage: {
         type: String,
         default: 'img/adrian-sulyok-sczNLg6rrhQ-unsplash'
-      },
+      }
     },
     data() {
       return {
-        user: {
-          company: 'input item name here ',
-          username: '',
-          email: '',
-          firstName: '',
-          lastName: '',
-          address: '',
-          city: '',
-          country: '',
-          postalCode: '',
-          aboutMe: ` Mercy, Your chick she so thirsty, I'm in that two seat Lambo.`
-        },
+        user_login_data: [],
         input: {
           email: "",
           password: ""
-        },
-        login_details : {
-          user: {email: 'useremail', password: 'password'},
-         admin: {email: 'adminemail', password: 'password'}
-      }
+        }
       }
     },
     methods: {
       login() {
         if(this.input.email != "" && this.input.password != ""){
-          if(this.input.email == 'useremail' && this.input.password == 'password'){
+          user_type = this.getUserType(this.input.email, this.input.password);
+          if(user_type == general_user){
             // Not secure yet
             this.$router.push('/user/overview');
           }
-          else if(this.input.email == this.login_details.admin.email && this.input.password == this.login_details.admin.password){
+          else if(user_type == admin_user){
             this.$router.push('/admin/overview');
           }
           else{
             console.log("The email and / or password is incorrect");
           }
         }
+      },
+      // Returns the type of user, either admin or general, from the server database given a username/email and password
+      getUserType(email, password){
+       // First check if it is in the database, if not return -1
+       let user = this.user_login_data.find((user) => user.email == email);
+       if (user == -1){
+        return -1;
+       }
+       else {
+        return this.checkIdenticalPassword(user, password);
+       }
+      },/*
+      checkIdenticalEmail(email){
+        if (this.email == email){
+          return 1;
+        }
+        else{
+          return -1;
+        }
+      },*/
+      checkIdenticalPassword(user, password){
+        if(user.password == password){
+          return this.type;
+        }
+        else{
+          return -1;
+        }
       }
+    },
+    created(){
+      Axios.get(todoUrl).then(response=>{this.user_login_data = response.data.data});
     }
   }
 
@@ -114,4 +133,5 @@
     justify-content: center;
     height: 100vh;
   }
+  
 </style>

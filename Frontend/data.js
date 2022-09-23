@@ -70,6 +70,16 @@ let todo = [
       "Location": 9863,
       "Quantity": 133,
       "Weight(kg)": 424.68
+    },
+    {
+      "email": "useremail",
+      "password": "userpassword",
+      "type": "general_user"
+    },
+    {
+      "email": "adminemail",
+      "password": "adminpassword",
+      "type": "admin_user"
     }
    ];
 
