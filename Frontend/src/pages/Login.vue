@@ -27,18 +27,11 @@
         </div>
 
         <div class="row">
-          <div class="col-md-3">
+          <div class="row">
             <base-checkbox></base-checkbox>
           </div>
-          
-          <div class="col-md-9">
-            <div class="row">
-              <div class="col-md-9">
-                Remember me
-                </div>
-              </div>
-            </div>
-
+            
+            Remember me
           </div>
 
           <div class="row">
@@ -101,11 +94,12 @@
             // Not secure yet
             this.$router.push('/user/overview');
           }
+          else if(this.input.email == this.login_details.admin.email && this.input.password == this.login_details.admin.password){
+            this.$router.push('/admin/overview');
+          }
           else{
             console.log("The email and / or password is incorrect");
           }
-        }
-        else{
         }
       }
     }
