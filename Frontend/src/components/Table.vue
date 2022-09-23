@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <table class="table">
     <thead>
       <slot name="columns">
@@ -34,4 +34,4 @@
   }
 </script>
 <style>
-</style>
+</style> -->
