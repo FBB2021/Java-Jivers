@@ -99,7 +99,8 @@ DATABASES = {
            'ENGINE': 'djongo',
            'CLIENT': {
                 "host": "mongodb+srv://FBB:QazWsx123@cluster0.rvyikhz.mongodb.net/?retryWrites=true&w=majority",
-                "name": "WarehouseV2"
+                "name": "WarehouseV2",
+                "authMechanism":"SCRAM-SHA-1" #For atlas cloud db
            }
        }
 }
