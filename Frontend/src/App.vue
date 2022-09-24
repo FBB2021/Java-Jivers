@@ -7,8 +7,10 @@
 
 <script>
 
+/*
 import Axios from "axios";
 const todoUrl = "http://localhost:3500/todo";
+**/
 
 export default {};
 </script>

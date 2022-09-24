@@ -54,22 +54,23 @@
                   <th> </th>
               </tr>
             </thead>
+            <!-- Attribute should be same as the one create in model -->
             <tbody>
                 <tr v-for = "(item,i) in todoList" :key = "i">
                     <td class = "align-middle w-75"> 
-                        {{  item.Name  }}
+                        {{  item.name  }}
                     </td>
                     <td class = "align-middle text-center w-70" > 
-                        {{  item.Brand  }}
+                        {{  item.nameBrand  }}
                     </td>
                     <td class = "align-middle text-center w-70" > 
-                        {{  item.Category  }}
+                        {{  item.category  }}
                     </td>
                     <td class = "align-middle text-center w-60" > 
-                        {{  item.Location  }}
+                        {{  item.nameLocation  }}
                     </td>
                     <td class = "align-middle text-center w-60" > 
-                        {{  item.Quantity  }}
+                        {{  item.quantity  }}
                     </td>
                     <!-- Last column that contains two button -->
                     <td class = "align-middle text-center w-60" > 
@@ -103,7 +104,9 @@
 <script>
 // put the Url here
 import Axios from "axios";
-const todoUrl = "http://localhost:3500/todo";
+//const todoUrl = "http://localhost:3500/todo";
+const todoUrl = "http://127.0.0.1:8000/inventory";
+
 
   export default {
     data(){
@@ -129,7 +132,6 @@ const todoUrl = "http://localhost:3500/todo";
     // The get request at the begining to get all data
     created(){
       Axios.get(todoUrl).then((response) => (this.todoList = response.data));
-      
     },
 
   };
