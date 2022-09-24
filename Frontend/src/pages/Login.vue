@@ -53,7 +53,7 @@
 <script>
   import Card from 'src/components/Cards/Card.vue'
   // put the Url here
-  import Axios from "axios";
+  import axios from "axios";
   const todoUrl = "http://localhost:3500/todo";
 
   export default {
@@ -71,8 +71,7 @@
         user_login_data: [],
         input: {
           email: "",
-          password: "",
-          type: "general_user"
+          password: ""
         }
       }
     },
@@ -106,7 +105,7 @@
       }
     },
     created(){
-      Axios.get(todoUrl).then(response=>{this.user_login_data = response.data});
+      axios.get(todoUrl).then(response=>{this.user_login_data = response.data});
     }
   }
 

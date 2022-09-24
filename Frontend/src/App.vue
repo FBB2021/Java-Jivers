@@ -12,7 +12,20 @@ import Axios from "axios";
 const todoUrl = "http://localhost:3500/todo";
 **/
 
-export default {};
+export default {
+  beforeCreate(){
+    this.$store.commit('initialiseStore')
+
+    const token = this.$store.state.token
+    
+    if(token){
+      axios.defaults.headers.common['Authorization'] = "Token " + token
+    }
+    else{
+      axios.defaults.headers.common['Authorization'] = ""
+    }
+  }
+};
 </script>
 
 <style lang="scss">
