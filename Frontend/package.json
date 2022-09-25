@@ -11,13 +11,14 @@
     "lint": "vue-cli-service lint",
     "dev": "vue-cli-service serve --open",
     "lint-fix": "vue-cli-service lint --fix",
-    "json":"json-server data.js -p 3500"
+    "json": "json-server data.js -p 3500"
   },
   "dependencies": {
     "axios": "^0.27.2",
     "bootstrap": "^4.3.1",
     "chartist": "^0.11.0",
     "console": "^0.7.2",
+    "element-ui": "^2.15.10",
     "google-maps": "^3.2.1",
     "json-server": "^0.17.0",
     "register-service-worker": "^1.5.2",
