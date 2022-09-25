@@ -14,9 +14,11 @@
 
  */
 import Vue from 'vue'
+import Vuex from "vuex";
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import store from './Store'
+
 
 // LightBootstrap plugin
 import LightBootstrap from './light-bootstrap-main'
@@ -25,10 +27,10 @@ import LightBootstrap from './light-bootstrap-main'
 import routes from './routes/routes'
 
 import './registerServiceWorker'
-import { apply } from 'v-tooltip'
 // plugin setup
 Vue.use(VueRouter)
 Vue.use(LightBootstrap)
+Vue.use(Vuex)
 
 // configure router
 const router = new VueRouter({
@@ -43,6 +45,7 @@ const router = new VueRouter({
   }
 })
 
+
 router.beforeEach((to, from, next) =>{
   const public_pages = ['/login', '/', '*']
   const auth_required = !public_pages.includes(to.path);
@@ -50,12 +53,15 @@ router.beforeEach((to, from, next) =>{
   const logged_in = localStorage.getItem('isAuthenticated');
   const is_admin = localStorage.getItem('isAdmin');
 
-  // Case for not logged in
+  console.log(" " + logged_in)
+
+  // Case for not logged in 
   if (auth_required && !logged_in){
+    console.log("Not logged in");
     return next('/login');
   }
   // Case for logged in, but not admin
-  else if (auth_required&& admin_required && logged_in && !is_admin){
+  else if (auth_required && admin_required && logged_in && !is_admin){
     return next('*');
   }
   // Admin can access any page, might make it so admin can only access user page
@@ -66,9 +72,6 @@ router.beforeEach((to, from, next) =>{
 new Vue({
   el: '#app',
   render: h => h(App),
-  store: store,
+  store,
   router
 })
-
-App.use(router)
-App.use(store)

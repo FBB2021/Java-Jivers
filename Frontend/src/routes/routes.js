@@ -12,10 +12,6 @@ import Analytics from 'src/pages/analytics.vue'
 import Maps from 'src/pages/Maps.vue'
 import Login from 'src/pages/Login.vue'
 
-import Vue from 'vue';
-import Router from 'vue-router';
-
-Vue.use(Router);
 
 const routes = [
   {

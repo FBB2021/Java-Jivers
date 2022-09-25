@@ -13,9 +13,6 @@ const todoUrl = "http://localhost:3500/todo";
 **/
 
 export default {
-  beforeCreate(){
-    this.$store.commit('initialiseStore')
-  }
 };
 </script>
 

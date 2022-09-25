@@ -7,7 +7,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+ const store = new Vuex.Store({
     state:{
         isAuthenticated: false,
         isAdmin: false,
@@ -29,12 +29,23 @@ export default new Vuex.Store({
             else{
                 state.isAdmin = false;
             }
+            console.log(" "  + user_type + state.isAuthenticated);
         },
         logout (state){
             state.isAuthenticated= false
             state.isAdmin= false
             state. user= null
+        },
+        get_isAuthenticated(state){
+            return state.isAuthenticated
         }
         
+    },
+    actions: {
+        login (context, user_type, user){
+            context.commit('login_authenticated', user_type, user)
+        }
     }
 })
+
+export default store
