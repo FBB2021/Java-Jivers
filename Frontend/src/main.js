@@ -43,6 +43,25 @@ const router = new VueRouter({
   }
 })
 
+router.beforeEach((to, from, next) =>{
+  const public_pages = ['/login', '/', '*']
+  const auth_required = !public_pages.includes(to.path);
+  const admin_required = ['/admin'];
+  const logged_in = localStorage.getItem('isAuthenticated');
+  const is_admin = localStorage.getItem('isAdmin');
+
+  // Case for not logged in
+  if (auth_required && !logged_in){
+    return next('/login');
+  }
+  // Case for logged in, but not admin
+  else if (auth_required&& admin_required && logged_in && !is_admin){
+    return next('*');
+  }
+  // Admin can access any page, might make it so admin can only access user page
+  next();
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

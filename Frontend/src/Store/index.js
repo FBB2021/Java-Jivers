@@ -11,29 +11,30 @@ export default new Vuex.Store({
     state:{
         isAuthenticated: false,
         isAdmin: false,
-        token: '',
+        user: null
     },
     mutations: {
-        // based on https://github.com/SteinOveHelset/djackets_vue/blob/master/src/store/index.js
         initialiseStore(state){
-            if (localStoreage.getItem('token')){
-                state.token = localStoreage.getItem('token')
-                state.isAuthenticated = true
-            }
-            else{
-                state.token = ''
-                state.isAuthenticated = false
-                state.isAdmin = false
-            }
-        },
-        setToken(state, token){
-            state.token = token
-            state.isAuthenticated = true
-        },
-        removeToken(state){
-            state.token = ''
             state.isAuthenticated = false
             state.isAdmin = false
+
+        },
+        login_authenticated (state, user_type, user){
+            console.log(" "  + user_type);
+            state.isAuthenticated = true;
+            state.user = user;
+            if (user_type == "admin"){
+                state.isAdmin = true;
+            }
+            else{
+                state.isAdmin = false;
+            }
+        },
+        logout (state){
+            state.isAuthenticated= false
+            state.isAdmin= false
+            state. user= null
         }
+        
     }
 })
