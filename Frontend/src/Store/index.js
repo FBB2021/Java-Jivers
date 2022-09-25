@@ -1,9 +1,13 @@
-import {createStore} from 'vuex'
+
 
 // Store, term used for state management system using vuex.
 // Using to manage authentication
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-export default createStore({
+Vue.use(Vuex)
+
+export default new Vuex.Store({
     state:{
         isAuthenticated: false,
         isAdmin: false,
@@ -26,12 +30,10 @@ export default createStore({
             state.token = token
             state.isAuthenticated = true
         },
-        removeToke(state){
+        removeToken(state){
             state.token = ''
             state.isAuthenticated = false
             state.isAdmin = false
         }
     }
 })
-
-const app = createApp

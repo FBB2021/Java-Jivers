@@ -53,8 +53,6 @@
 <script>
   import Card from 'src/components/Cards/Card.vue'
   // put the Url here
-  import axios from "axios";
-  const todoUrl = "http://localhost:3500/todo";
 
   export default {
     components: {
@@ -68,46 +66,26 @@
     },
     data() {
       return {
-        user_login_data: [],
         input: {
           email: "",
           password: ""
         }
       }
     },
-    methods: {
+      methods: {
       login() {
         if(this.input.email != "" && this.input.password != ""){
-          let user_type = this.getUserType();
-          if(user_type == "general_user"){
+          if(this.input.email == "useremail" && this.input.password == "password"){
             // Not secure yet
             this.$router.push('/user/overview');
           }
-          else if(user_type == "admin_user"){
-            this.$router.push('/admin/overview');
-          }
           else{
-            console.log("The email and / or password is incorrect" + user_type);
+            console.log("The email and / or password is incorrect" );
           }
         }
-      },
-      // Returns the type of user, either admin or general, from the server database given a username/email and password
-      getUserType(){
-       // First check if it is in the database, if not return -1
-       let user = this.user_login_data.indexOf(this.input);
-       if (user == -1){
-        console.log("incorrect formatting " + toString(this.input));
-        return -1;
-       }
-       else {
-        return "general_user";
-       }
-      }
-    },
-    created(){
-      axios.get(todoUrl).then(response=>{this.user_login_data = response.data});
     }
   }
+}
 
 
 </script>
