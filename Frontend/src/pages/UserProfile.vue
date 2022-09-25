@@ -59,12 +59,12 @@
     <el-row :gutter="20">
     
       <el-table :data="tableData" style="width: 100%">
-        <el-table-column prop="Name" label="Name" align = "center"> </el-table-column>
-        <el-table-column prop="Brand" label="Brand" align = "center"> </el-table-column>
+        <el-table-column prop="Name" label="Name" align = "center" sortable> </el-table-column>
+        <el-table-column prop="Brand" label="Brand" align = "center" sortable> </el-table-column>
         <el-table-column prop="Category" label="Category" :formatter="formatter"> </el-table-column>
-        <el-table-column prop="Location" label="Location" align = "center"> </el-table-column>
-        <el-table-column prop="Quantity" label="Quantity" align = "center"></el-table-column>
-        <el-table-column prop="Weight(kg)" label="Weight" align = "center"></el-table-column>
+        <el-table-column prop="Location" label="Location" align = "center" sortable> </el-table-column>
+        <el-table-column prop="Quantity" label="Quantity" align = "center" sortable></el-table-column>
+        <el-table-column prop="Weight(kg)" label="Weight" align = "center" sortable></el-table-column>
         <el-table-column label="">
           <template>
             <el-button type="primary" size="mini" icon="el-icon-edit">
