@@ -69,7 +69,7 @@ def itemApi(request, id=0):
 
     # delete user through UserId, not the objectId
     elif request.method=='DELETE':
-        item = item.objects.get(idItem=id)
+        item = Item.objects.get(idItem=id)
         item.delete()
         return JsonResponse("Delete Successfully", safe = False)
 
