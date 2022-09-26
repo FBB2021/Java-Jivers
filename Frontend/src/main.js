@@ -47,7 +47,7 @@ const router = new VueRouter({
 
 
 router.beforeEach((to, from, next) =>{
-  const public_pages = ['/login', '/', '*']
+  const public_pages = ['/login', '/', '*'];
   const auth_required = ['/user', '/admin'];
   const admin_required = ['/admin'];
   const logged_in = store.getters.get_isAuthenticated;
