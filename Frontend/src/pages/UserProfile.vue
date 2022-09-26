@@ -59,12 +59,12 @@
     <el-row :gutter="20">
     
       <el-table :data="tableData" style="width: 100%">
-        <el-table-column prop="Name" label="Name" align = "center" sortable> </el-table-column>
-        <el-table-column prop="Brand" label="Brand" align = "center" sortable> </el-table-column>
-        <el-table-column prop="Category" label="Category" :formatter="formatter"> </el-table-column>
-        <el-table-column prop="Location" label="Location" align = "center" sortable> </el-table-column>
-        <el-table-column prop="Quantity" label="Quantity" align = "center" sortable></el-table-column>
-        <el-table-column prop="Weight(kg)" label="Weight" align = "center" sortable></el-table-column>
+        <el-table-column prop="name" label="Name" align = "center" sortable> </el-table-column>
+        <el-table-column prop="nameBrand" label="Brand" align = "center" sortable> </el-table-column>
+        <el-table-column prop="category" label="Category" :formatter="formatter"> </el-table-column>
+        <el-table-column prop="nameLocation" label="Location" align = "center" sortable> </el-table-column>
+        <el-table-column prop="quantity" label="Quantity" align = "center" sortable></el-table-column>
+        <el-table-column prop="weight" label="Weight(Kg)" align = "center" sortable></el-table-column>
         <el-table-column label="">
           <template>
             <el-button type="primary" size="mini" icon="el-icon-edit">
@@ -83,7 +83,7 @@
 <script>
 // put the Url here
 import Axios from "axios";
-const todoUrl = "http://localhost:3500/todo";
+const todoUrl = "http://localhost:8000/item";
 
 export default {
   data() {
