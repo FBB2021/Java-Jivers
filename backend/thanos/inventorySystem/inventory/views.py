@@ -42,9 +42,14 @@ def itemApi(request, id=0):
 
     # get all the Item
     if request.method=='GET':
-        item = Item.objects.all()
-        item_serializer = itemSerializer(item, many=True)
+        if (id == 0):
+            item = Item.objects.all()
+            item_serializer = itemSerializer(item, many=True)
+        else:
+            item = Item.objects.get(idItem = id)
+            item_serializer = itemSerializer(item, many=False)
         return JsonResponse(item_serializer.data,safe=False)
+
     
     # add Item
     elif request.method=='POST':
