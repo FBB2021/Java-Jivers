@@ -5,12 +5,14 @@ from unittest.util import _MAX_LENGTH
 from django.db import models
 
 # Create your models here.
+'''
 CATEGORY = (
     ('Computer', 'Computer'),
     ('Shoes', 'Shoes'),
     ('Clothes', 'Clothes'),
     ('Food', 'Food'),
 )
+'''
 
 class Region(models.Model):
     nameRegion = models.CharField(primary_key=True,unique=True,max_length=16,null=False,blank=False)
@@ -32,7 +34,8 @@ class Item(models.Model):
     idItem = models.AutoField(primary_key=True)
     name = models.CharField(max_length = 32, null = False, blank = False)
     nameBrand = models.CharField(max_length = 32, null=False, blank=False,default="default")
-    category = models.CharField(max_length=20, choices=CATEGORY, null=False, blank=False,default="default")
+    #category = models.CharField(max_length=20, choices=CATEGORY, null=False, blank=False,default="default")
+    category = models.CharField(max_length=32, null=False, blank=False,default="default")
     quantity = models.IntegerField(null=False, blank=False,default=1)
     weight = models.DecimalField(max_digits=8, decimal_places=2,null=True, blank=True)
     nameLocation = models.CharField(max_length=16,null=False, blank=False,default="default")

@@ -55,32 +55,32 @@
       <!-- Display of table -->
       <el-row :gutter="20">
         <el-table :data="tableData.slice((this.currentPage-1)*this.pageSize, this.currentPage * this.pageSize)" style="width: 100%">
-          <el-table-column prop="Name" label="Name" align="center" sortable>
+          <el-table-column prop="name" label="Name" align="center" sortable>
           </el-table-column>
-          <el-table-column prop="Brand" label="Brand" align="center" sortable>
+          <el-table-column prop="nameBrand" label="Brand" align="center" sortable>
           </el-table-column>
           <el-table-column
-            prop="Category"
+            prop="category"
             label="Category"
             :formatter="formatter"
           >
           </el-table-column>
           <el-table-column
-            prop="Location"
+            prop="nameLocation"
             label="Location"
             align="center"
             sortable
           >
           </el-table-column>
           <el-table-column
-            prop="Quantity"
+            prop="quantity"
             label="Quantity"
             align="center"
             sortable
           ></el-table-column>
           <el-table-column
-            prop="Weight(kg)"
-            label="Weight"
+            prop="weight"
+            label="Weight(kg)"
             align="center"
             sortable
           ></el-table-column>
@@ -108,40 +108,14 @@
         </el-pagination>
       </el-row>
     </div>
-<<<<<<< HEAD
-    <!-- Display of table -->
-    <el-row :gutter="20">
-    
-      <el-table :data="tableData" style="width: 100%">
-        <el-table-column prop="name" label="Name" align = "center" sortable> </el-table-column>
-        <el-table-column prop="nameBrand" label="Brand" align = "center" sortable> </el-table-column>
-        <el-table-column prop="category" label="Category" :formatter="formatter"> </el-table-column>
-        <el-table-column prop="nameLocation" label="Location" align = "center" sortable> </el-table-column>
-        <el-table-column prop="quantity" label="Quantity" align = "center" sortable></el-table-column>
-        <el-table-column prop="weight" label="Weight(Kg)" align = "center" sortable></el-table-column>
-        <el-table-column label="">
-          <template>
-            <el-button type="primary" size="mini" icon="el-icon-edit">
-            </el-button>
-            <el-button type="danger" size="mini" icon="el-icon-delete">
-            </el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-    </el-row>
-    </div>
-    </div>
-   </template>
-=======
   </div>
 </template>
->>>>>>> Product
 
 
 <script>
 // put the Url here
 import Axios from "axios";
-const todoUrl = "http://localhost:3500/todo";
+const todoUrl = "http://localhost:8000/item";
 
 export default {
   data() {
@@ -150,7 +124,7 @@ export default {
       todoItem: {},
       editMode: false,
       currentPage:1,
-      pageSize: 5,
+      pageSize: 20,
       totalPage: 0,
     };
   },
@@ -173,8 +147,9 @@ export default {
 // delete function
     del(row){
       console.log(row);
-      console.log(row.Name);
-      this.axios.delete(todoUrl+row.Name).then((result) => 
+      console.log(row.idItem);
+      //127.0.0.1:8000/item/1637
+      this.axios.delete(todoUrl+"/"+row.idItem).then((result) => 
       this.tableData = result.data)
     }
   },
