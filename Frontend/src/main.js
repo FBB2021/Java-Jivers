@@ -48,22 +48,23 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) =>{
   const public_pages = ['/login', '/', '*']
-  const auth_required = !public_pages.includes(to.path);
+  const auth_required = ['/user', '/admin'];
   const admin_required = ['/admin'];
   const logged_in = store.getters.get_isAuthenticated;
   const is_admin = store.getters.get_IsAdmin;
 
+  if(auth_required.includes(to.path) && !logged_in){
+    next('/login');
+  }
+  else if(admin_required.includes(to.path) && !is_admin){
+    next('/user');
+  }
+  else{
+    next();
+  }
 
-  // Case for not logged in 
-  if (auth_required && !logged_in){
-    return next('/login');
-  }
-  // Case for logged in, but not admin
-  else if (auth_required && admin_required && logged_in && !is_admin){
-    return next('*');
-  }
-  // Admin can access any page, might make it so admin can only access user page
-  next();
+
+
 })
 
 /* eslint-disable no-new */

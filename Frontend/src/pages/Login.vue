@@ -80,7 +80,7 @@ export default {
         }
         else if (this.input.email == this.login_details.admin.email && this.input.password == this.login_details.admin.password) {
           // Not secure yet
-          this.$store.dispatch('login_authenticated', "admin", this.input.email);
+          this.$store.dispatch('login_authenticated', ["admin", "adminemail"]);
           this.$router.push('/admin/overview');
         }
         else {
