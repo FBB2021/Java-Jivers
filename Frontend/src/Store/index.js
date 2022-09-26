@@ -11,39 +11,48 @@ Vue.use(Vuex)
     state:{
         isAuthenticated: false,
         isAdmin: false,
-        user: null
+        user: ""
     },
     mutations: {
         initialiseStore(state){
             state.isAuthenticated = false
             state.isAdmin = false
-
         },
-        login_authenticated (state, user_type, user){
-            console.log(" "  + user_type);
-            state.isAuthenticated = true;
-            state.user = user;
-            if (user_type == "admin"){
-                state.isAdmin = true;
-            }
-            else{
-                state.isAdmin = false;
-            }
-            console.log(" "  + user_type + state.isAuthenticated);
+        set_isAuthenticated(state, value){
+            state.isAuthenticated = value
         },
-        logout (state){
-            state.isAuthenticated= false
-            state.isAdmin= false
-            state. user= null
+        set_isAdmin(state, value){
+            state.isAdmin = value
         },
-        get_isAuthenticated(state){
-            return state.isAuthenticated
+        set_user(state, user){
+            state.user = user
         }
         
     },
-    actions: {
-        login (context, user_type, user){
-            context.commit('login_authenticated', user_type, user)
+    actions:{
+        login_authenticated (context, [user_type, user]){
+            context.commit('set_isAuthenticated', true)
+            context.commit('set_user', user)
+
+            if (user_type == "admin"){
+                context.commit('set_isAdmin', true)
+            }
+            else{
+                context.commit('set_isAdmin', false)
+            }
+        },
+        logout (context){
+            context.commit('set_isAuthenticated', false)
+            context.commit('set_isAdmin', false)
+            context.commit('set_user', null)
+        }
+    },
+    getters: {
+        get_isAuthenticated: state => {
+            return state.isAuthenticated
+        },
+        get_isAdmin: state=> {
+            return state.isAdmin
         }
     }
 })

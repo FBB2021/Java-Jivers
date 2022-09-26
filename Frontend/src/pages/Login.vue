@@ -75,12 +75,12 @@ export default {
       if (this.input.email != "" && this.input.password != "") {
         if (this.input.email == this.login_details.user.email && this.input.password == this.login_details.user.password) {
           // Not secure yet
-          this.$store.dispatch('login', "user", this.input.email);
+          this.$store.dispatch('login_authenticated', ["user", "useremail"]);
           this.$router.push('/user/overview');
         }
         else if (this.input.email == this.login_details.admin.email && this.input.password == this.login_details.admin.password) {
           // Not secure yet
-          this.$store.dispatch('login', "admin", this.input.email);
+          this.$store.dispatch('login_authenticated', "admin", this.input.email);
           this.$router.push('/admin/overview');
         }
         else {

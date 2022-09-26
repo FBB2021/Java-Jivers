@@ -50,14 +50,12 @@ router.beforeEach((to, from, next) =>{
   const public_pages = ['/login', '/', '*']
   const auth_required = !public_pages.includes(to.path);
   const admin_required = ['/admin'];
-  const logged_in = localStorage.getItem('isAuthenticated');
-  const is_admin = localStorage.getItem('isAdmin');
+  const logged_in = store.getters.get_isAuthenticated;
+  const is_admin = store.getters.get_IsAdmin;
 
-  console.log(" " + logged_in)
 
   // Case for not logged in 
   if (auth_required && !logged_in){
-    console.log("Not logged in");
     return next('/login');
   }
   // Case for logged in, but not admin
