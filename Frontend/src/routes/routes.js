@@ -9,7 +9,6 @@ import UserProfile from 'src/pages/UserProfile.vue'
 import TableList from 'src/pages/TableList.vue'
 import Account from 'src/pages/Account.vue'
 import Analytics from 'src/pages/analytics.vue'
-import Maps from 'src/pages/Maps.vue'
 import Login from 'src/pages/Login.vue'
 
 const routes = [
@@ -49,11 +48,6 @@ const routes = [
         component: Analytics
       },
       {
-        path: 'maps',
-        name: 'Maps',
-        component: Maps
-      },
-      {
         path: '/login',
         name: 'Login',
         component: Login
@@ -89,11 +83,6 @@ const routes = [
         path: 'analytics',
         name: 'Analytics',
         component: Analytics
-      },
-      {
-        path: 'maps',
-        name: 'Maps',
-        component: Maps
       },
       {
         path: '/login',
