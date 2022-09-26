@@ -97,7 +97,7 @@
             </template>
           </el-table-column>
         </el-table>
-
+<!-- Pagination -->
         <el-pagination
           :current-page= "this.currentPage"
           background
@@ -124,12 +124,13 @@ export default {
       todoItem: {},
       editMode: false,
       currentPage:1,
-      pageSize: 4,
+      pageSize: 5,
       totalPage: 0,
     };
   },
   // Most of the method doesn't work yet, wokring on to fix it
   methods: {
+  // Send a get request to backend and request data
     getTableData() {
       Axios.get(todoUrl).then((response) => {
         this.tableData = response.data;
@@ -138,28 +139,20 @@ export default {
         console.log(this.totalPage);
       });
     },
-
+// handle page change for pagination 
     handleCurrentChange(val) {
       this.currentPage = val;
       },
+
+// delete function
     del(row){
       console.log(row);
       console.log(row.Name);
       this.axios.delete(todoUrl+row.Name).then((result) => 
       this.tableData = result.data)
-
     }
-
-    // handleEdit(Name){
-    //   // this.editMode = true;
-    //   this.todoItem = this.tableData.find(((item) => item.Name = Name));
-    //   console.log(this.todoItem);
-    // },
-    // async handleDelete(Name){
-    //     await Axios.delete(`${todoUrl}/${Name}`);
-    //     Axios.get(todoUrl).then((response) => (this.tableData = response.data));
-    // }
   },
+
   // The get request at the begining to get all data
   created() {
     this.getTableData();
