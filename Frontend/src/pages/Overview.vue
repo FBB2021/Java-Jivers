@@ -22,10 +22,7 @@
             </template>
           </chart-card>
         </div>
-
       </div>
-
-
     </div>
   </div>
 </template>

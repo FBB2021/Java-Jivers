@@ -10,13 +10,8 @@
         <!-- Search bar -->
         <div class="col-7">
           <div class="input-group mb-3">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="'type product name here"
-              aria-label="type product name here"
-              aria-describedby="basic-addon2"
-            />
+            <input type="text" class="form-control" placeholder="'type product name here"
+              aria-label="type product name here" aria-describedby="basic-addon2" />
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" type="button">
                 Search
@@ -26,99 +21,63 @@
         </div>
         <!-- Filter Button -->
         <div class="col">
-          <button
-            type="button"
-            class="btn btn-secondary btn-fill float-center btn-block"
-          >
+          <button type="button" class="btn btn-secondary btn-fill float-center btn-block">
             Filter
           </button>
         </div>
         <!-- Add item button -->
         <div class="col-sm">
-          <button
-            type="button"
-            class="btn btn-info btn-fill float-center btn-block"
-          >
+          <button type="button" class="btn btn-info btn-fill float-center btn-block">
             + New Item
           </button>
         </div>
         <!-- Delete item button -->
         <div class="col-sm">
-          <button
-            type="button"
-            class="btn btn-warning btn-fill float-center btn-block"
-          >
+          <button type="button" class="btn btn-warning btn-fill float-center btn-block">
             - Delete Item
           </button>
         </div>
       </div>
       <!-- Display of table -->
       <el-row :gutter="20">
-        <el-table :data="tableData.slice((this.currentPage-1)*this.pageSize, this.currentPage * this.pageSize)" style="width: 100%">
+        <el-table :data="tableData.slice((this.currentPage-1)*this.pageSize, this.currentPage * this.pageSize)"
+          style="width: 100%">
           <el-table-column prop="Name" label="Name" align="center" sortable>
           </el-table-column>
           <el-table-column prop="Brand" label="Brand" align="center" sortable>
           </el-table-column>
-          <el-table-column
-            prop="Category"
-            label="Category"
-            :formatter="formatter"
-          >
+          <el-table-column prop="Category" label="Category" :formatter="formatter">
           </el-table-column>
-          <el-table-column
-            prop="Location"
-            label="Location"
-            align="center"
-            sortable
-          >
+          <el-table-column prop="Location" label="Location" align="center" sortable>
           </el-table-column>
-          <el-table-column
-            prop="Quantity"
-            label="Quantity"
-            align="center"
-            sortable
-          ></el-table-column>
-          <el-table-column
-            prop="Weight(kg)"
-            label="Weight"
-            align="center"
-            sortable
-          ></el-table-column>
+          <el-table-column prop="Quantity" label="Quantity" align="center" sortable></el-table-column>
+          <el-table-column prop="Weight(kg)" label="Weight" align="center" sortable></el-table-column>
           <el-table-column label="">
             <template slot-scope="scope">
               <el-button type="primary" size="mini" icon="el-icon-edit">
               </el-button>
-              <el-button 
-              type="danger" 
-              size="mini" 
-              icon="el-icon-delete" 
-              @click = "del(scope.row)">
+              <el-button type="danger" size="mini" icon="el-icon-delete" @click="del(scope.row)">
               </el-button>
             </template>
           </el-table-column>
         </el-table>
-<!-- Pagination -->
-        <el-pagination
-          :current-page= "this.currentPage"
-          background
-          @current-change="handleCurrentChange"
-          layout="prev, pager, next"
-          :total="this.totalPage"
-        >
+        <!-- Pagination -->
+        <el-pagination :current-page="this.currentPage" background @current-change="handleCurrentChange"
+          layout="prev, pager, next" :total="this.totalPage">
         </el-pagination>
       </el-row>
     </div>
-<<<<<<< HEAD
+
     <!-- Display of table -->
     <el-row :gutter="20">
-    
+
       <el-table :data="tableData" style="width: 100%">
-        <el-table-column prop="name" label="Name" align = "center" sortable> </el-table-column>
-        <el-table-column prop="nameBrand" label="Brand" align = "center" sortable> </el-table-column>
+        <el-table-column prop="name" label="Name" align="center" sortable> </el-table-column>
+        <el-table-column prop="nameBrand" label="Brand" align="center" sortable> </el-table-column>
         <el-table-column prop="category" label="Category" :formatter="formatter"> </el-table-column>
-        <el-table-column prop="nameLocation" label="Location" align = "center" sortable> </el-table-column>
-        <el-table-column prop="quantity" label="Quantity" align = "center" sortable></el-table-column>
-        <el-table-column prop="weight" label="Weight(Kg)" align = "center" sortable></el-table-column>
+        <el-table-column prop="nameLocation" label="Location" align="center" sortable> </el-table-column>
+        <el-table-column prop="quantity" label="Quantity" align="center" sortable></el-table-column>
+        <el-table-column prop="weight" label="Weight(Kg)" align="center" sortable></el-table-column>
         <el-table-column label="">
           <template>
             <el-button type="primary" size="mini" icon="el-icon-edit">
@@ -129,9 +88,8 @@
         </el-table-column>
       </el-table>
     </el-row>
-    </div>
-    </div>
-   </template>
+  </div>
+</template>
 =======
   </div>
 </template>
@@ -141,7 +99,9 @@
 <script>
 // put the Url here
 import Axios from "axios";
-const todoUrl = "http://localhost:3500/todo";
+//const todoUrl = "http://localhost:3500/todo";
+const todoUrl = "http://127.0.0.1:8000/inventory";
+
 
 export default {
   data() {
@@ -149,14 +109,14 @@ export default {
       tableData: [],
       todoItem: {},
       editMode: false,
-      currentPage:1,
+      currentPage: 1,
       pageSize: 5,
       totalPage: 0,
     };
   },
   // Most of the method doesn't work yet, wokring on to fix it
   methods: {
-  // Send a get request to backend and request data
+    // Send a get request to backend and request data
     getTableData() {
       Axios.get(todoUrl).then((response) => {
         this.tableData = response.data;
@@ -165,18 +125,23 @@ export default {
         console.log(this.totalPage);
       });
     },
-// handle page change for pagination 
+    // handle page change for pagination 
     handleCurrentChange(val) {
       this.currentPage = val;
-      },
+    },
 
-// delete function
-    del(row){
+
+    // delete function
+    del(row) {
       console.log(row);
       console.log(row.Name);
-      this.axios.delete(todoUrl+row.Name).then((result) => 
-      this.tableData = result.data)
+      this.axios.delete(todoUrl + row.Name).then((result) =>
+        this.tableData = result.data)
     }
+  },
+  // The get request at the begining to get all data
+  created() {
+    Axios.get(todoUrl).then((response) => (this.todoList = response.data));
   },
 
   // The get request at the begining to get all data
@@ -187,4 +152,5 @@ export default {
 </script>
 
 <style>
+
 </style>

@@ -11,11 +11,17 @@ import Account from 'src/pages/Account.vue'
 import Analytics from 'src/pages/analytics.vue'
 import Login from 'src/pages/Login.vue'
 
+
 const routes = [
   {
     path: '/',
-    component: DashboardLayout,
-    redirect: '/admin/overview'
+    component: Login,
+    redirect: '/login'
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
   },
   {
     path: '/admin',
@@ -46,11 +52,6 @@ const routes = [
         path: 'analytics',
         name: 'Analytics',
         component: Analytics
-      },
-      {
-        path: '/login',
-        name: 'Login',
-        component: Login
       }
     ]
   },
@@ -83,16 +84,12 @@ const routes = [
         path: 'analytics',
         name: 'Analytics',
         component: Analytics
-      },
-      {
-        path: '/login',
-        name: 'Login',
-        component: Login
       }
     ]
   },
   { path: '*', component: NotFound }
-]
+];
+
 
 /**
  * Asynchronously load view (Webpack Lazy loading compatible)
@@ -102,5 +99,6 @@ function view(name) {
    var res= require('../components/Dashboard/Views/' + name + '.vue');
    return res;
 };**/
+
 
 export default routes

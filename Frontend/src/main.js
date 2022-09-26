@@ -14,10 +14,13 @@
 
  */
 import Vue from 'vue'
+import Vuex from "vuex";
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import store from './Store'
+
 
 // LightBootstrap plugin
 import LightBootstrap from './light-bootstrap-main'
@@ -30,6 +33,7 @@ import './registerServiceWorker'
 Vue.use(VueRouter)
 Vue.use(LightBootstrap)
 Vue.use(ElementUI)
+Vue.use(Vuex)
 
 // configure router
 const router = new VueRouter({
@@ -44,9 +48,32 @@ const router = new VueRouter({
   }
 })
 
+
+router.beforeEach((to, from, next) =>{
+  const public_pages = ['/login', '/', '*'];
+  const auth_required = ['/user', '/admin'];
+  const admin_required = ['/admin'];
+  const logged_in = store.getters.get_isAuthenticated;
+  const is_admin = store.getters.get_IsAdmin;
+
+  if(auth_required.includes(to.path) && !logged_in){
+    next('/login');
+  }
+  else if(admin_required.includes(to.path) && !is_admin){
+    next('/user');
+  }
+  else{
+    next();
+  }
+
+
+
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   render: h => h(App),
+  store,
   router
 })
