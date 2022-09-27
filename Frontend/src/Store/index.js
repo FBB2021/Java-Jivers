@@ -34,7 +34,7 @@ Vue.use(Vuex)
             context.commit('set_isAuthenticated', true)
             context.commit('set_user', user)
 
-            if (user_type == "admin"){
+            if (user_type == "Admin"){
                 context.commit('set_isAdmin', true)
             }
             else{

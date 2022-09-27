@@ -1,5 +1,7 @@
 <template>
-  <div class="login" data-image="background-image">
+  <div class="login"  >
+    
+
     <card>
       <h4 slot="header" class="card-title">Sign In</h4>
       <form>
@@ -19,13 +21,14 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="row">
-            <base-checkbox></base-checkbox>
-          </div>
 
-          Remember me
+        <div class="row">
+          <td>
+            <base-checkbox></base-checkbox>
+          </td>
+          <td>Remember me</td>
         </div>
+
 
         <div class="row">
           <div class="col-xl-12 col-md-12">
@@ -42,7 +45,9 @@
       </form>
     </card>
   </div>
+
 </template>
+
 <script>
 import Card from 'src/components/Cards/Card.vue'
 // put the Url here
@@ -51,12 +56,6 @@ export default {
   components: {
     Card
   },
-  props: {
-    backgroundImage: {
-      type: String,
-      default: 'img/adrian-sulyok-sczNLg6rrhQ-unsplash'
-    }
-  },
   data() {
     return {
       input: {
@@ -64,23 +63,23 @@ export default {
         password: ""
       },
       login_details: {
-        user: { email: "useremail", password: "password"},
+        general: { email: "useremail", password: "password" },
         admin: { email: "adminemail", password: "password" }
+      },
+      background_image: { image: "img/adrian-sulyok-sczNLg6rrhQ-unsplash.jpg"}
       }
-
-    }
   },
   methods: {
     login() {
       if (this.input.email != "" && this.input.password != "") {
-        if (this.input.email == this.login_details.user.email && this.input.password == this.login_details.user.password) {
+        if (this.input.email == this.login_details.general.email && this.input.password == this.login_details.general.password) {
           // Not secure yet
-          this.$store.dispatch('login_authenticated', ["user", "useremail"]);
+          this.$store.dispatch('login_authenticated', ["General", "useremail"]);
           this.$router.push('/user/overview');
         }
         else if (this.input.email == this.login_details.admin.email && this.input.password == this.login_details.admin.password) {
           // Not secure yet
-          this.$store.dispatch('login_authenticated', ["admin", "adminemail"]);
+          this.$store.dispatch('login_authenticated', ["Admin", "adminemail"]);
           this.$router.push('/admin/overview');
         }
         else {
@@ -94,10 +93,13 @@ export default {
 
 </script>
 <style>
+  
 .login {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background-image: url('adrian-sulyok-sczNLg6rrhQ-unsplash.jpg');
+  background-size: cover;
 }
 </style>
