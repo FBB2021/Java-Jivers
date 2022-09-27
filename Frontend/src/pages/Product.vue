@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="container">
-      <h3>Products</h3>
+      <!-- <h3>Products</h3> -->
       <!-- The black row at the top of product page, showing the total statics -->
       <div class="p-3 mb-2 bg-dark text-white">
         Total items in Inventory: 153 Inventory value by price: $51.4k
@@ -85,7 +85,6 @@
         </el-pagination>
       </el-row>
     </div>
-=======
   </div>
 </template>
 
@@ -93,7 +92,7 @@
 <script>
 // put the Url here
 import Axios from "axios";
-const todoUrl = "http://localhost:8000/item";
+const todoUrl = "http://localhost:3500/todo";
 
 export default {
   data() {
@@ -102,7 +101,7 @@ export default {
       todoItem: {},
       editMode: false,
       currentPage:1,
-      pageSize: 20,
+      pageSize: 7,
       totalPage: 0,
     };
   },
@@ -113,7 +112,9 @@ export default {
       Axios.get(todoUrl).then((response) => {
         this.tableData = response.data;
         this.totalPage = (this.tableData.length / this.pageSize) * 10;
+        console.log(response.data);
         console.log(response);
+
         console.log(this.totalPage);
       });
     },
@@ -124,12 +125,12 @@ export default {
 
 
     // delete function
-    del(row) {
+    async del(row) {
       console.log(row);
-      console.log(row.idItem);
+      console.log(row.id);
       //127.0.0.1:8000/item/1637
-      this.axios.delete(todoUrl+"/"+row.idItem).then((result) => 
-      this.tableData = result.data)
+      await Axios.delete(`${todoUrl}/${(row.id)}`);
+      this.getTableData();
     }
   },
   // The get request at the begining to get all data

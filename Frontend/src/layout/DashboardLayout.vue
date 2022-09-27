@@ -1,3 +1,5 @@
+<!-- This is the dashboard layout  -->
+
 <template>
   <div class="wrapper">
     <side-bar>
@@ -6,7 +8,7 @@
         <i class="nc-icon nc-chart-pie-35"></i>
         <p>Home</p>
       </sidebar-link>
-      <sidebar-link to="/admin/user">
+      <sidebar-link to="/admin/product">
         <i class="nc-icon nc-circle-09"></i>
         <p>Products</p>
       </sidebar-link>
@@ -55,7 +57,7 @@
       TopNavbar,
       ContentFooter,
       DashboardContent,
-      MobileMenu
+      // MobileMenu
     },
     methods: {
       toggleSidebar () {

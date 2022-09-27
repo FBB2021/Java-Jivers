@@ -5,7 +5,7 @@ import NotFound from '../pages/NotFoundPage.vue'
 // Admin pages
 import Overview from 'src/pages/Overview.vue'
 import User_overview from 'src/pages/User/Overview.vue'
-import UserProfile from 'src/pages/UserProfile.vue'
+import AdminProduct from 'src/pages/Product.vue'
 import TableList from 'src/pages/TableList.vue'
 import Account from 'src/pages/Account.vue'
 import Analytics from 'src/pages/analytics.vue'
@@ -34,9 +34,9 @@ const routes = [
         component: Overview
       },
       {
-        path: 'user',
-        name: 'User',
-        component: UserProfile
+        path: 'product',
+        name: 'Product',
+        component: AdminProduct
       },
       {
         path: 'table-list',
@@ -66,9 +66,9 @@ const routes = [
         component: User_overview
       },
       {
-        path: 'user',
-        name: 'User',
-        component: UserProfile
+        path: 'product',
+        name: 'Product',
+        component: AdminProduct
       },
       {
         path: 'table-list',
