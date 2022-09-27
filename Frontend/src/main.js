@@ -49,29 +49,6 @@ const router = new VueRouter({
 })
 
 
-router.beforeEach((to, from, next) =>{
-  const public_pages = ['/login', '/', '*'];
-  const user_pages = ['/user'];
-  const admin_pages = ['/admin'];
-  const auth_required = !public_pages.includes(to.path);
-  const admin_required = admin_pages.includes(to.path);
-  const logged_in = store.getters.get_isAuthenticated;
-  const is_admin = store.getters.get_IsAdmin;
-
-  if(auth_required && !logged_in){
-    next('/login');
-  }
-  else if(admin_required && !is_admin){
-    next('/user');
-  }
-  else{
-    next();
-  }
-
-
-
-})
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

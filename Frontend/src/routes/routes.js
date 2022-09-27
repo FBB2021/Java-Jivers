@@ -11,6 +11,8 @@ import Account from 'src/pages/Account.vue'
 import Analytics from 'src/pages/analytics.vue'
 import Login from 'src/pages/Login.vue'
 
+import store from 'src/Store'
+
 
 const routes = [
   {
@@ -26,6 +28,17 @@ const routes = [
   {
     path: '/admin',
     component: DashboardLayout,
+    beforeEnter: (to, from, next) => {
+      const is_admin = store.getters.get_isAdmin;
+
+      if (!is_admin) {
+          console.log("Attempting to access admin level page, without privileges. Currently logged in as " + store.getters.get_user);
+          return next('/login');
+        }
+        else {
+          return next();
+        }
+    },
     redirect: '/admin/overview',
     children: [
       {
@@ -58,6 +71,16 @@ const routes = [
   {
     path: '/user',
     component: DashboardLayout,
+    beforeEnter: (to, from, next) => {
+      const logged_in = store.getters.get_isAuthenticated;
+
+      if (!logged_in) {
+        next('/login');
+      }
+      else {
+        next();
+      }
+    },
     redirect: '/user/overview',
     children: [
       {
