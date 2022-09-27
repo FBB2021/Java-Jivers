@@ -4,7 +4,7 @@
       <!-- <h3>Products</h3> -->
       <!-- The black row at the top of product page, showing the total statics -->
       <div class="p-3 mb-2 bg-dark text-white">
-        Total items in Inventory: 153 Inventory value by price: $51.4k
+        Total items in Inventory: {{  this.tableData.length  }} Inventory value by price: $51.4k
       </div>
       <div class="row justify-content-center">
         <!-- Search bar -->
@@ -27,7 +27,7 @@
         </div>
         <!-- Add item button -->
         <div class="col-sm">
-          <button type="button" class="btn btn-info btn-fill float-center btn-block">
+          <button type="button" class="btn btn-info btn-fill float-center btn-block" @click="openNewItem">
             + New Item
           </button>
         </div>
@@ -92,7 +92,7 @@
 <script>
 // put the Url here
 import Axios from "axios";
-const todoUrl = "http://localhost:8000/item";
+const todoUrl = "https://java-jivers.herokuapp.com/item";
 
 export default {
   data() {
@@ -121,6 +121,10 @@ export default {
     // handle page change for pagination 
     handleCurrentChange(val) {
       this.currentPage = val;
+    },
+    openNewItem(){
+      this.$router.push('/admin/newitem');
+
     },
 
 

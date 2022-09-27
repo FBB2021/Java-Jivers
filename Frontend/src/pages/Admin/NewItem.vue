@@ -1,85 +1,78 @@
 <template>
-
-  <div class ='content'>
-
-    <div class = "row">
-        <el-button type="primary">
-            Back
-        </el-button>
-            <b> New item </b>
-    </div>
-
-
+  <div class="content">
     <div class="container">
+      <div class="row">
+        <el-button type="primary" @click="goback"> Back </el-button>
+        <b> New item </b>
+      </div>
+      <div style="margin: 20px 0"></div>
 
+      <div class="row">
+        <div class="col">
+          <Card>
+            Name
+            <el-input
+              v-model="name"
+              placeholder="Please type the name of item"
+            ></el-input>
+            <div style="margin: 20px 0"></div>
+            Description
+            <el-input
+              type="textarea"
+              :rows="3"
+              placeholder="Please type description of the item here"
+              v-model="inputdescription"
+            >
+            </el-input>
+            <div style="margin: 20px 0"></div>
+            Item Image (Currently not link to backend yet)
+            <el-upload
+              class="upload-demo"
+              drag
+              action="https://jsonplaceholder.typicode.com/posts/"
+              multiple
+            >
+              <i class="el-icon-upload"></i>
+              <div class="el-upload__text">
+                Drag File overhere, or<em>Click to upload</em>
+              </div>
+              <div class="el-upload__tip" slot="tip">
+                jpg/png file only and no more than 500kb
+              </div>
+            </el-upload>
+          </Card>
+        </div>
 
-
-      <form>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Email</label>
-            <input
-              type="email"
-              class="form-control"
-              id="inputEmail4"
-              placeholder="Email"
-            />
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Password</label>
-            <input
-              type="password"
-              class="form-control"
-              id="inputPassword4"
-              placeholder="Password"
-            />
-          </div>
+        <div class="col">
+          <Card>
+            <el-input
+              v-model="name"
+              placeholder="Please type the name of item"
+            ></el-input>
+          </Card>
         </div>
-        <div class="form-group">
-          <label for="inputAddress">Address</label>
-          <input
-            type="text"
-            class="form-control"
-            id="inputAddress"
-            placeholder="1234 Main St"
-          />
-        </div>
-        <div class="form-group">
-          <label for="inputAddress2">Address 2</label>
-          <input
-            type="text"
-            class="form-control"
-            id="inputAddress2"
-            placeholder="Apartment, studio, or floor"
-          />
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity" />
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputState">State</label>
-            <select id="inputState" class="form-control">
-              <option selected>Choose...</option>
-              <option>...</option>
-            </select>
-          </div>
-          <div class="form-group col-md-2">
-            <label for="inputZip">Zip</label>
-            <input type="text" class="form-control" id="inputZip" />
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck" />
-            <label class="form-check-label" for="gridCheck">
-              Check me out
-            </label>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Sign in</button>
-      </form>
+      </div>
     </div>
   </div>
 </template>
+
+<script>
+import Card from "src/components/Cards/Card.vue";
+
+export default {
+  components: {
+    Card,
+  },
+  data() {
+    return {
+      name: "",
+      inputdescription: "",
+    };
+  },
+  methods: {
+    goback() {
+      this.$router.push("/admin/product");
+    },
+  },
+};
+</script>
