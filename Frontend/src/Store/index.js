@@ -53,6 +53,9 @@ Vue.use(Vuex)
         },
         get_isAdmin: state=> {
             return state.isAdmin
+        },
+        get_user: state => {
+            return state.user
         }
     }
 })
