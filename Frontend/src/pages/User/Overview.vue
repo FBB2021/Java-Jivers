@@ -1,5 +1,5 @@
-<!-- This is the homepage -->
-
+<!-- This is the homepage for the user -->
+<!-- Three sections. First is a searh bar, for searching items. No current functionality. Second is a display of three items that are nearly out of stock. No functionality yet. Third is a table below that shows recent items. Was displaying placeholder data, but no longer works for unknown reason-->
 <template>
   <div class="content">
     <div class="container-fluid">
