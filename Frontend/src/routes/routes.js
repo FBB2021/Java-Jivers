@@ -1,15 +1,24 @@
 import DashboardLayout from '../layout/DashboardLayout.vue'
+import UserDashboardLayout from '../layout/UserDashboardLayout.vue'
 // GeneralViews
 import NotFound from '../pages/NotFoundPage.vue'
 
-// Admin pages
-import Overview from 'src/pages/Overview.vue'
-import User_overview from 'src/pages/User/Overview.vue'
-import AdminProduct from 'src/pages/Product.vue'
-import TableList from 'src/pages/TableList.vue'
-import Account from 'src/pages/Account.vue'
-import Analytics from 'src/pages/analytics.vue'
+//Login page
 import Login from 'src/pages/Login.vue'
+
+// Admin pages
+import Overview from 'src/pages/Admin/Overview.vue'
+import AdminProduct from 'src/pages/Admin/Product.vue'
+import TableList from 'src/pages/Admin/TableList.vue'
+import Account from 'src/pages/Admin/Account.vue'
+import Analytics from 'src/pages/Admin/analytics.vue'
+import NewItem from 'src/pages/Admin/NewItem.vue'
+
+
+// User pages
+import User_overview from 'src/pages/User/Overview.vue'
+import User_Product from 'src/pages/User/Product.vue'
+import User_load from 'src/pages/User/Load.vue'
 
 import store from 'src/Store'
 
@@ -25,6 +34,7 @@ const routes = [
     name: 'Login',
     component: Login,
   },
+  // The admin paths
   {
     path: '/admin',
     component: DashboardLayout,
@@ -52,6 +62,11 @@ const routes = [
         component: AdminProduct
       },
       {
+        path: 'newItem',
+        name: 'NewItem',
+        component: NewItem
+      },
+      {
         path: 'table-list',
         name: 'Table List',
         component: TableList
@@ -68,9 +83,10 @@ const routes = [
       }
     ]
   },
+// User Paths
   {
     path: '/user',
-    component: DashboardLayout,
+    component: UserDashboardLayout,
     beforeEnter: (to, from, next) => {
       const logged_in = store.getters.get_isAuthenticated;
 
@@ -91,23 +107,13 @@ const routes = [
       {
         path: 'product',
         name: 'Product',
-        component: AdminProduct
+        component: User_Product
       },
       {
-        path: 'table-list',
-        name: 'Table List',
-        component: TableList
+        path: 'load',
+        name: 'Load',
+        component: User_load
       },
-      {
-        path: 'account',
-        name: 'Account',
-        component: Account
-      },
-      {
-        path: 'analytics',
-        name: 'Analytics',
-        component: Analytics
-      }
     ]
   },
   { path: '*', component: NotFound }

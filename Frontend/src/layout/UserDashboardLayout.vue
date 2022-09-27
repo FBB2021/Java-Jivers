@@ -1,28 +1,20 @@
-<!-- This is the dashboard layout  -->
+<!-- This is the dashboard layout for User -->
 
 <template>
   <div class="wrapper">
     <side-bar>
       <mobile-menu slot="content"></mobile-menu>
-      <sidebar-link to="/admin/overview">
+      <sidebar-link to="/user/overview">
         <i class="nc-icon nc-chart-pie-35"></i>
         <p>Home</p>
       </sidebar-link>
-      <sidebar-link to="/admin/product">
+      <sidebar-link to="/user/product">
         <i class="nc-icon nc-circle-09"></i>
         <p>Products</p>
       </sidebar-link>
-      <sidebar-link to="/admin/table-list">
+      <sidebar-link to="/user/load">
         <i class="nc-icon nc-notes"></i>
         <p>Load</p>
-      </sidebar-link>
-      <sidebar-link to="/admin/account">
-        <i class="nc-icon nc-paper-2"></i>
-        <p>Account</p>
-      </sidebar-link>
-      <sidebar-link to="/admin/analytics">
-        <i class="nc-icon nc-atom"></i>
-        <p>Analytics</p>
       </sidebar-link>
 
       <template slot="bottom-links">
