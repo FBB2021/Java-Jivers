@@ -92,7 +92,7 @@
 <script>
 // put the Url here
 import Axios from "axios";
-const todoUrl = "http://localhost:3500/todo";
+const todoUrl = "http://localhost:8000/item";
 
 export default {
   data() {
@@ -101,7 +101,7 @@ export default {
       todoItem: {},
       editMode: false,
       currentPage:1,
-      pageSize: 7,
+      pageSize: 15,
       totalPage: 0,
     };
   },
@@ -127,9 +127,9 @@ export default {
     // delete function
     async del(row) {
       console.log(row);
-      console.log(row.id);
+      console.log(row.idItem);
       //127.0.0.1:8000/item/1637
-      await Axios.delete(`${todoUrl}/${(row.id)}`);
+      await Axios.delete(`${todoUrl}/${(row.idItem)}`);
       this.getTableData();
     }
   },
