@@ -51,15 +51,17 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) =>{
   const public_pages = ['/login', '/', '*'];
-  const auth_required = ['/user', '/admin'];
-  const admin_required = ['/admin'];
+  const user_pages = ['/user'];
+  const admin_pages = ['/admin'];
+  const auth_required = !public_pages.includes(to.path);
+  const admin_required = admin_pages.includes(to.path);
   const logged_in = store.getters.get_isAuthenticated;
   const is_admin = store.getters.get_IsAdmin;
 
-  if(auth_required.includes(to.path) && !logged_in){
+  if(auth_required && !logged_in){
     next('/login');
   }
-  else if(admin_required.includes(to.path) && !is_admin){
+  else if(admin_required && !is_admin){
     next('/user');
   }
   else{
