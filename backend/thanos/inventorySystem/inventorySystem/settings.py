@@ -14,9 +14,11 @@ from pathlib import Path
 import os
 
 # This allow to save images
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+
+print(f"\n\n\n\n\n\nBase Dir = {BASE_DIR}")
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 MEDIA_URL='/Photos/'
 MEDIA_ROOT=os.path.join(BASE_DIR, "Photos")
 
