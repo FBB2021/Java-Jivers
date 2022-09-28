@@ -14,6 +14,8 @@ from pathlib import Path
 import os
 
 # This allow to save images
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 MEDIA_URL='/Photos/'
 MEDIA_ROOT=os.path.join(BASE_DIR, "Photos")
@@ -29,9 +31,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*m%$n^v61ze!keb1eva7o5v57#x$prxstzt^v#*io30a)37h55'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['java-jivers-v2.herokuapp.com','127.0.0.1']
 
 # API
 CORS_ORIGIN_ALLOW_ALL = True
@@ -51,6 +53,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware", # Deploy
+    "whitenoise.middleware.WhiteNoiseMiddleware", # Deploy
     'corsheaders.middleware.CorsMiddleware', # API
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
