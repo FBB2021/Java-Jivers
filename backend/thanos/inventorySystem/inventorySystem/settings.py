@@ -16,7 +16,6 @@ import os
 # This allow to save images
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-print(f"\n\n\n\n\n\nBase Dir = {BASE_DIR}")
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 MEDIA_URL='/Photos/'
