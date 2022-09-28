@@ -1,2 +1,1 @@
-web cd /app/java-jivers-v2/backend/thanos/inventorySystem
-web: python3 ./manage.py runserver
+web: python3 backend/thanos/inventorySystem/manage.py runserver
