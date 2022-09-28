@@ -1,1 +1,1 @@
-web: python3 backend/thanos/inventorySystem/manage.py runserver -p 8000
+web: python3 backend/thanos/inventorySystem/manage.py runserver -p $PORT
