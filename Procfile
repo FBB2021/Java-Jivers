@@ -1,1 +1,1 @@
-web: python3 backend/thanos/inventorySystem/manage.py runserver
+web: python3 backend/thanos/inventorySystem/manage.py runserver 8080
