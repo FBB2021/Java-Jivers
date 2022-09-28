@@ -32,13 +32,6 @@
                 </div>
 
                 <div class="row">
-                    <td>
-                        <base-checkbox></base-checkbox>
-                    </td>
-                    <td>Remember me</td>
-                </div>
-
-                <div class="row">
                     <div class="col-xl-12 col-md-12">
                         <button
                             type="submit"
