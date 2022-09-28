@@ -86,12 +86,17 @@ export default {
       if (this.input.email != "" && this.input.password != "") {
         /* Pull user data from server */
         this.get_login_data();
+
         /* Check if input email and password are in the server data */
         const user = this.is_valid_user(this.input.email, this.input.password);
 
         /* We found a match in the database ! Success */
         if (user != false) {
-          if (user.role == "General") {
+          if (
+            user.filter((element) => {
+              return element.role == "General";
+            })
+          ) {
             this.$store.dispatch("login_authenticated", [
               "General",
               this.input.email,
@@ -122,10 +127,15 @@ export default {
     database. Returns the matching userobject if true, false if false*/
     is_valid_user(input_email, input_password) {
       const match = this.server_data.filter((user) => {
-        user.email == input_email;
+        return user.email == input_email;
       });
       console.log(match);
-      if (match.password == input_password) {
+
+      if (
+        match.filter((element) => {
+          return element.password == input_password;
+        })
+      ) {
         return match;
       } else {
         return false;
