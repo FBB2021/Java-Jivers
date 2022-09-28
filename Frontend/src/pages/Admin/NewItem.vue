@@ -200,9 +200,6 @@ export default {
       message("Added Successfull"),
       this.$router.push("/admin/product")
       );
-      // console.log(res)
-      // message("Added Successfull")
-      // this.$router.push("/admin/product");
     }
   },
 

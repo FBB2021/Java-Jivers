@@ -40,7 +40,8 @@
       </div>
       <!-- Display of table -->
       <el-row :gutter="20">
-        <el-table :data="tableData.slice((this.currentPage-1)*this.pageSize, this.currentPage * this.pageSize)" style="width: 100%">
+        <el-table :data="tableData.slice((this.currentPage-1)*this.pageSize, this.currentPage * this.pageSize)"
+         style="width: 100%" v-loading="loading">
           <el-table-column prop="name" label="Name" align="center" sortable>
           </el-table-column>
           <el-table-column prop="nameBrand" label="Brand" align="center" sortable>
@@ -97,6 +98,7 @@ const todoUrl = "https://java-jivers.herokuapp.com/item";
 export default {
   data() {
     return {
+      loading: true,
       tableData: [],
       todoItem: {},
       editMode: false,
@@ -114,8 +116,8 @@ export default {
         this.totalPage = (this.tableData.length / this.pageSize) * 10;
         console.log(response.data);
         console.log(response);
-
         console.log(this.totalPage);
+        this.loading = false;
       });
     },
     // handle page change for pagination 
@@ -124,7 +126,6 @@ export default {
     },
     openNewItem(){
       this.$router.push('/admin/newitem');
-
     },
 
 
@@ -138,9 +139,9 @@ export default {
     }
   },
   // The get request at the begining to get all data
-  created() {
-    Axios.get(todoUrl).then((response) => (this.todoList = response.data));
-  },
+  // created() {
+  //   Axios.get(todoUrl).then((response) => (this.todoList = response.data));
+  // },
 
   // The get request at the begining to get all data
   created() {
