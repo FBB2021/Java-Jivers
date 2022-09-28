@@ -93,7 +93,8 @@
 <script>
 // put the Url here
 import Axios from "axios";
-const todoUrl = "https://java-jivers.herokuapp.com/item";
+// const backendUrl = "https://java-jivers.herokuapp.com/item";
+const backendUrl = "https://java-jivers-ims.herokuapp.com/item";
 
 export default {
   data() {
@@ -111,7 +112,7 @@ export default {
   methods: {
     // Send a get request to backend and request data
     getTableData() {
-      Axios.get(todoUrl).then((response) => {
+      Axios.get(backendUrl).then((response) => {
         this.tableData = response.data;
         this.totalPage = (this.tableData.length / this.pageSize) * 10;
         console.log(response.data);
@@ -134,7 +135,7 @@ export default {
       console.log(row);
       console.log(row.idItem);
       //127.0.0.1:8000/item/1637
-      await Axios.delete(`${todoUrl}/${(row.idItem)}`);
+      await Axios.delete(`${backendUrl}/${(row.idItem)}`);
       this.getTableData();
     }
   },
