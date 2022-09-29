@@ -4,6 +4,9 @@
   "private": true,
   "description": "Vue light bootstrap dashboard",
   "author": "cristijora <joracristi@gmail.com>",
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
