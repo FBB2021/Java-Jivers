@@ -17,7 +17,7 @@ import os
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = os.path.join(BASE_DIR, "Photos")
 MEDIA_URL='/Photos/'
 MEDIA_ROOT=os.path.join(BASE_DIR, "Photos")
 
