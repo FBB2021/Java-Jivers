@@ -13,46 +13,44 @@
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
  */
-import Vue from 'vue'
+import Vue from "vue";
 import Vuex from "vuex";
-import VueRouter from 'vue-router'
-import App from './App.vue'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-import store from './Store'
-
+import VueRouter from "vue-router";
+import App from "./App.vue";
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
+import store from "./Store";
 
 // LightBootstrap plugin
-import LightBootstrap from './light-bootstrap-main'
+import LightBootstrap from "./light-bootstrap-main";
 
 // router setup
-import routes from './routes/routes'
+import routes from "./routes/routes";
 
-import './registerServiceWorker'
+import "./registerServiceWorker";
 // plugin setup
-Vue.use(VueRouter)
-Vue.use(LightBootstrap)
-Vue.use(ElementUI)
-Vue.use(Vuex)
+Vue.use(VueRouter);
+Vue.use(LightBootstrap);
+Vue.use(ElementUI);
+Vue.use(Vuex);
 
 // configure router
 const router = new VueRouter({
-  routes, // short for routes: routes
-  linkActiveClass: 'nav-item active',
-  scrollBehavior: (to) => {
-    if (to.hash) {
-      return {selector: to.hash}
-    } else {
-      return { x: 0, y: 0 }
-    }
-  }
-})
-
+    routes, // short for routes: routes
+    linkActiveClass: "nav-item active",
+    scrollBehavior: (to) => {
+        if (to.hash) {
+            return { selector: to.hash };
+        } else {
+            return { x: 0, y: 0 };
+        }
+    },
+});
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  render: h => h(App),
-  store,
-  router
-})
+    el: "#app",
+    render: (h) => h(App),
+    store,
+    router,
+});

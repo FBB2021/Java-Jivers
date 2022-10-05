@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <ul class="nav nav-mobile-menu">
     <base-dropdown>
       <template slot="title">
@@ -40,4 +40,4 @@
   }
 </script>
 <style>
-</style>
+</style> -->

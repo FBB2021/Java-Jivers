@@ -1,6 +1,4 @@
 {
-  "root": true,
-  "extends": [
-    "plugin:vue/essential"
-  ]
+    "root": true,
+    "extends": ["plugin:vue/essential"]
 }

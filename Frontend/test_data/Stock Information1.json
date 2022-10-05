@@ -1,138 +1,138 @@
 [
- {
-   "Name": "Apple",
-   "Brand": "Wai Yee Electronic Limited",
-   "Category": "Centurion Garden & Outdoor",
-   "Location": 3709,
-   "Quantity": 70,
-   "Weight(kg)": 389.78
- },
- {
-   "Name": "Grnpe air",
-   "Brand": "Josephine Engineering Inc.",
-   "Category": "Household & Kitchen Appliances",
-   "Location": 7669,
-   "Quantity": 188,
-   "Weight(kg)": 455.26
- },
- {
-   "Name": "xKiwi",
-   "Brand": "Anqi Industrial Company Limited",
-   "Category": "Beauty & Personal Care",
-   "Location": 6923,
-   "Quantity": 102,
-   "Weight(kg)": 149.17
- },
- {
-   "Name": "xApple",
-   "Brand": "Feng Kee Trading Company Limited",
-   "Category": "Industrial & Scientific Supplies",
-   "Location": 1252,
-   "Quantity": 48,
-   "Weight(kg)": 193.57
- },
- {
-   "Name": "kango core",
-   "Brand": "Chi Yuen Development & Trading Limited",
-   "Category": "Cell Phones & Accessories",
-   "Location": 4684,
-   "Quantity": 162,
-   "Weight(kg)": 368.41
- },
- {
-   "Name": "Cgerry",
-   "Brand": "Garza Telecommunication Inc.",
-   "Category": "Tools & Home Decoration",
-   "Location": 7305,
-   "Quantity": 10,
-   "Weight(kg)": 266.43
- },
- {
-   "Name": "omni-Grape",
-   "Brand": "Itsuki Toy Corporation",
-   "Category": "Handcrafts",
-   "Location": 6741,
-   "Quantity": 88,
-   "Weight(kg)": 462.48
- },
- {
-   "Name": "Rxmbutan",
-   "Brand": "Takeda Corporation",
-   "Category": "Baby",
-   "Location": 5015,
-   "Quantity": 11,
-   "Weight(kg)": 92.5
- },
- {
-   "Name": "upple",
-   "Brand": "Tao Industrial Company Limited",
-   "Category": "Industrial & Scientific Supplies",
-   "Location": 9863,
-   "Quantity": 133,
-   "Weight(kg)": 424.68
- },
- {
-   "Name": "Cherry",
-   "Brand": "Liao Kee Company Limited",
-   "Category": "CDs & Vinyl",
-   "Location": 9812,
-   "Quantity": 120,
-   "Weight(kg)": 319.58
- },
- {
-   "Name": "bluots se",
-   "Brand": "Tse's Limited",
-   "Category": "Toys & Games",
-   "Location": 1508,
-   "Quantity": 121,
-   "Weight(kg)": 254.14
- },
- {
-   "Name": "Strawberry pro",
-   "Brand": "Pak's Engineering Limited",
-   "Category": "Books",
-   "Location": 3698,
-   "Quantity": 6,
-   "Weight(kg)": 480.02
- },
- {
-   "Name": "Strawberry",
-   "Brand": "Chavez Brothers Software Inc.",
-   "Category": "Video Games",
-   "Location": 9895,
-   "Quantity": 196,
-   "Weight(kg)": 327.89
- },
- {
-   "Name": "Kywi plus",
-   "Brand": "Marvin Electronic LLC",
-   "Category": "Beauty & Personal Care",
-   "Location": 9493,
-   "Quantity": 184,
-   "Weight(kg)": 163.54
- },
- {
-   "Name": "Cherry mini",
-   "Brand": "Yun Fat Technology Limited",
-   "Category": "Handcrafts",
-   "Location": 9987,
-   "Quantity": 198,
-   "Weight(kg)": 223.08
- },
- {
-   "Name": "Mango",
-   "Brand": "Joseph Electronic Inc.",
-   "Category": "Beauty & Personal Care",
-   "Location": 3513,
-   "Quantity": 66,
-   "Weight(kg)": 89.29
- },
- {
-   "Name": "lrape pro",
-   "Brand": "Kwok Wing Electronic Limited",
-   "Category": "Food",
-   "Location": 1119,
-   "Quantity": 134,
-   "Weight(kg)": 91.48
- }
+    {
+        "Name": "Apple",
+        "Brand": "Wai Yee Electronic Limited",
+        "Category": "Centurion Garden & Outdoor",
+        "Location": 3709,
+        "Quantity": 70,
+        "Weight(kg)": 389.78
+    },
+    {
+        "Name": "Grnpe air",
+        "Brand": "Josephine Engineering Inc.",
+        "Category": "Household & Kitchen Appliances",
+        "Location": 7669,
+        "Quantity": 188,
+        "Weight(kg)": 455.26
+    },
+    {
+        "Name": "xKiwi",
+        "Brand": "Anqi Industrial Company Limited",
+        "Category": "Beauty & Personal Care",
+        "Location": 6923,
+        "Quantity": 102,
+        "Weight(kg)": 149.17
+    },
+    {
+        "Name": "xApple",
+        "Brand": "Feng Kee Trading Company Limited",
+        "Category": "Industrial & Scientific Supplies",
+        "Location": 1252,
+        "Quantity": 48,
+        "Weight(kg)": 193.57
+    },
+    {
+        "Name": "kango core",
+        "Brand": "Chi Yuen Development & Trading Limited",
+        "Category": "Cell Phones & Accessories",
+        "Location": 4684,
+        "Quantity": 162,
+        "Weight(kg)": 368.41
+    },
+    {
+        "Name": "Cgerry",
+        "Brand": "Garza Telecommunication Inc.",
+        "Category": "Tools & Home Decoration",
+        "Location": 7305,
+        "Quantity": 10,
+        "Weight(kg)": 266.43
+    },
+    {
+        "Name": "omni-Grape",
+        "Brand": "Itsuki Toy Corporation",
+        "Category": "Handcrafts",
+        "Location": 6741,
+        "Quantity": 88,
+        "Weight(kg)": 462.48
+    },
+    {
+        "Name": "Rxmbutan",
+        "Brand": "Takeda Corporation",
+        "Category": "Baby",
+        "Location": 5015,
+        "Quantity": 11,
+        "Weight(kg)": 92.5
+    },
+    {
+        "Name": "upple",
+        "Brand": "Tao Industrial Company Limited",
+        "Category": "Industrial & Scientific Supplies",
+        "Location": 9863,
+        "Quantity": 133,
+        "Weight(kg)": 424.68
+    },
+    {
+        "Name": "Cherry",
+        "Brand": "Liao Kee Company Limited",
+        "Category": "CDs & Vinyl",
+        "Location": 9812,
+        "Quantity": 120,
+        "Weight(kg)": 319.58
+    },
+    {
+        "Name": "bluots se",
+        "Brand": "Tse's Limited",
+        "Category": "Toys & Games",
+        "Location": 1508,
+        "Quantity": 121,
+        "Weight(kg)": 254.14
+    },
+    {
+        "Name": "Strawberry pro",
+        "Brand": "Pak's Engineering Limited",
+        "Category": "Books",
+        "Location": 3698,
+        "Quantity": 6,
+        "Weight(kg)": 480.02
+    },
+    {
+        "Name": "Strawberry",
+        "Brand": "Chavez Brothers Software Inc.",
+        "Category": "Video Games",
+        "Location": 9895,
+        "Quantity": 196,
+        "Weight(kg)": 327.89
+    },
+    {
+        "Name": "Kywi plus",
+        "Brand": "Marvin Electronic LLC",
+        "Category": "Beauty & Personal Care",
+        "Location": 9493,
+        "Quantity": 184,
+        "Weight(kg)": 163.54
+    },
+    {
+        "Name": "Cherry mini",
+        "Brand": "Yun Fat Technology Limited",
+        "Category": "Handcrafts",
+        "Location": 9987,
+        "Quantity": 198,
+        "Weight(kg)": 223.08
+    },
+    {
+        "Name": "Mango",
+        "Brand": "Joseph Electronic Inc.",
+        "Category": "Beauty & Personal Care",
+        "Location": 3513,
+        "Quantity": 66,
+        "Weight(kg)": 89.29
+    },
+    {
+        "Name": "lrape pro",
+        "Brand": "Kwok Wing Electronic Limited",
+        "Category": "Food",
+        "Location": 1119,
+        "Quantity": 134,
+        "Weight(kg)": 91.48
+    }
 ]
