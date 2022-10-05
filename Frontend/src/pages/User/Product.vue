@@ -4,7 +4,8 @@
             <!-- <h3>Products</h3> -->
             <!-- The black row at the top of product page, showing the total statics -->
             <div class="p-3 mb-2 bg-dark text-white">
-                Total items in Inventory: 153 Inventory value by price: $51.4k
+                Total items in Inventory: {{ this.tableData.length }} Inventory
+                value by price: $51.4k
             </div>
             <div class="row justify-content-center">
                 <!-- Search bar -->
@@ -36,24 +37,6 @@
                         Filter
                     </button>
                 </div>
-                <!-- Add item button -->
-                <div class="col-sm">
-                    <button
-                        type="button"
-                        class="btn btn-info btn-fill float-center btn-block"
-                    >
-                        + New Item
-                    </button>
-                </div>
-                <!-- Delete item button -->
-                <div class="col-sm">
-                    <button
-                        type="button"
-                        class="btn btn-warning btn-fill float-center btn-block"
-                    >
-                        - Delete Item
-                    </button>
-                </div>
             </div>
             <!-- Display of table -->
             <el-row :gutter="20">
@@ -65,6 +48,7 @@
                         )
                     "
                     style="width: 100%"
+                    v-loading="loading"
                 >
                     <el-table-column
                         prop="name"
@@ -105,7 +89,7 @@
                         align="center"
                         sortable
                     ></el-table-column>
-                    <el-table-column label="">
+                    <!-- <el-table-column label="">
                         <template slot-scope="scope">
                             <el-button
                                 type="primary"
@@ -113,15 +97,15 @@
                                 icon="el-icon-edit"
                             >
                             </el-button>
-                            <el-button
+                            <!-- <el-button
                                 type="danger"
                                 size="mini"
                                 icon="el-icon-delete"
                                 @click="del(scope.row)"
-                            >
-                            </el-button>
-                        </template>
-                    </el-table-column>
+                            > -->
+                            <!-- </el-button> -->
+                        <!-- </template>
+                    </el-table-column> --> -->
                 </el-table>
                 <!-- Pagination -->
                 <el-pagination
@@ -140,11 +124,13 @@
 <script>
 // put the Url here
 import Axios from "axios";
-const todoUrl = "http://localhost:8000/item";
+// const backendUrl = "https://java-jivers.herokuapp.com/item";
+const backendUrl = "https://java-jivers-ims.herokuapp.com/item";
 
 export default {
     data() {
         return {
+            loading: true,
             tableData: [],
             todoItem: {},
             editMode: false,
@@ -157,33 +143,36 @@ export default {
     methods: {
         // Send a get request to backend and request data
         getTableData() {
-            Axios.get(todoUrl).then((response) => {
+            Axios.get(backendUrl).then((response) => {
                 this.tableData = response.data;
                 this.totalPage = (this.tableData.length / this.pageSize) * 10;
                 console.log(response.data);
                 console.log(response);
-
                 console.log(this.totalPage);
+                this.loading = false;
             });
         },
         // handle page change for pagination
         handleCurrentChange(val) {
             this.currentPage = val;
         },
+        openNewItem() {
+            this.$router.push("/admin/newitem");
+        },
 
         // delete function
-        async del(row) {
-            console.log(row);
-            console.log(row.idItem);
-            //127.0.0.1:8000/item/1637
-            await Axios.delete(`${todoUrl}/${row.idItem}`);
-            this.getTableData();
-        },
+        // async del(row) {
+        //     console.log(row);
+        //     console.log(row.idItem);
+        //     //127.0.0.1:8000/item/1637
+        //     await Axios.delete(`${backendUrl}/${row.idItem}`);
+        //     this.getTableData();
+        // },
     },
     // The get request at the begining to get all data
-    created() {
-        Axios.get(todoUrl).then((response) => (this.todoList = response.data));
-    },
+    // created() {
+    //   Axios.get(todoUrl).then((response) => (this.todoList = response.data));
+    // },
 
     // The get request at the begining to get all data
     created() {
