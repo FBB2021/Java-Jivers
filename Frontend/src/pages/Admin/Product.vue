@@ -184,7 +184,12 @@ export default {
             console.log(row);
             console.log(row.idItem);
             //127.0.0.1:8000/item/1637
+
             await Axios.delete(`${backendUrl}/${row.idItem}`);
+            this.$message({
+          message: 'Delete Sucessful',
+          type: 'success'
+        });
             this.getTableData();
         },
     },
