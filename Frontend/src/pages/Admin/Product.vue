@@ -7,38 +7,38 @@
                 Total items in Inventory: {{ this.tableData.length }} Inventory
                 value by price: $51.4k
             </div>
-            <div class="row justify-content-center">
+            <el-form :inline="true" :model="formInline" class="form-inline">
                 <!-- Search bar -->
-                <div class="col-7">
-                    <div class="input-group mb-3">
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="'type product name here"
-                            aria-label="type product name here"
-                            aria-describedby="basic-addon2"
-                        />
-                        <div class="input-group-append">
-                            <button
-                                class="btn btn-outline-secondary"
-                                type="button"
-                            >
-                                Search
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <el-form-item>
+                    <el-input
+                        placeholder="Type item name to search"
+                        prefix-icon="el-icon-search"
+                        v-model="searchInput"
+                    >
+                    </el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="searchItem"
+                        >Search</el-button
+                    >
+                    <el-button type="info" @click="reset">Reset</el-button>
+                </el-form-item>
+
                 <!-- Filter Button -->
-                <div class="col">
+                <el-form-item>
                     <button
                         type="button"
-                        class="btn btn-secondary btn-fill float-center btn-block"
+                        class="
+                            btn btn-secondary btn-fill
+                            float-center
+                            btn-block
+                        "
                     >
                         Filter
                     </button>
-                </div>
+                </el-form-item>
                 <!-- Add item button -->
-                <div class="col-sm">
+                <el-form-item>
                     <button
                         type="button"
                         class="btn btn-info btn-fill float-center btn-block"
@@ -46,17 +46,19 @@
                     >
                         + New Item
                     </button>
-                </div>
+                </el-form-item>
+
                 <!-- Delete item button -->
-                <div class="col-sm">
+                <el-form-item>
                     <button
                         type="button"
                         class="btn btn-warning btn-fill float-center btn-block"
                     >
                         - Delete Item
                     </button>
-                </div>
-            </div>
+                </el-form-item>
+            </el-form>
+
             <!-- Display of table -->
             <el-row :gutter="20">
                 <el-table
@@ -150,6 +152,7 @@ export default {
     data() {
         return {
             loading: true,
+            searchInput: "",
             tableData: [],
             todoItem: {},
             editMode: false,
@@ -171,6 +174,13 @@ export default {
                 this.loading = false;
             });
         },
+        searchItem() {
+            for(item in this.tableData){
+                if(item.name == this.searchInput){
+                    console.log("Equal!!")
+                }
+            }
+        },
         // handle page change for pagination
         handleCurrentChange(val) {
             this.currentPage = val;
@@ -187,9 +197,9 @@ export default {
 
             await Axios.delete(`${backendUrl}/${row.idItem}`);
             this.$message({
-          message: 'Delete Sucessful',
-          type: 'success'
-        });
+                message: "Delete Sucessful",
+                type: "success",
+            });
             this.getTableData();
         },
     },

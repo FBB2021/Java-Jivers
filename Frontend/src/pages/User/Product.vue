@@ -11,13 +11,8 @@
                 <!-- Search bar -->
                 <div class="col-7">
                     <div class="input-group mb-3">
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="'type product name here"
-                            aria-label="type product name here"
-                            aria-describedby="basic-addon2"
-                        />
+                        <el-input v-model="input" placeholder="请输入内容"></el-input>
+
                         <div class="input-group-append">
                             <button
                                 class="btn btn-outline-secondary"
@@ -89,23 +84,6 @@
                         align="center"
                         sortable
                     ></el-table-column>
-                    <!-- <el-table-column label="">
-                        <template slot-scope="scope">
-                            <el-button
-                                type="primary"
-                                size="mini"
-                                icon="el-icon-edit"
-                            >
-                            </el-button>
-                             <el-button
-                                type="danger"
-                                size="mini"
-                                icon="el-icon-delete"
-                                @click="del(scope.row)"
-                            > -->
-                            <!-- </el-button> -->
-                        <!-- </template>
-                    </el-table-column> --> -->
                 </el-table>
                 <!-- Pagination -->
                 <el-pagination
@@ -159,20 +137,8 @@ export default {
         openNewItem() {
             this.$router.push("/admin/newitem");
         },
-
-        // delete function
-        // async del(row) {
-        //     console.log(row);
-        //     console.log(row.idItem);
-        //     //127.0.0.1:8000/item/1637
-        //     await Axios.delete(`${backendUrl}/${row.idItem}`);
-        //     this.getTableData();
-        // },
     },
-    // The get request at the begining to get all data
-    // created() {
-    //   Axios.get(todoUrl).then((response) => (this.todoList = response.data));
-    // },
+
 
     // The get request at the begining to get all data
     created() {
