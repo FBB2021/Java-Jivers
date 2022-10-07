@@ -101,7 +101,7 @@ DATABASES = {
            'ENGINE': 'djongo',
            'CLIENT': {
                 "host": "mongodb+srv://FBB:QazWsx123@cluster0.rvyikhz.mongodb.net/?retryWrites=true&w=majority",
-                "name": "WarehouseV2",
+                "name": "WarehouseV3",
                 "authMechanism":"SCRAM-SHA-1" #For atlas cloud db
            }
        }
@@ -148,3 +148,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'Login.User'
