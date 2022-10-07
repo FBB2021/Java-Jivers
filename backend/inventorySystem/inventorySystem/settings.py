@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 ######
 from pathlib import Path
+from datetime import timedelta # For setting token valid date
 import os
 
 # This allow to save images
@@ -48,6 +49,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework', # Login auth.
+    # A 3rd party auth. plug in be recommended by django official.
+    'rest_framework_simplejwt' 
 ]
 
 MIDDLEWARE = [
@@ -150,3 +154,38 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'Login.User'
+
+# Below are for REST_FRAMEWORK(Login)
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    
+    # Pagination
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 50,
+    # Permission (only logined user can access)
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    # Strategies
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.BasicAuthentication', # username and password
+    ],
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],
+}
+
+SIMPLE_JWT = {
+    # time of validity of a token
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=60),
+    # Users could use refresh token to refresh their main token
+    # "days" days after their main token expired. 
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    # Update last login time
+    'UPDATE_LAST_LOGIN': True,
+    'USER_ID_FIELD': 'UserId',
+}
+
+ 

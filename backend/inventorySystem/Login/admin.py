@@ -13,8 +13,8 @@ class NewUserAdmin(UserAdmin):
         (_('Important dates'), {'fields': ('date_joined',)}),
     )
 
-    list_display = ('UserId', 'username', 'role', 'email','lastLoginTime')
-    list_display_links = ('UserId', 'username', 'role', 'email', 'lastLoginTime')
+    list_display = ('UserId', 'username', 'role', 'email', 'is_active', 'last_login')
+    list_display_links = ('UserId', 'username', 'role', 'email', 'last_login')
     search_fields = ('username', 'email')
 
 admin.site.register(User, NewUserAdmin)

@@ -21,23 +21,29 @@ class User(AbstractUser):
     )
 
     UserId = models.AutoField(primary_key=True)
-    userName = models.CharField(_('Username'),max_length=16)
-    email = models.EmailField()
-    firstName = models.CharField(_('First Name'),max_length=8, blank=True)
-    lastName = models.CharField(_('Last Name'),max_length=8, blank=True)
-    password = models.CharField(max_length=32)
     role = models.CharField(max_length=20, choices=ROLE, null=False, blank=False,default="General")
     contactNumber = models.CharField(_('Contact Number'),max_length=500, blank=True)
-    accountCreatTime = models.DateTimeField(_('Account Creation Time'),blank=True,null=True)
-    lastLoginTime = models.DateTimeField(_('Last Login Time'),blank=True,null=True,auto_now=True)
+
+    objects = UserManager()
 
     # to show name of the User when called.
     def __str__(self) -> str:
-        return self.userName
-
-    objects = UserManager()
+        return self.username
 
     # to use own user model instead of django's templete.
     class Meta(AbstractUser.Meta):
         swappable = 'AUTH_USER_MODEL'
         pass
+
+
+    # Because the abstract user class (AbstractUser) is inherited, 
+    # the following properties are not defined again.
+'''
+    lastLoginTime = models.DateTimeField(_('Last Login Time'),blank=True,null=True,auto_now=True)
+    accountCreatTime = models.DateTimeField(_('Account Creation Time'),blank=True,null=True)
+    userName = models.CharField(_('Username'),max_length=16)
+    email = models.EmailField()
+    firstName = models.CharField(_('First Name'),max_length=8, blank=True)
+    lastName = models.CharField(_('Last Name'),max_length=8, blank=True)
+    password = models.CharField(max_length=32)
+'''
