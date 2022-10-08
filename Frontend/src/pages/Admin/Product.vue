@@ -175,7 +175,7 @@ export default {
             });
         },
         searchItem() {
-            for(item in this.tableData){
+            for(item in tableData){
                 if(item.name == this.searchInput){
                     console.log("Equal!!")
                 }
