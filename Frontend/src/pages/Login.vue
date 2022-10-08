@@ -54,8 +54,6 @@
 
 <script>
 import Card from "src/components/Cards/Card.vue";
-import Axios from "axios";
-const todoUrl = "https://java-jivers.herokuapp.com/user";
 // put the Url here
 
 export default {
@@ -72,80 +70,38 @@ export default {
                 general: { email: "useremail", password: "password" },
                 admin: { email: "adminemail", password: "password" },
             },
-            server_data: [],
             background_image: {
                 image: "img/adrian-sulyok-sczNLg6rrhQ-unsplash.jpg",
             },
         };
     },
     methods: {
-        /* Function that checks the input to see if it matches a password and email
-     in the system. Currently only accepts two hard coded examples.
-     Authentication is done in this function, then the store is called to
-     update the state ASSUMING THAT USER TRYING TO LOGIN HAS ALREADY BEEN
-     AUTHENTICATED */
+        /* Function that checks the input to see if it matches a password and email in the system. Currently only accepts two hard coded examples. Authentication is done in this function, then the store is called to update the state ASSUMING THAT USER TRYING TO LOGIN HAS ALREADY BEAN AUTHENTICATED */
         login() {
             if (this.input.email != "" && this.input.password != "") {
-                /* Pull user data from server */
-                this.get_login_data();
-
-                /* Check if input email and password are in the server data */
-                const user = this.is_valid_user(
-                    this.input.email,
-                    this.input.password
-                );
-
-                /* We found a match in the database ! Success */
-                if (user != false) {
-                    if (
-                        user.filter((element) => {
-                            return element.role == "General";
-                        })
-                    ) {
-                        this.$store.dispatch("login_authenticated", [
-                            "General",
-                            this.input.email,
-                        ]);
-                        this.$router.push("/user/overview");
-                    } else if (user.role == "Admin") {
-                        this.$store.dispatch("login_authenticated", [
-                            "Admin",
-                            this.input.email,
-                        ]);
-                        this.$router.push("/admin/overview");
-                    } else {
-                        console.log(
-                            "The email and / or password is incorrect "
-                        );
-                    }
+                if (
+                    this.input.email == this.login_details.general.email &&
+                    this.input.password == this.login_details.general.password
+                ) {
+                    // Not secure yet
+                    this.$store.dispatch("login_authenticated", [
+                        "General",
+                        "useremail",
+                    ]);
+                    this.$router.push("/user/overview");
+                } else if (
+                    this.input.email == this.login_details.admin.email &&
+                    this.input.password == this.login_details.admin.password
+                ) {
+                    // Not secure yet
+                    this.$store.dispatch("login_authenticated", [
+                        "Admin",
+                        "adminemail",
+                    ]);
+                    this.$router.push("/admin/overview");
                 } else {
                     console.log("The email and / or password is incorrect ");
                 }
-            }
-        },
-        /* Function that gets all user data from server, stores it in server_data
-         */
-        get_login_data() {
-            Axios.get(todoUrl).then((response) => {
-                this.server_data = response.data;
-            });
-        },
-        /* Functions that checks if given email and password is valid in the
-    database. Returns the matching userobject if true, false if false*/
-        is_valid_user(input_email, input_password) {
-            const match = this.server_data.filter((user) => {
-                return user.email == input_email;
-            });
-            console.log(match);
-
-            if (
-                match.filter((element) => {
-                    return element.password == input_password;
-                })
-            ) {
-                return match;
-            } else {
-                return false;
             }
         },
     },
