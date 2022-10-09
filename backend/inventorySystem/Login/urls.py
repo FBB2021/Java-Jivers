@@ -20,6 +20,6 @@ urlpatterns = [
     # url(r'^user/(?P<id>[\w.@+-]+)$', views.userApi)
     # (?P<id>[\w.@+-]+) this will pass a string include the char '.' '@' '+' and '-'
 
-
+    # for saving uploaded files
     url(r'^user/savefile', views.SaveFile)
 ] +static(settings.MEDIA_URL, documnet_root = settings.MEDIA_ROOT)+router.urls
