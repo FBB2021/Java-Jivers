@@ -27,9 +27,16 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+'''
+router = DefaultRouter()
+router.register(
+    'userviewset',UserViewSet,basename='user'
+)'''
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("inventory.urls")),
+    path("users/",include("Login.urls")),
     
     # login tokens
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

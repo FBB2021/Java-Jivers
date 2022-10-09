@@ -1,19 +1,23 @@
 from django.shortcuts import render
+from Login.models import User
+from Login.serializers import UserSerializer
+# csrf
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
+# viewsets
+from rest_framework import viewsets, status
+from rest_framework.response import Response
 
-from Login.models import User
-from Login.serializers import UserSerializer
-# Create your views here.
 
 # allow upload file
 from django.core.files.storage import default_storage
- 
+# The IsAdminUser permission class will deny permission to any user,
+# unless user.is_staff is True in which case permission will be allowed.
+from rest_framework.permissions import IsAuthenticated
 
 @csrf_exempt
 def userApi(request, id=0):
-
     # get all the user
     if request.method=='GET':
         user = User.objects.all()
@@ -51,3 +55,16 @@ def SaveFile(request):
     file = request.FILES['file']
     file_name = default_storage.save(file.name,file)
     return JsonResponse(file_name, safe=False)
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
