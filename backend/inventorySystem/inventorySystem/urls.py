@@ -23,6 +23,9 @@ from inventory import views as viewsInventory
 from django.conf.urls.static import static
 from django.conf import settings
 
+# Changes for session based login authentication. Assumed this is our base project head.
+from django.shortcuts import render
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,5 +35,6 @@ urlpatterns = [
     url(r'^user$', viewsLogin.userApi),
     url(r'^user/([0-9]+)$', viewsLogin.userApi),
     url(r'^item/savefile', viewsLogin.SaveFile),
-    url(r'^user/savefile', viewsLogin.SaveFile)
+    url(r'^user/savefile', viewsLogin.SaveFile),
+    path('api/', include('api.urls')), #added for login authentication
 ] +static(settings.MEDIA_URL, documnet_root = settings.MEDIA_ROOT)
