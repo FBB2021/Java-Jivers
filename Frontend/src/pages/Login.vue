@@ -54,6 +54,7 @@
 
 <script>
 import Card from "src/components/Cards/Card.vue";
+import { mapActions } from "vuex";
 // put the Url here
 
 export default {
@@ -66,10 +67,6 @@ export default {
                 email: "",
                 password: "",
             },
-            login_details: {
-                general: { email: "useremail", password: "password" },
-                admin: { email: "adminemail", password: "password" },
-            },
             background_image: {
                 image: "img/adrian-sulyok-sczNLg6rrhQ-unsplash.jpg",
             },
@@ -79,29 +76,15 @@ export default {
         /* Function that checks the input to see if it matches a password and email in the system. Currently only accepts two hard coded examples. Authentication is done in this function, then the store is called to update the state ASSUMING THAT USER TRYING TO LOGIN HAS ALREADY BEAN AUTHENTICATED */
         login() {
             if (this.input.email != "" && this.input.password != "") {
-                if (
-                    this.input.email == this.login_details.general.email &&
-                    this.input.password == this.login_details.general.password
-                ) {
-                    // Not secure yet
-                    this.$store.dispatch("login_authenticated", [
-                        "General",
-                        "useremail",
-                    ]);
-                    this.$router.push("/user/overview");
-                } else if (
-                    this.input.email == this.login_details.admin.email &&
-                    this.input.password == this.login_details.admin.password
-                ) {
-                    // Not secure yet
-                    this.$store.dispatch("login_authenticated", [
-                        "Admin",
-                        "adminemail",
-                    ]);
-                    this.$router.push("/admin/overview");
-                } else {
-                    console.log("The email and / or password is incorrect ");
-                }
+            }
+            const user_data = new FormData();
+            user_data.append("username", this.input.email);
+            user_data.append("password", this.input.password);
+            try {
+                this.$store.actions.login(user_data);
+                this.$router.push("/admin");
+            } catch (error) {
+                console.log("The email and / or password is incorrect ");
             }
         },
     },
