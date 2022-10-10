@@ -1,3 +1,4 @@
+from sqlite3 import DatabaseError
 from django.shortcuts import render
 from Login.models import User
 from Login.serializers import UserSerializer
@@ -72,7 +73,12 @@ class UserViewSet(viewsets.ModelViewSet):
         pwd_raw = request.data['password']
 
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        try:
+            serializer.is_valid(raise_exception=True)
+        except Exception:
+            return Response("A user with that username already exists.", \
+                status=status.HTTP_406_NOT_ACCEPTABLE)
+
 
         # create user_info as a User typed instence of serializer
         user_info = User(serializer)
@@ -82,10 +88,12 @@ class UserViewSet(viewsets.ModelViewSet):
         # Uncomment the below if wanna login with this instance in Django Admin
         #user_info.is_superuser = "True" 
         user_info.is_staff = "True"
+
         self.perform_create(user_info)
         user_info.save()
         
         headers = self.get_success_headers(user_info)
+
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
