@@ -33,6 +33,7 @@
         "@vue/cli-plugin-eslint": "^3.4.0",
         "@vue/cli-plugin-pwa": "^3.4.0",
         "@vue/cli-service": "^3.4.0",
+        "echarts": "^4.9.0",
         "eslint-plugin-prettier": "^4.2.1",
         "sass": "^1.54.5",
         "sass-loader": "^7.1.0",

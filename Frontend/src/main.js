@@ -21,6 +21,7 @@ import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import store from "./Store";
 
+import echarts from 'echarts';
 // LightBootstrap plugin
 import LightBootstrap from "./light-bootstrap-main";
 
@@ -33,6 +34,8 @@ Vue.use(VueRouter);
 Vue.use(LightBootstrap);
 Vue.use(ElementUI);
 Vue.use(Vuex);
+
+Vue.prototype.$echarts = echarts;
 
 // configure router
 const router = new VueRouter({
