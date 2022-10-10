@@ -48,8 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api.apps.ApiConfig', # For trying to get login to work with session based authentication
-    'corsheaders', #same job as above
+     # For trying to get login to work with session based authentication
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -162,8 +162,8 @@ SESSION_COOKIE_HTTPONLY = True
 # SESSION_COOKIE_SECURE = True
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
 ]
 CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
 CORS_ALLOW_CREDENTIALS = True
