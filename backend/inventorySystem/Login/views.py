@@ -10,6 +10,7 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 
 
+
 # allow upload file
 from django.core.files.storage import default_storage
 # The IsAdminUser permission class will deny permission to any user,
@@ -64,3 +65,26 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    def create(self, request, *args, **kwargs):
+        username = request.data['username']
+        pwd_raw = request.data['password']
+
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        # create user_info as a User typed instence of serializer
+        user_info = User(serializer)
+        user_info.username = username
+        user_info.set_password(pwd_raw)
+        user_info.is_active = "True"
+        # Uncomment the below if wanna login with this instance in Django Admin
+        #user_info.is_superuser = "True" 
+        user_info.is_staff = "True"
+        self.perform_create(user_info)
+        user_info.save()
+        
+        headers = self.get_success_headers(user_info)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
