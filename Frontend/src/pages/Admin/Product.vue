@@ -49,14 +49,14 @@
                 </el-form-item>
 
                 <!-- Delete item button -->
-                <el-form-item>
+                <!-- <el-form-item>
                     <button
                         type="button"
                         class="btn btn-warning btn-fill float-center btn-block"
                     >
                         - Delete Item
                     </button>
-                </el-form-item>
+                </el-form-item> -->
             </el-form>
 
             <!-- Display of table -->
@@ -116,6 +116,7 @@
                                 type="primary"
                                 size="mini"
                                 icon="el-icon-edit"
+                                @click="edit(scope.row)"
                             >
                             </el-button>
                             <el-button
@@ -145,7 +146,6 @@
 <script>
 // put the Url here
 import Axios from "axios";
-// const backendUrl = "https://java-jivers.herokuapp.com/item";
 const backendUrl = "https://java-jivers-ims.herokuapp.com/item";
 
 export default {
@@ -189,6 +189,13 @@ export default {
             this.$router.push("/admin/newitem");
         },
 
+        // edit item
+        
+        edit(row){
+            console.log(row);
+            localStorage.currentID = row.idItem;
+            this.$router.push("/admin/edititem");
+        },
         // delete function
         async del(row) {
             console.log(row);
