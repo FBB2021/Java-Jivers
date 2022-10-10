@@ -36,5 +36,5 @@ urlpatterns = [
     url(r'^user/([0-9]+)$', viewsLogin.userApi),
     url(r'^item/savefile', viewsLogin.SaveFile),
     url(r'^user/savefile', viewsLogin.SaveFile),
-    path('api/', include('api.urls')), #added for login authentication
+    path('Login/', include('Login.urls')), #added for login authentication
 ] +static(settings.MEDIA_URL, documnet_root = settings.MEDIA_ROOT)
