@@ -4,7 +4,7 @@
             <!-- <h3>Products</h3> -->
             <!-- The black row at the top of product page, showing the total statics -->
             <div class="p-3 mb-2 bg-dark text-white">
-                Total numbers of users: {{ this.tableData.length }} Inventory
+                Total numbers of users: {{ this.tableData.length }} 
             </div>
             <el-form :inline="true" :model="formInline" class="form-inline">
                 <!-- Search bar -->

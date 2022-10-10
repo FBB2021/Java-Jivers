@@ -219,7 +219,7 @@ export default {
       console.log(this.form);
     },
     postItem() {
-      if (this.name == "") {
+      if (this.form.name == "") {
         this.$message({
           message: "No item name",
           type: "warning",
