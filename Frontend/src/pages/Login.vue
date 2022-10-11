@@ -12,7 +12,7 @@
                             label="Email"
                             :disabled="false"
                             placeholder="type email address here"
-                            v-model="input.email"
+                            v-model="input.username"
                         >
                         </base-input>
                     </div>
@@ -61,7 +61,7 @@ export default {
     data() {
         return {
             input: {
-                email: "",
+                username: "",
                 password: "",
             },
             background_image: {
@@ -71,13 +71,19 @@ export default {
     },
     methods: {
         /* Function that checks the input to see if it matches a password and email in the system. Currently only accepts two hard coded examples. Authentication is done in this function, then the store is called to update the state ASSUMING THAT USER TRYING TO LOGIN HAS ALREADY BEAN AUTHENTICATED */
-        login() {
-            if (this.input.email != "" && this.input.password != "") {
-                this.$store.dispatch("login", [
-                    this.input.email,
-                    this.input.password,
-                ]);
-                this.$router.push("/admin/overview");
+        async login() {
+            const formData = {
+                username: this.input.username,
+                password: this.input.password,
+            };
+
+            if (this.input.username != "" && this.input.password != "") {
+                console.log(this.input);
+                console.log(formData);
+                try {
+                    await this.$store.dispatch("login", formData);
+                    this.$router.push("/admin/overview");
+                } catch (error) {}
             }
         },
     },

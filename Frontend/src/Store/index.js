@@ -30,17 +30,18 @@ const store = new Vuex.Store({
         },
         login_authenticated(state, [user_type, user]) {
             state.isAuthenticated = true;
-            state.user = user.email;
+            state.user = user.username;
 
             if (user_type == "admin") {
                 state.isAdmin = true;
             } else {
-                state.isAmin = false;
+                state.isAdmin = false;
             }
         },
     },
     actions: {
         async login(context, user) {
+            console.log(user);
             await axios.post("api/token/", user);
             await context.commit("login_authenticated", ["admin", user]);
         },
