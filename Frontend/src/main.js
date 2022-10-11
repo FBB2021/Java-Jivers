@@ -20,12 +20,6 @@ import App from "./App.vue";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import store from "./Store";
-import axios from "axios";
-
-axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "https://java-jivers-ims.herokuapp.com/item";
-
-Vue.config.productionTip = false;
 
 // LightBootstrap plugin
 import LightBootstrap from "./light-bootstrap-main";
