@@ -28,11 +28,24 @@ const store = new Vuex.Store({
         set_user(state, user) {
             state.user = user;
         },
-        login_authenticated(state, [user_type, user]) {
+        login_authenticated(state, user) {
             state.isAuthenticated = true;
             state.user = user.username;
+            user_type = "Admin";
+            /*
 
-            if (user_type == "admin") {
+            const response = axios.get("users/userviewset/");
+
+            const user_data = JSON.parse(response);
+            consolve.log(user_data);
+            Object.entries(user_data).forEach((entry) => {
+                console.log(entry);
+                if (entry.username == user.username) {
+                    user_type = entry.role;
+                }
+            });
+            */
+            if (user_type == "Admin") {
                 state.isAdmin = true;
             } else {
                 state.isAdmin = false;
@@ -41,9 +54,9 @@ const store = new Vuex.Store({
     },
     actions: {
         async login(context, user) {
-            console.log(user);
+            consolve.log(user);
             await axios.post("api/token/", user);
-            await context.commit("login_authenticated", ["admin", user]);
+            context.commit("login_authenticated", user);
         },
         logout(context) {
             context.commit("set_isAuthenticated", false);
@@ -62,7 +75,7 @@ const store = new Vuex.Store({
             return state.user;
         },
     },
-    //plugins: [createPersistedState()],
+    plugins: [createPersistedState()],
 });
 
 export default store;
