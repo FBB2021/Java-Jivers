@@ -20,6 +20,7 @@ import App from "./App.vue";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import store from "./Store";
+import axios from "axios";
 
 // LightBootstrap plugin
 import LightBootstrap from "./light-bootstrap-main";
@@ -33,6 +34,9 @@ Vue.use(VueRouter);
 Vue.use(LightBootstrap);
 Vue.use(ElementUI);
 Vue.use(Vuex);
+
+axios.defaults.withCredentials = false;
+axios.defaults.baseURL = "http://127.0.0.1:8000/";
 
 // configure router
 const router = new VueRouter({

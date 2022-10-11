@@ -3,6 +3,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
+import axios from "axios";
+axios.defaults.baseURL = "http://127.0.0.1:8000/";
 
 Vue.use(Vuex);
 
@@ -26,17 +28,21 @@ const store = new Vuex.Store({
         set_user(state, user) {
             state.user = user;
         },
+        login_authenticated(state, [user_type, user]) {
+            state.isAuthenticated = true;
+            state.user = user.email;
+
+            if (user_type == "admin") {
+                state.isAdmin = true;
+            } else {
+                state.isAmin = false;
+            }
+        },
     },
     actions: {
-        login_authenticated(context, [user_type, user]) {
-            context.commit("set_isAuthenticated", true);
-            context.commit("set_user", user);
-
-            if (user_type == "Admin") {
-                context.commit("set_isAdmin", true);
-            } else {
-                context.commit("set_isAdmin", false);
-            }
+        async login(context, user) {
+            await axios.post("api/token/", user);
+            await context.commit("login_authenticated", ["admin", user]);
         },
         logout(context) {
             context.commit("set_isAuthenticated", false);
@@ -55,7 +61,7 @@ const store = new Vuex.Store({
             return state.user;
         },
     },
-    plugins: [createPersistedState()],
+    //plugins: [createPersistedState()],
 });
 
 export default store;
