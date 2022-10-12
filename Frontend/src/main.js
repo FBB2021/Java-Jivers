@@ -20,8 +20,8 @@ import App from "./App.vue";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import store from "./Store";
-
 import echarts from 'echarts';
+
 // LightBootstrap plugin
 import LightBootstrap from "./light-bootstrap-main";
 
@@ -36,6 +36,7 @@ Vue.use(ElementUI);
 Vue.use(Vuex);
 
 Vue.prototype.$echarts = echarts;
+Vue.prototype.$currentID = 0;
 
 // configure router
 const router = new VueRouter({
@@ -56,4 +57,9 @@ new Vue({
     render: (h) => h(App),
     store,
     router,
+    data: function(){
+        return{
+            ITEMID: 0,
+        }
+    }
 });

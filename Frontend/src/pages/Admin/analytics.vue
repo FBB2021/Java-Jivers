@@ -14,11 +14,18 @@
         </div>
     </div>
 </template>
+
+
 <script>
+import Axios from "axios";
+const backendUrl = "https://java-jivers-ims.herokuapp.com/item";
+
 export default {
     data(){
         return{
-
+            tableData: [],
+            name: ['Apple','Mango','iKiwi','Pluots','Kpwi plus','Rambutam','omni-Apple','Manuo','Pluors','Kiwi','Orange'],
+            quantity:[439,915,219,333,45,315,930,399,85,640,564],
         }
     },
     mounted(){
@@ -29,12 +36,30 @@ export default {
             },
             tooltip:{},
             xAxis:{
-                data:[]
-            }
+                data: this.name
+                // data:this.tableData.name
+            },
+            yAxis:{},
+            series:[{
+                name: 'quantit',
+                type: 'bar',
+                // data:this.tableData.quantity
+                data: this.quantity
+            }]
         })
-    }
+    },
+    created() {
+        // Axios.get(backendUrl).then((response) => {
+        //         this.tableData = response.data;
+        //         this.name = response.data.name
+        //         this.quantity = response.data.quantity
+        //         console.log(this.tableData)
+        //         console.log(this.quantity)
+        //     });
 
-};
+}
+}
+
 </script>
 <style lang="scss">
 .data-view{
@@ -47,5 +72,6 @@ export default {
             height: 500px;
         }
     }
+    
 }
 </style>

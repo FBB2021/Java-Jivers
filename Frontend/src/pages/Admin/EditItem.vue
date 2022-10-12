@@ -210,7 +210,7 @@ export default {
   methods: {
 
     test(){
-      console.log(localStorage.currentID);
+      console.log(this.$root.ITEMID);
     },
 
     goback() {
@@ -239,7 +239,7 @@ export default {
     },
   },
   created() {
-    Axios.get(`${WareHouseUrl}/${localStorage.currentID}`).then((response) => {
+    Axios.get(`${WareHouseUrl}/${this.$root.ITEMID}`).then((response) => {
                 this.itemdata = response.data;
                 this.form.name = response.data.name;
                 this.form.quantity = response.data.quantity;

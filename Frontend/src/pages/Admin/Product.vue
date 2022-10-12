@@ -193,7 +193,12 @@ export default {
         
         edit(row){
             console.log(row);
-            localStorage.currentItem = row.idItem;
+            console.log(row.idItem);
+            this.$root.ITEMID = row.idItem;
+            console.log(this.$root.ITEMID);
+            // this.$currentID = (row.idItem);
+            // console.log(this.$currentID);
+            
             this.$router.push("/admin/edititem");
         },
         // delete function
