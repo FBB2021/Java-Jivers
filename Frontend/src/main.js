@@ -35,8 +35,18 @@ Vue.use(LightBootstrap);
 Vue.use(ElementUI);
 Vue.use(Vuex);
 
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = false;
 axios.defaults.baseURL = "http://127.0.0.1:8000/";
+axios.interceptors.response.use(undefined, function (error) {
+    if (error) {
+        const originalRequest = error.config;
+        if (error.response.status === 401 && !originalRequest._retry) {
+            originalRequest._retry = true;
+            store.dispatch("refresh_token");
+            return router.push("/login");
+        }
+    }
+});
 
 // configure router
 const router = new VueRouter({
