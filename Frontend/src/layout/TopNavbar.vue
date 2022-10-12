@@ -8,12 +8,21 @@
 
             <div class="collapse navbar-collapse justify-content-end">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"> Account </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"> Log out </a>
-                    </li>
+                    <button
+                        class="btn btn-default"
+                        type="submit"
+                        variant="primary"
+                    >
+                        Account
+                    </button>
+                    <button
+                        class="btn btn-default"
+                        type="submit"
+                        variant="primary"
+                        @click="logout()"
+                    >
+                        Log Out
+                    </button>
                 </ul>
             </div>
         </div>
@@ -36,6 +45,10 @@ export default {
     methods: {
         capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
+        },
+        logout() {
+            this.$store.dispatch("logout");
+            this.$router.push("/login");
         },
     },
 };
