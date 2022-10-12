@@ -8,20 +8,21 @@
 
             <div class="collapse navbar-collapse justify-content-end">
                 <ul class="navbar-nav ml-auto">
-                    <b-button
+                    <button
+                        class="btn btn-default"
                         type="submit"
-                        class="btn btn-info btn-fill float-center"
+                        variant="primary"
                     >
                         Account
-                    </b-button>
-                    <b-button
+                    </button>
+                    <button
+                        class="btn btn-default"
                         type="submit"
-                        variant="outline-secondary"
+                        variant="primary"
                         @click="logout()"
-                        class="btn btn-info btn-fill float-center"
                     >
                         Log Out
-                    </b-button>
+                    </button>
                 </ul>
             </div>
         </div>
