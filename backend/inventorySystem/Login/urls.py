@@ -1,9 +1,15 @@
 from django.urls import re_path as url
-from Login import views
-
+from . import views
+from .views import UserViewSet
+from rest_framework.routers import DefaultRouter
 # upload image
 from django.conf.urls.static import static
 from django.conf import settings
+
+router = DefaultRouter()
+router.register(
+    'userviewset',UserViewSet,basename='user'
+)
 
 urlpatterns = [
     url(r'^user$', views.userApi),
@@ -14,6 +20,6 @@ urlpatterns = [
     # url(r'^user/(?P<id>[\w.@+-]+)$', views.userApi)
     # (?P<id>[\w.@+-]+) this will pass a string include the char '.' '@' '+' and '-'
 
-
+    # for saving uploaded files
     url(r'^user/savefile', views.SaveFile)
-] +static(settings.MEDIA_URL, documnet_root = settings.MEDIA_ROOT)
+] +static(settings.MEDIA_URL, documnet_root = settings.MEDIA_ROOT)+router.urls
