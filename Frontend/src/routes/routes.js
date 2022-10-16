@@ -13,6 +13,7 @@ import TableList from "src/pages/Admin/TableList.vue";
 import Account from "src/pages/Admin/Account.vue";
 import Analytics from "src/pages/Admin/analytics.vue";
 import NewItem from "src/pages/Admin/NewItem.vue";
+import EditItem from "src/pages/Admin/EditItem.vue";
 
 // User pages
 import User_overview from "src/pages/User/Overview.vue";
@@ -65,6 +66,11 @@ const routes = [
                 path: "newItem",
                 name: "NewItem",
                 component: NewItem,
+            },
+            {
+                path: "editItem",
+                name: "EditItem",
+                component: EditItem,
             },
             {
                 path: "table-list",

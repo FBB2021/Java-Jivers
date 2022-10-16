@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <el-button type="primary" @click="goback"> Back </el-button>
-        <el-button plain>New Item</el-button>
+        <el-button plain @click = "test" >Edit Item</el-button>
 
         <!-- <b> New item </b> -->
       </div>
@@ -23,7 +23,7 @@
                   },
                 ]"
               >
-                <el-input v-model="form.name" autocomplete="off"></el-input>
+                <el-input v-model="form.name" autocomplete="on"></el-input>
               </el-form-item>
 
               <el-form-item label="Description">
@@ -151,10 +151,6 @@
                     required: true,
                     message: 'weight cannot be empty',
                   },
-                  {
-                    type: 'number',
-                    message: 'weight must be number',
-                  },
                 ]"
               >
                 <el-input
@@ -178,7 +174,7 @@
           <!-- </el-form> -->
           <el-button type="danger" @click="saveItem"> Save Changes </el-button>
           <el-button type="primary" @click="postItem">
-            Publish Item to WareHouse
+            Update Item change to WareHouse
           </el-button>
         </div>
       </div>
@@ -189,7 +185,7 @@
 <script>
 import Card from "src/components/Cards/Card.vue";
 import Axios from "axios";
-const WareHouseUrl = "https://java-jivers.herokuapp.com/item";
+const WareHouseUrl = "https://java-jivers-ims.herokuapp.com/item";
 
 export default {
   components: {
@@ -197,6 +193,7 @@ export default {
   },
   data() {
     return {
+      itemdata: [],
       form: {
         name: "",
         // inputdescription: "",
@@ -211,6 +208,11 @@ export default {
     };
   },
   methods: {
+
+    test(){
+      console.log(this.$root.ITEMID);
+    },
+
     goback() {
       this.$router.push("/admin/product");
     },
@@ -230,11 +232,24 @@ export default {
           this.$router.push("/admin/product")
         );
         this.$message({
-          message: "Added Sucessful",
+          message: "Update Sucessful",
           type: "success",
         });
       }
     },
   },
+  created() {
+    Axios.get(`${WareHouseUrl}/${this.$root.ITEMID}`).then((response) => {
+                this.itemdata = response.data;
+                this.form.name = response.data.name;
+                this.form.quantity = response.data.quantity;
+                this.form.nameBrand = response.data.nameBrand;
+                this.form.weight = response.data.weight;
+                console.log("TADA!");
+                console.log(response.data);
+                
+            });
+    },
+
 };
 </script>

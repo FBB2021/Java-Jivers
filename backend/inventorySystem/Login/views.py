@@ -19,6 +19,8 @@ from django.core.files.storage import default_storage
 # unless user.is_staff is True in which case permission will be allowed.
 from rest_framework.permissions import IsAuthenticated
 
+from django.db.models import Q
+
 @csrf_exempt
 def userApi(request, id=0):
     # get all the user
@@ -67,6 +69,14 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    def get_queryset(self):
+        queryset = User.objects.all()
+        name = self.request.query_params.get('name', None)
+        print(name)
+        if name is not None:
+            queryset = queryset.filter(Q(username__contains=name) | Q(username__icontains=name))
+        return queryset
 
     def create(self, request, *args, **kwargs):
         username = request.data['username']
