@@ -36,7 +36,7 @@ Vue.use(ElementUI);
 Vue.use(Vuex);
 
 axios.defaults.withCredentials = false;
-axios.defaults.baseURL = "http://127.0.0.1:8000/";
+axios.defaults.baseURL = "https://java-jivers-ims.herokuapp.com";
 axios.interceptors.response.use(undefined, function (error) {
     if (error) {
         const originalRequest = error.config;
