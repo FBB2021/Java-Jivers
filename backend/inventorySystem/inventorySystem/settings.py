@@ -35,7 +35,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['java-jivers-ims.herokuapp.com', '127.0.0.1']
 
 # API
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Application definition

@@ -36,7 +36,7 @@ Vue.use(LightBootstrap);
 Vue.use(ElementUI);
 Vue.use(Vuex);
 
-axios.defaults.withCredentials = false;
+axios.defaults.withCredentials = true;
 axios.defaults.baseURL = "https://java-jivers-ims.herokuapp.com";
 axios.interceptors.response.use(undefined, function (error) {
     if (error) {
@@ -44,7 +44,6 @@ axios.interceptors.response.use(undefined, function (error) {
         if (error.response.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
             store.dispatch("refresh_token");
-            return router.push("/login");
         }
     }
 });
