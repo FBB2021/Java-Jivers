@@ -5,7 +5,8 @@ import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 import axios from "axios";
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "https://java-jivers-ims.herokuapp.com";
+// axios.defaults.baseURL = "https://java-jivers-ims.herokuapp.com";
+axios.defaults.baseURL = "http://127.0.0.1:8000/";
 
 Vue.use(Vuex);
 
@@ -53,7 +54,6 @@ const store = new Vuex.Store({
     },
     actions: {
         async login(context, user) {
-            console.log(user);
             await axios.post("api/token/", user);
             context.commit("login_authenticated", ["Admin", user]);
         },
