@@ -35,12 +35,13 @@ DEBUG = True
 ALLOWED_HOSTS = ['java-jivers-ims.herokuapp.com', '127.0.0.1']
 
 # API
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders', # cors authentication
     'inventory.apps.InventoryConfig', # App "inventory"
     'Login.apps.LoginConfig', # App "Login"
     'django.contrib.admin',
