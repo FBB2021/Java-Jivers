@@ -41,6 +41,7 @@ urlpatterns = [
     url(r'^item/([0-9]+)$', viewsInventory.itemApi),
     url(r'^user$', viewsLogin.userApi),
     url(r'^user/([0-9]+)$', viewsLogin.userApi),
+    url(r'^userSearch/(?P<username>[\w.@+-]+)$', viewsLogin.userSearch),
     url(r'^item/savefile', viewsLogin.SaveFile),
     url(r'^user/savefile', viewsLogin.SaveFile),
 ] +static(settings.MEDIA_URL, documnet_root = settings.MEDIA_ROOT)

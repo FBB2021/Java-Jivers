@@ -21,6 +21,14 @@ from rest_framework.permissions import IsAuthenticated
 
 from django.db.models import Q
 
+
+@csrf_exempt
+def userSearch(request, username):
+    if request.method=='GET':
+        user = User.objects.filter(Q(username__contains=username) | Q(username__icontains=username))
+        user_serializer = UserSerializer(user, many=True)
+    return JsonResponse(user_serializer.data,safe=False)
+
 @csrf_exempt
 def userApi(request, id=0):
     # get all the user
@@ -71,7 +79,12 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
     def get_queryset(self):
+        # first get all the object
         queryset = User.objects.all()
+        '''
+        get the username from url (http://127.0.0.1:8000/users/userviewset?name={username})
+        if there's no username in url (http://127.0.0.1:8000/users/userviewset) then return None
+        '''
         name = self.request.query_params.get('name', None)
         print(name)
         if name is not None:

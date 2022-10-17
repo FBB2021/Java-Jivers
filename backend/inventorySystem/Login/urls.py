@@ -17,7 +17,6 @@ urlpatterns = [
     # ([0-9]+)$ will pass a number here
     url(r'^user/([0-9]+)$', views.userApi),
     # if can use the _id field in mongodb
-    # url(r'^user/(?P<id>[\w.@+-]+)$', views.userApi)
     # (?P<id>[\w.@+-]+) this will pass a string include the char '.' '@' '+' and '-'
 
     # for saving uploaded files

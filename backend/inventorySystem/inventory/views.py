@@ -8,6 +8,7 @@ from inventory.serializers import itemSerializer
 
 # allow upload file
 from django.core.files.storage import default_storage
+from django.db.models import Q
 
 # Create your views here.
 def index(request):
@@ -36,6 +37,14 @@ def area(request):
         "title": "Area Page"
     }
     return render(request, "t_inventory/area.html", context=context)
+
+@csrf_exempt
+def itemSearch(request, name):
+    
+    if request.method=='GET':
+        item = Item.objects.filter(Q(name__contains = name) | Q(name__icontains = name))
+        item_serializer = itemSerializer(item, many=True)
+    return JsonResponse(item_serializer.data, safe=False)
 
 @csrf_exempt
 def itemApi(request, id=0):
