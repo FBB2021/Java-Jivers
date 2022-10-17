@@ -76,7 +76,6 @@ export default {
                 username: this.input.username,
                 password: this.input.password,
             };
-            this.$store.dispatch("logout");
 
             if (this.input.username != "" && this.input.password != "") {
                 try {
