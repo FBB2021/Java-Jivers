@@ -31,7 +31,7 @@
                   type="textarea"
                   :rows="3"
                   placeholder="Please type description of the item here"
-                  v-model="form.inputdescription"
+                  v-model="form.desciption"
                 ></el-input>
               </el-form-item>
 
@@ -189,7 +189,7 @@
 <script>
 import Card from "src/components/Cards/Card.vue";
 import Axios from "axios";
-const WareHouseUrl = "https://java-jivers.herokuapp.com/item";
+const WareHouseUrl = "https://java-jivers-ims.herokuapp.com/item";
 
 export default {
   components: {
@@ -199,12 +199,12 @@ export default {
     return {
       form: {
         name: "",
-        // inputdescription: "",
+        // desciption: "",
         // cost: "",
         // price: "",
         // expDate: "",
         quantity: "",
-        category: "",
+        // category: "",
         nameBrand: "",
         weight: "",
       },

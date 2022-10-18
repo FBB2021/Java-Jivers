@@ -26,7 +26,7 @@
 
                 <!-- Filter Button -->
                 <el-form-item>
-                    <button
+                    <!-- <button
                         type="button"
                         class="
                             btn btn-secondary btn-fill
@@ -35,7 +35,7 @@
                         "
                     >
                         Filter
-                    </button>
+                    </button> -->
                 </el-form-item>
                 <!-- Add item button -->
                 <el-form-item>
@@ -175,11 +175,16 @@ export default {
             });
         },
         searchItem() {
-            for(item in tableData){
-                if(item.name == this.searchInput){
-                    console.log("Equal!!")
-                }
-            }
+            console.log("The input is: ");
+            console.log(this.searchInput);
+            cosole.log(typeof tableData);
+            // for(item in this.tableData){
+            //     console.log(item);
+            // //     if(item.name == this.searchInput){
+            // //         console.log("The item is " + item.name)
+            // //         console.log("Equal!!")
+            // //     }
+            // }
         },
         // handle page change for pagination
         handleCurrentChange(val) {
@@ -190,29 +195,50 @@ export default {
         },
 
         // edit item
-        
-        edit(row){
+
+        edit(row) {
             console.log(row);
             console.log(row.idItem);
             this.$root.ITEMID = row.idItem;
             console.log(this.$root.ITEMID);
             // this.$currentID = (row.idItem);
             // console.log(this.$currentID);
-            
+
             this.$router.push("/admin/edititem");
         },
         // delete function
         async del(row) {
             console.log(row);
             console.log(row.idItem);
-            //127.0.0.1:8000/item/1637
 
-            await Axios.delete(`${backendUrl}/${row.idItem}`);
-            this.$message({
-                message: "Delete Sucessful",
-                type: "success",
+            this.$confirm(
+                "Are you sure ?",
+                row.name + " is deleting...",
+                'warning'
+            ).then(() => {
+                Axios.delete(`${backendUrl}/${row.idItem}`).then((response) => {
+                        this.getTableData();
+                        // this.$alert(response.data.message, "Succes", "success");
+                       this.$message({
+                        message: row.name + " is Deleted",
+                        type: "success",
+                        });
+                    
+                    })
+                    .catch((error) => {
+                        this.$alert(
+                            error.response.data.message,
+                            "Item doe not exit",
+                            "error"
+                        );
+                    });
             });
-            this.getTableData();
+            // await Axios.delete(`${backendUrl}/${row.idItem}`);
+            // this.$message({
+            //     message: "Delete Sucessful",
+            //     type: "success",
+            // });
+            // this.getTableData();
         },
     },
     // The get request at the begining to get all data

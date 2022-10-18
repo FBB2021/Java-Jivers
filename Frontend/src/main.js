@@ -20,8 +20,10 @@ import App from "./App.vue";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import store from "./Store";
+import echarts from 'echarts';
+import VueSimpleAlert from "vue-simple-alert";
 import axios from "axios";
-import echarts from "echarts";
+
 
 // LightBootstrap plugin
 import LightBootstrap from "./light-bootstrap-main";
@@ -35,6 +37,8 @@ Vue.use(VueRouter);
 Vue.use(LightBootstrap);
 Vue.use(ElementUI);
 Vue.use(Vuex);
+Vue.use(VueSimpleAlert);
+
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = "https://java-jivers-ims.herokuapp.com/";

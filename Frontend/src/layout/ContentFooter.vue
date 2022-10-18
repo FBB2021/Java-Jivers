@@ -17,12 +17,7 @@
                     href="https://javajivers.atlassian.net/wiki/spaces/MAIN/overview"
                     target="_blank"
                     >JavaJivers</a
-                >. Template by
-                <a
-                    href="https://www.creative-tim.com/?ref=pdf-vuejs"
-                    target="_blank"
-                    >Creative Tim</a
-                >.
+                >. 
             </div>
         </div>
     </footer>
