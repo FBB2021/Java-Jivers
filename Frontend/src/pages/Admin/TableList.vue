@@ -8,6 +8,8 @@
     :series="series"
   ></apexchart>
             </el-card>
+            
+             
           </div>
 </div>
 </template>
