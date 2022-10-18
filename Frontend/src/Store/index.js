@@ -5,7 +5,6 @@ import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 import axios from "axios";
 axios.defaults.withCredentials = true;
-// axios.defaults.baseURL = "https://java-jivers-ims.herokuapp.com";
 axios.defaults.baseURL = "https://java-jivers-ims.herokuapp.com/";
 
 Vue.use(Vuex);

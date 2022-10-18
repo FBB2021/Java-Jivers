@@ -37,7 +37,7 @@ ALLOWED_HOSTS = ['java-jivers-ims.herokuapp.com', '127.0.0.1']
 # API
 #CORS_ALLOW_ALL_ORIGINS = True
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:8080"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:8080", "https://javajivers-warehouse.netlify.app"]
 
 CORS_ALLOW_HEADERS = [
     "accept",
