@@ -26,9 +26,15 @@ export default {
             tableData: [],
             name: ['Apple','Mango','iKiwi','Pluots','Kpwi plus','Rambutam','omni-Apple','Manuo','Pluors','Kiwi','Orange'],
             quantity:[439,915,219,333,45,315,930,399,85,640,564],
+            names: [],
         }
     },
     mounted(){
+        // Axios.get(backendUrl).then((response) => {
+        //         this.tableData = response.data;
+        //     });
+        //     console.log(tableData)
+
         let myChart = this.$echarts.init(document.getElementById('graph1'))
         myChart.setOption({
             title: {
@@ -47,17 +53,15 @@ export default {
                 data: this.quantity
             }]
         })
-    },
-    created() {
-        // Axios.get(backendUrl).then((response) => {
-        //         this.tableData = response.data;
-        //         this.name = response.data.name
-        //         this.quantity = response.data.quantity
-        //         console.log(this.tableData)
-        //         console.log(this.quantity)
-        //     });
 
-}
+    },
+    // created() {
+    //         console.log("why")
+    //         console.log(this.names)
+    //         console.log(this.tableData.map(names, "name"))
+
+
+    //         }
 }
 
 </script>
