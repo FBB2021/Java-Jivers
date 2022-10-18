@@ -44,6 +44,7 @@ const store = new Vuex.Store({
     actions: {
         /* Login based on https://github.com/SteinOveHelset/djackets_vue/blob/master/src/store/index.js */
         async login(context, user) {
+            /* Check if the login details are correct, and login user */
             await axios.post("api/token/", user).then((response) => {
                 const token = response.data.access;
                 context.commit("set_isAuthenticated", true);
@@ -52,12 +53,36 @@ const store = new Vuex.Store({
 
                 localStorage.setItem("token", token);
             });
-
+            /* Now we have to determine the role of the user */
+            /* get the entire user database */
             const users_response = await axios.get("users/userviewset/");
-            const user_data = JSON.parse(users_response);
-            console.log(user_data);
+            const user_data = users_response.data;
+            const user_data_keys = Object.keys(user_data);
+            const user_attributes = Object.keys(user_data[user_data_keys[0]]);
 
-            context.commit("set_isAdmin", true);
+            var index_username = 0;
+            var index_role = 0;
+            //* find the index of username and role
+            for (let i = 0; i < user_attributes.length; i++) {
+                if (user_attributes[i] == "username") {
+                    index_username = i;
+                } else if (user_attributes[i] == "role") {
+                    index_role = i;
+                }
+            }
+            /* set admin to be false, if a match is found and the role is admin, we will change this to true */
+            context.commit("set_isAdmin", false);
+
+            for (let j = 0; j < user_data_keys.length; j++) {
+                let current_user_data = Object.values(
+                    user_data[user_data_keys[j]]
+                );
+                let username = current_user_data[index_username];
+                let user_role = current_user_data[index_role];
+                if (username == user.username && user_role == "Admin") {
+                    context.commit("set_isAdmin", true);
+                }
+            }
         },
         async logout(context) {
             context.commit("set_isAuthenticated", false);
