@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-md-20">
                         <base-input
-                            type="text"
+                            type="password"
                             label="Password"
                             :disabled="false"
                             placeholder="type password here"
