@@ -9,9 +9,9 @@
                     <div class="col-md-20">
                         <base-input
                             type="text"
-                            label="Email"
+                            label="Username"
                             :disabled="false"
-                            placeholder="type email address here"
+                            placeholder="type username here"
                             v-model="input.username"
                         >
                         </base-input>
