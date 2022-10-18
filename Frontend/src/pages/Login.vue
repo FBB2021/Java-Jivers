@@ -80,7 +80,11 @@ export default {
             if (this.input.username != "" && this.input.password != "") {
                 try {
                     await this.$store.dispatch("login", formData);
-                    this.$router.push("/admin/overview");
+                    if (this.$store.state.isAdmin) {
+                        this.$router.push("/admin/overview");
+                    } else {
+                        this.$router.push("/user/overview");
+                    }
                 } catch (error) {}
             }
         },

@@ -39,13 +39,18 @@ const routes = [
         component: DashboardLayout,
         beforeEnter: (to, from, next) => {
             const is_admin = store.getters.get_isAdmin;
+            const is_logged_in = store.getters.get_isAuthenticated;
 
             if (!is_admin) {
                 console.log(
                     "Attempting to access admin level page, without privileges. Currently logged in as " +
                         store.getters.get_user
                 );
-                return next("/login");
+                if (is_logged_in) {
+                    return next("/user");
+                } else {
+                    return next("/login");
+                }
             } else {
                 return next();
             }
