@@ -25,6 +25,8 @@ import VueSimpleAlert from "vue-simple-alert";
 
 // LightBootstrap plugin
 import LightBootstrap from "./light-bootstrap-main";
+// import ApexCharts from 'apexcharts'
+import VueApexCharts from "vue-apexcharts";
 
 // router setup
 import routes from "./routes/routes";
@@ -36,7 +38,9 @@ Vue.use(LightBootstrap);
 Vue.use(ElementUI);
 Vue.use(Vuex);
 Vue.use(VueSimpleAlert);
+// Vue.use(ApexCharts)
 
+Vue.component("apexchart", VueApexCharts);
 
 Vue.prototype.$echarts = echarts;
 Vue.prototype.$currentID = 0;

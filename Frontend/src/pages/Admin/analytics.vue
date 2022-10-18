@@ -30,10 +30,6 @@ export default {
         }
     },
     mounted(){
-        // Axios.get(backendUrl).then((response) => {
-        //         this.tableData = response.data;
-        //     });
-        //     console.log(tableData)
 
         let myChart = this.$echarts.init(document.getElementById('graph1'))
         myChart.setOption({
@@ -54,14 +50,53 @@ export default {
             }]
         })
 
+        let myChart1 = this.$echarts.init(document.getElementById('graph2'))
+        myChart1.setOption({
+            title:{
+                text: 'Pie Chart of Venders'
+            },
+            tooltip: {},
+            series: [
+    {
+      type: 'pie',
+      data: [
+        {
+          value: 335,
+          name: 'BigW'
+        },
+        {
+          value: 234,
+          name: 'Woolworth'
+        },
+        {
+          value: 1548,
+          name: 'Apple'
+        },
+        {
+            value: 100,
+            name: "Ka Ming Industrial Limited"
+        },{
+            value: 2,
+            name: 'Ninetendo'
+        }
+      ],
+      radius: '50%'
+    }
+  ]
+        })
+
     },
-    // created() {
-    //         console.log("why")
-    //         console.log(this.names)
-    //         console.log(this.tableData.map(names, "name"))
+created(){
+    Axios.get(backendUrl).then((response) => {
+                this.tableData = response.data;
+            });
+            console.log(this.tableData)
 
-
-    //         }
+             for (var i = 0; i < this.tableData.length; i++) {
+                this.names.push(this.tableData[i].name)
+            }
+            console.log(this.names)
+}
 }
 
 </script>
@@ -76,6 +111,7 @@ export default {
             height: 500px;
         }
     }
+
     
 }
 </style>
