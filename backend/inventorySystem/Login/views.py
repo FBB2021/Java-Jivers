@@ -61,6 +61,13 @@ def SaveFile(request):
     file_name = default_storage.save(file.name,file)
     return JsonResponse(file_name, safe=False)
 
+@csrf_exempt
+def userSearch(request, username):
+    if request.method=='GET':
+        user = User.objects.filter(Q(username__contains=username) | Q(username__icontains=username))
+        user_serializer = UserSerializer(user, many=True)
+    return JsonResponse(user_serializer.data,safe=False) 
+
 
 class UserViewSet(viewsets.ModelViewSet):
     # ModelViewSet provided support for 'get', 'put', 'post' and 'delete'
