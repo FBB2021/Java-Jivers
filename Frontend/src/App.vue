@@ -21,9 +21,13 @@ export default {
         const token = this.$store.state.token;
 
         if (token) {
-            axios.defaults.headers.common["Authorization"] = "Token " + token;
+            axios.defaults.headers.common = {
+                Authorization: "Bearer " + token,
+            };
         } else {
-            axios.defaults.headers.common["Authorization"] = "";
+            axios.defaults.headers.common = {
+                Authorization: "Bearer " + "",
+            };
         }
     },
 };

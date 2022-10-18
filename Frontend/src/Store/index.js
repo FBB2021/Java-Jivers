@@ -51,28 +51,13 @@ const store = new Vuex.Store({
                 context.commit("set_token", token);
 
                 localStorage.setItem("token", token);
-
-                user_type = "";
-
-                const users_response = axios.get("users/userviewset/"{
-                    withCredentials: this.state.token;
-                });
-
-                const user_data = JSON.parse(users_response);
-                consolve.log(user_data);
-                Object.entries(user_data).forEach((entry) => {
-                    console.log(entry);
-                    if (entry.username == user.username) {
-                        user_type = entry.role;
-                    }
-                });
-
-                if (user_type == "Admin") {
-                    context.commit("set_isAdmin", true);
-                } else {
-                    context.commit("set_isAdmin", false);
-                }
             });
+
+            const users_response = await axios.get("users/userviewset/");
+            const user_data = JSON.parse(users_response);
+            console.log(user_data);
+
+            context.commit("set_isAdmin", true);
         },
         async logout(context) {
             context.commit("set_isAuthenticated", false);
