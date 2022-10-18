@@ -199,9 +199,9 @@ export default {
     return {
       form: {
         name: "",
-        // desciption: "",
-        // cost: "",
-        // price: "",
+         desciption: "",
+         cost: "",
+         price: "",
         // expDate: "",
         quantity: "",
         // category: "",
@@ -233,6 +233,7 @@ export default {
           message: "Added Sucessful",
           type: "success",
         });
+
       }
     },
   },
