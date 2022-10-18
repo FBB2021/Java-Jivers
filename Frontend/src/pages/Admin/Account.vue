@@ -4,13 +4,13 @@
             <!-- <h3>Products</h3> -->
             <!-- The black row at the top of product page, showing the total statics -->
             <div class="p-3 mb-2 bg-dark text-white">
-                Total numbers of users: {{ this.tableData.length }} 
+                Total numbers of users: {{ this.tableData.length }}
             </div>
             <el-form :inline="true" :model="formInline" class="form-inline">
                 <!-- Search bar -->
                 <el-form-item>
                     <el-input
-                        placeholder="Type item name to search"
+                        placeholder="Type User name to search"
                         prefix-icon="el-icon-search"
                         v-model="searchInput"
                     >
@@ -78,8 +78,8 @@
                     >
                     </el-table-column>
                     <el-table-column
-                        prop="userName"
-                        label="User Name"
+                        prop="username"
+                        label="UserName"
                         align="center"
                         sortable
                     >
@@ -87,9 +87,16 @@
                     <el-table-column
                         prop="role"
                         label="Role"
-                        :formatter="formatter"
+                        align="center"
+                        sortable
                     >
                     </el-table-column>
+                    <el-table-column
+                        prop="email"
+                        label="Email"
+                        align="center"
+                        sortable
+                    ></el-table-column>
                     <el-table-column
                         prop="contactNumber"
                         label="Contact Number"
@@ -97,21 +104,15 @@
                         sortable
                     >
                     </el-table-column>
-                    <el-table-column
-                        prop="lastLoginTime"
-                        label="Last Login Time"
-                        align="center"
-                        sortable
-                    ></el-table-column>
 
                     <el-table-column label="">
                         <template slot-scope="scope">
-                            <el-button
+                            <!-- <el-button
                                 type="primary"
                                 size="mini"
                                 icon="el-icon-edit"
                             >
-                            </el-button>
+                            </el-button> -->
                             <el-button
                                 type="danger"
                                 size="mini"
@@ -133,6 +134,55 @@
                 </el-pagination>
             </el-row>
         </div>
+
+        <el-dialog
+            title="Add New User"
+            :visible.sync="dialogFormVisible"
+            center
+            width="500px"
+        >
+            <el-form :model="form" :rules="rules" ref="form">
+                <el-form-item label="Username" :label-width="formLabelWidth">
+                    <el-input
+                        v-model="form.username"
+                        autocomplete="off"
+                    ></el-input>
+                </el-form-item>
+                <el-form-item label="Password" :label-width="formLabelWidth">
+                    <el-input
+                        v-model="form.password"
+                        autocomplete="off"
+                    ></el-input>
+                </el-form-item>
+                <el-form-item label="Email" :label-width="formLabelWidth">
+                    <el-input
+                        v-model="form.email"
+                        autocomplete="off"
+                    ></el-input>
+                </el-form-item>
+                <el-form-item label="Phone" :label-width="formLabelWidth">
+                    <el-input
+                        v-model="form.contactNumber"
+                        autocomplete="off"
+                    ></el-input>
+                </el-form-item>
+                <el-form-item label="Role" :label-width="formLabelWidth">
+                    <el-select
+                        v-model="form.role"
+                        placeholder="Choose a role of the user"
+                    >
+                        <el-option label="General" value="General"></el-option>
+                        <el-option label="Admin" value="Admin"></el-option>
+                    </el-select>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">Cancel</el-button>
+                <el-button type="primary" @click="ConfirmaddUser(form)"
+                    >Confirm</el-button
+                >
+            </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -149,10 +199,20 @@ export default {
             searchInput: "",
             tableData: [],
             todoItem: {},
-            editMode: false,
+            // editMode: false,
             currentPage: 1,
             pageSize: 15,
             totalPage: 0,
+            dialogFormVisible: false,
+            form: {
+                username: "",
+                password: "",
+                role: "",
+                email: "",
+                contactNumber: "",
+            },
+            formLabelWidth: "80px",
+            rules: {},
         };
     },
     // Most of the method doesn't work yet, wokring on to fix it
@@ -169,32 +229,43 @@ export default {
             });
         },
         searchItem() {
-            for(item in tableData){
-                if(item.name == this.searchInput){
-                    console.log("Equal!!")
-                }
-            }
+            // for (var i = 0; i < this.tableData.length; i++) {
+            //     if(this.searchInput == this.tableData[i].username){
+            //         this.tableData = this.tableData[i]
+            //     }
+            // }
         },
         // handle page change for pagination
         handleCurrentChange(val) {
             this.currentPage = val;
         },
         openNewItem() {
-            this.$router.push("/admin/newitem");
+            this.dialogFormVisible = true;
         },
 
         // delete function
         async del(row) {
             console.log(row);
-            console.log(row.idItem);
-            //127.0.0.1:8000/item/1637
+            console.log(row.UserId);
 
-            await Axios.delete(`${backendUrl}/${row.idItem}`);
+            await Axios.delete(`${backendUrl}/${row.UserId}`);
             this.$message({
                 message: "Delete Sucessful",
                 type: "success",
             });
-            this.getTableData();
+            this.$router.go(0);
+            // this.getTableData();
+        },
+        ConfirmaddUser(form) {
+            console.log(form);
+            this.dialogFormVisible = false;
+
+            Axios.post(backendUrl, form).then((res) => console.log(res));
+            this.$message({
+                message: "Added Sucessful",
+                type: "success",
+            });
+            this.$router.go(0);
         },
     },
     // The get request at the begining to get all data
