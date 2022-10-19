@@ -8,8 +8,6 @@
     :series="series"
   ></apexchart>
             </el-card>
-            
-             
           </div>
 </div>
 </template>
@@ -115,8 +113,7 @@ export default {
     display: flex;
     justify-content: space-between;
     .el-card{
-        width: 70%;
-
+        width: 75%;
     }
 
     

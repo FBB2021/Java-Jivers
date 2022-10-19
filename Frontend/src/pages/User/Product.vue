@@ -10,28 +10,68 @@
             <div class="row justify-content-center">
                 <!-- Search bar -->
                 <div class="col-7">
-                    <div class="input-group mb-3">
-                        <el-input v-model="input" placeholder="请输入内容"></el-input>
+                    <el-form :inline="true" :model="formInline" class="form-inline">
+                <!-- Search bar -->
+                <el-form-item>
+                    <el-input
+                        placeholder="Type item name to search"
+                        prefix-icon="el-icon-search"
+                        v-model="searchInput"
+                    >
+                    </el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="searchItem"
+                        >Search</el-button
+                    >
+                    <el-button type="info" @click="reset">Reset</el-button>
+                </el-form-item>
 
-                        <div class="input-group-append">
-                            <button
-                                class="btn btn-outline-secondary"
-                                type="button"
-                            >
-                                Search
-                            </button>
-                        </div>
-                    </div>
+                <!-- Filter Button -->
+                <el-form-item>
+                    <!-- <button
+                        type="button"
+                        class="
+                            btn btn-secondary btn-fill
+                            float-center
+                            btn-block
+                        "
+                    >
+                        Filter
+                    </button> -->
+                </el-form-item>
+                <!-- Add item button -->
+                <!-- <el-form-item>
+                    <button
+                        type="button"
+                        class="btn btn-info btn-fill float-center btn-block"
+                        @click="openNewItem"
+                    >
+                        + New Item
+                    </button>
+                </el-form-item> -->
+
+                <!-- Delete item button -->
+                <!-- <el-form-item>
+                    <button
+                        type="button"
+                        class="btn btn-warning btn-fill float-center btn-block"
+                    >
+                        - Delete Item
+                    </button>
+                </el-form-item> -->
+            </el-form>
+
                 </div>
                 <!-- Filter Button -->
-                <div class="col">
+                <!-- <div class="col">
                     <button
                         type="button"
                         class="btn btn-secondary btn-fill float-center btn-block"
                     >
                         Filter
                     </button>
-                </div>
+                </div> -->
             </div>
             <!-- Display of table -->
             <el-row :gutter="20">

@@ -191,6 +191,7 @@
 import Axios from "axios";
 // const backendUrl = "https://java-jivers.herokuapp.com/item";
 const backendUrl = "https://java-jivers-ims.herokuapp.com/user";
+const postUrl = "https://java-jivers-ims.herokuapp.com/users/userviewset/"
 
 export default {
     data() {
