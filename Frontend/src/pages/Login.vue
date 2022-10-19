@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-md-20">
                         <base-input
-                            type="text"
+                            type="password"
                             label="Password"
                             :disabled="false"
                             placeholder="type password here"
@@ -65,8 +65,8 @@ export default {
                 password: "",
             },
             login_details: {
-                general: { email: "useremail", password: "password" },
-                admin: { email: "adminemail", password: "password" },
+                general: { email: "user@gmail.com", password: "password" },
+                admin: { email: "admin@gmail.com", password: "password" },
             },
             background_image: {
                 image: "img/adrian-sulyok-sczNLg6rrhQ-unsplash.jpg",
@@ -84,7 +84,7 @@ export default {
                     // Not secure yet
                     this.$store.dispatch("login_authenticated", [
                         "General",
-                        "useremail",
+                        "user@gmail.com",
                     ]);
                     this.$router.push("/user/overview");
                 } else if (
@@ -94,7 +94,7 @@ export default {
                     // Not secure yet
                     this.$store.dispatch("login_authenticated", [
                         "Admin",
-                        "adminemail",
+                        "admin@gmail.com",
                     ]);
                     this.$router.push("/admin/overview");
                 } else {
