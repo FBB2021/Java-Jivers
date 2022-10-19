@@ -62,10 +62,6 @@
                     required: true,
                     message: 'cost cannot be empty',
                   },
-                  {
-                    type: 'number',
-                    message: 'cost must be number',
-                  },
                 ]"
               >
                 <el-input
@@ -81,10 +77,6 @@
                   {
                     required: true,
                     message: 'price cannot be empty',
-                  },
-                  {
-                    type: 'number',
-                    message: 'price must be number',
                   },
                 ]"
               >
@@ -112,6 +104,16 @@
           <Card>
             <el-form ref="form" :model="form">
               <el-form-item
+                label="Item ID"
+                prop="idItem"
+              >
+                <el-input
+                  v-model.number="form.idItem"
+                  :disabled = "true"
+                ></el-input>
+              </el-form-item>
+
+              <el-form-item
                 label="quantity"
                 prop="quantity"
                 :rules="[
@@ -130,7 +132,7 @@
                   autocomplete="off"
                 ></el-input>
               </el-form-item>
-
+<!-- 
               <el-form-item label="Category">
                 <el-select
                   v-model="form.category"
@@ -139,7 +141,7 @@
                   <el-option label="Computer" value="Computer"></el-option>
                   <el-option label="Food" value="Food"></el-option>
                 </el-select>
-              </el-form-item>
+              </el-form-item> -->
               <el-form-item label="Vendor">
                 <el-input v-model="form.nameBrand"></el-input>
               </el-form-item>
@@ -158,17 +160,18 @@
                   autocomplete="off"
                 ></el-input>
               </el-form-item>
-              <el-form-item label="Storage Location">
-                <el-select
-                  v-model="form.region"
-                  placeholder="Please choose location"
-                >
-                  <el-option label="A" value="A"></el-option>
-                  <el-option label="B" value="B"></el-option>
-                  <el-option label="C" value="C"></el-option>
-                  <el-option label="D" value="D"></el-option>
-                </el-select>
+              <el-form-item
+                label="Location"
+                :rules="[
+                  {
+                    required: true,
+                    message: 'Location cannot be empty',
+                  },
+                ]"
+              >
+                <el-input v-model="form.nameLocation" autocomplete="on"></el-input>
               </el-form-item>
+
             </el-form>
           </Card>
           <!-- </el-form> -->
@@ -195,16 +198,21 @@ export default {
     return {
       itemdata: [],
       form: {
+        idItem:"",
         name: "",
-        // inputdescription: "",
-        // cost: "",
-        // price: "",
+         inputdescription: "",
+         cost: "",
+         price: "",
         // expDate: "",
         quantity: "",
-        category: "",
+        // category: "",
         nameBrand: "",
         weight: "",
+        length: "71.03",
+        width: "5.00",
+        nameLocation: "",
       },
+      formLabelWidth: "80px",
     };
   },
   methods: {
@@ -221,13 +229,14 @@ export default {
       console.log(this.form);
     },
     postItem() {
+      console.log(this.form);
       if (this.form.name == "") {
         this.$message({
           message: "No item name",
           type: "warning",
         });
       } else {
-        Axios.post(WareHouseUrl, this.form).then(
+        Axios.put(WareHouseUrl, this.form).then(
           (res) => console.log(res),
           this.$router.push("/admin/product")
         );
@@ -241,10 +250,15 @@ export default {
   created() {
     Axios.get(`${WareHouseUrl}/${this.$root.ITEMID}`).then((response) => {
                 this.itemdata = response.data;
+                this.form.idItem = response.data.idItem;
                 this.form.name = response.data.name;
                 this.form.quantity = response.data.quantity;
                 this.form.nameBrand = response.data.nameBrand;
                 this.form.weight = response.data.weight;
+                this.form.nameLocation = response.data.nameLocation;
+                this.form.cost = response.data.cost;
+                this.form.price = response.data.price;
+                this.form.inputdescription = response.data.desciption;
                 console.log("TADA!");
                 console.log(response.data);
                 

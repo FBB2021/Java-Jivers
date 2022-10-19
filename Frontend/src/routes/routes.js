@@ -55,6 +55,7 @@ const routes = [
                 return next();
             }
         },
+        
         redirect: "/admin/overview",
         children: [
             {

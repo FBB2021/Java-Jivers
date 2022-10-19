@@ -27,6 +27,8 @@ import axios from "axios";
 
 // LightBootstrap plugin
 import LightBootstrap from "./light-bootstrap-main";
+// import ApexCharts from 'apexcharts'
+import VueApexCharts from "vue-apexcharts";
 
 // router setup
 import routes from "./routes/routes";
@@ -38,7 +40,9 @@ Vue.use(LightBootstrap);
 Vue.use(ElementUI);
 Vue.use(Vuex);
 Vue.use(VueSimpleAlert);
+// Vue.use(ApexCharts)
 
+Vue.component("apexchart", VueApexCharts);
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = "https://java-jivers-ims.herokuapp.com/";

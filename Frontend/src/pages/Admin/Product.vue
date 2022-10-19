@@ -157,7 +157,7 @@ export default {
             todoItem: {},
             editMode: false,
             currentPage: 1,
-            pageSize: 15,
+            pageSize: 7,
             totalPage: 0,
         };
     },
