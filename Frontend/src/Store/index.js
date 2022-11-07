@@ -64,10 +64,12 @@ const store = new Vuex.Store({
             });
             /* Now we have to determine the role of the user */
             /* get the user based on username from database, then check role and store it*/
+
             await axios
-                .get("users/userviewset?name=" + context.user)
+                .get("users/userviewset?name=" + user.username)
                 .then((response) => {
-                    const user_role = response.role;
+                    console.log(response.data[0].role);
+                    const user_role = response.data[0].role;
                     if (user_role == "Admin") {
                         context.commit("set_isAdmin", true);
                     } else {
@@ -80,6 +82,7 @@ const store = new Vuex.Store({
             context.commit("set_isAdmin", false);
             context.commit("set_user", "");
             context.commit("set_token", "");
+            context.commit("set_refresh", "");
         },
         refresh_token(context) {},
     },
