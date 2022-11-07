@@ -63,35 +63,17 @@ const store = new Vuex.Store({
                 localStorage.setItem("refresh", refresh);
             });
             /* Now we have to determine the role of the user */
-            /* get the entire user database */
-            const users_response = await axios.get("users/userviewset/");
-            const user_data = users_response.data;
-            const user_data_keys = Object.keys(user_data);
-            const user_attributes = Object.keys(user_data[user_data_keys[0]]);
-
-            var index_username = 0;
-            var index_role = 0;
-            //* find the index of username and role
-            for (let i = 0; i < user_attributes.length; i++) {
-                if (user_attributes[i] == "username") {
-                    index_username = i;
-                } else if (user_attributes[i] == "role") {
-                    index_role = i;
-                }
-            }
-            /* set admin to be false, if a match is found and the role is admin, we will change this to true */
-            context.commit("set_isAdmin", false);
-
-            for (let j = 0; j < user_data_keys.length; j++) {
-                let current_user_data = Object.values(
-                    user_data[user_data_keys[j]]
-                );
-                let username = current_user_data[index_username];
-                let user_role = current_user_data[index_role];
-                if (username == user.username && user_role == "Admin") {
-                    context.commit("set_isAdmin", true);
-                }
-            }
+            /* get the user based on username from database, then check role and store it*/
+            await axios
+                .get("users/userviewset?name=" + context.user)
+                .then((response) => {
+                    const user_role = response.role;
+                    if (user_role == "Admin") {
+                        context.commit("set_isAdmin", true);
+                    } else {
+                        context.commit("set_isAdmin", false);
+                    }
+                });
         },
         async logout(context) {
             context.commit("set_isAuthenticated", false);
