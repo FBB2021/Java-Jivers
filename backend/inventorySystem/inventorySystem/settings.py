@@ -207,4 +207,28 @@ SIMPLE_JWT = {
     'USER_ID_FIELD': 'UserId',
 }
 
- 
+# email settings
+# Official Email: javajivers.team@gmail.com
+# password: QazWsx123.
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587 # TLS
+EMAIL_HOST_USER = 'javajivers.team@gmail.com'
+EMAIL_HOST_PASSWORD = 'ptyrbcurxyjoucvm' # Gmail Application specific password
+EMAIL_USE_TLS = True
+
+'''
+EMAIL_HOST = 'smtp.yeah.net'
+EMAIL_PORT = 25 # TLS
+EMAIL_HOST_USER = 'fbao2019@yeah.net'
+EMAIL_HOST_PASSWORD = 'BCYHPWAZXYOCCJTG' # Yeah Application specific password
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+'''
+'''
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = 25 # TLS
+EMAIL_HOST_USER = 'javajivers_team@163.com'
+EMAIL_HOST_PASSWORD = 'XEOHXXMZRVKIOUHF' # 163 Application specific password
+EMAIL_USE_TLS = True
+'''

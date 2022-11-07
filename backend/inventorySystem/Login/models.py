@@ -1,5 +1,8 @@
+from enum import unique
 from http.client import LENGTH_REQUIRED
+from tabnanny import verbose
 from django.db import models
+import uuid
 
 # Following two used for user information verification
 from django.contrib.auth.models import AbstractUser
@@ -23,6 +26,9 @@ class User(AbstractUser):
     UserId = models.AutoField(primary_key=True)
     role = models.CharField(max_length=20, choices=ROLE, null=False, blank=False,default="General")
     contactNumber = models.CharField(_('Contact Number'),max_length=500, blank=True)
+    # attribute "UUID" is for user sign up mechanism
+    UUID = models.UUIDField(default=uuid.uuid4, editable=False)
+    email = models.EmailField(_("email address"), blank=False,null=False)
 
     objects = UserManager()
 
