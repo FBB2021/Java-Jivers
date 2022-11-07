@@ -15,6 +15,7 @@ const store = new Vuex.Store({
         isAdmin: "",
         user: "",
         token: "",
+        refresh: "",
     },
     mutations: {
         /* initialiseStore based on https://github.com/SteinOveHelset/djackets_vue/blob/master/src/store/index.js */
@@ -25,6 +26,9 @@ const store = new Vuex.Store({
             if (localStorage.getItem("token")) {
                 state.token = localStorage.getItem("token");
                 state.isAuthenticated = true;
+            }
+            if (localStorage.getItem("refresh")) {
+                state.refresh = localStorage.getItem("refresh");
             }
         },
         set_isAuthenticated(state, value) {
@@ -39,6 +43,9 @@ const store = new Vuex.Store({
         set_token(state, token) {
             state.token = token;
         },
+        set_refresh(state, refresh) {
+            state.refresh = refresh;
+        },
     },
     actions: {
         /* Login based on https://github.com/SteinOveHelset/djackets_vue/blob/master/src/store/index.js */
@@ -46,11 +53,14 @@ const store = new Vuex.Store({
             /* Check if the login details are correct, and login user */
             await axios.post("api/token/", user).then((response) => {
                 const token = response.data.access;
+                const refresh = response.data.refresh;
                 context.commit("set_isAuthenticated", true);
                 context.commit("set_user", user.username);
                 context.commit("set_token", token);
+                context.commit("set_refresh", refresh);
 
                 localStorage.setItem("token", token);
+                localStorage.setItem("refresh", refresh);
             });
             /* Now we have to determine the role of the user */
             /* get the entire user database */
