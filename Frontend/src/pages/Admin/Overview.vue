@@ -2,71 +2,117 @@
 <template>
     <div class="content">
         <div class="container">
-            <el-form :inline="true" :model="formInline" class="form-inline">
-                <!-- Search bar -->
-                <el-form-item>
-                    <el-input
-                        placeholder="Type item name to search"
-                        prefix-icon="el-icon-search"
-                        v-model="searchInput"
-                    >
-                    </el-input>
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" @click="searchItem"
-                        >Search</el-button
-                    >
-                </el-form-item>
-            </el-form>
+            <div class="row">
+                <div class="col-md-4 col-xl-4">
+                    <div class="search-bar">
+                        <base-input
+                            type="text"
+                            label="Search"
+                            :disabled="false"
+                            placeholder="Try typing 'new'"
+                            v-model="searchInput"
+                        >
+                        </base-input>
+                    </div>
+                </div>
+                <div class="col-md-8 col-xl-8">
+                    <h3>Items with total largest weight</h3>
+                    <div class="row">
+                        <div class="col-md-4 col-xl-4">
+                            <div class="image-items">
+                                <img
+                                    src="img/apple1.jpg"
+                                    class="img-thumbnail"
+                                    alt="placeholder"
+                                />
+                                Apple : 2 left
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xl-4">
+                            <div class="image-items">
+                                <img
+                                    src="img/iphone.jpg"
+                                    class="img-thumbnail"
+                                    alt="placeholder"
+                                />
+                                iphone 13 plus: 247 left
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xl-4">
+                            <div class="image-items">
+                                <img
+                                    src="img/chair.jpg"
+                                    class="img-thumbnail"
+                                    alt="placeholder"
+                                />
+                                Chair: 260 left
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Display of table -->
-            <el-row :gutter="20">
-                <el-table
-                    :data="tableData.slice(0, pageSize)"
-                    style="width: 100%"
-                    v-loading="loading"
-                >
-                    <el-table-column
-                        prop="name"
-                        label="Name"
-                        align="center"
-                        sortable
-                    >
-                    </el-table-column>
-                    <el-table-column
-                        prop="nameBrand"
-                        label="Brand"
-                        align="center"
-                        sortable
-                    >
-                    </el-table-column>
-                    <el-table-column
-                        prop="category"
-                        label="Category"
-                        :formatter="formatter"
-                    >
-                    </el-table-column>
-                    <el-table-column
-                        prop="nameLocation"
-                        label="Location"
-                        align="center"
-                        sortable
-                    >
-                    </el-table-column>
-                    <el-table-column
-                        prop="quantity"
-                        label="Quantity"
-                        align="center"
-                        sortable
-                    ></el-table-column>
-                    <el-table-column
-                        prop="weight"
-                        label="Weight(kg)"
-                        align="center"
-                        sortable
-                    ></el-table-column>
-                </el-table>
-            </el-row>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <card class="card-plain">
+                            <template slot="header">
+                                <h4 class="card-title">
+                                    Items nearly out of stock
+                                </h4>
+                            </template>
+                            <el-row :gutter="20">
+                                <el-table
+                                    :data="tableData.slice(0, pageSize)"
+                                    style="width: 100%"
+                                    v-loading="loading"
+                                >
+                                    <el-table-column
+                                        prop="name"
+                                        label="Name"
+                                        align="center"
+                                        sortable
+                                    >
+                                    </el-table-column>
+                                    <el-table-column
+                                        prop="nameBrand"
+                                        label="Brand"
+                                        align="center"
+                                        sortable
+                                    >
+                                    </el-table-column>
+                                    <el-table-column
+                                        prop="category"
+                                        label="Category"
+                                        :formatter="formatter"
+                                    >
+                                    </el-table-column>
+                                    <el-table-column
+                                        prop="nameLocation"
+                                        label="Location"
+                                        align="center"
+                                        sortable
+                                    >
+                                    </el-table-column>
+                                    <el-table-column
+                                        prop="quantity"
+                                        label="Quantity"
+                                        align="center"
+                                        sortable
+                                    ></el-table-column>
+                                    <el-table-column
+                                        prop="weight"
+                                        label="Weight(kg)"
+                                        align="center"
+                                        sortable
+                                    ></el-table-column>
+                                </el-table>
+                            </el-row>
+                        </card>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
