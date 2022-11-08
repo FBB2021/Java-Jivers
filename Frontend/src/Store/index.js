@@ -42,9 +42,11 @@ const store = new Vuex.Store({
         },
         set_token(state, token) {
             state.token = token;
+            localStorage.setItem("token", token);
         },
         set_refresh(state, refresh) {
             state.refresh = refresh;
+            localStorage.setItem("refresh", refresh);
         },
     },
     actions: {
@@ -58,9 +60,6 @@ const store = new Vuex.Store({
                 context.commit("set_user", user.username);
                 context.commit("set_token", token);
                 context.commit("set_refresh", refresh);
-
-                localStorage.setItem("token", token);
-                localStorage.setItem("refresh", refresh);
             });
             /* Now we have to determine the role of the user */
             /* get the user based on username from database, then check role and store it*/
@@ -85,7 +84,24 @@ const store = new Vuex.Store({
             context.commit("set_token", "");
             context.commit("set_refresh", "");
         },
-        refresh_token(context) {},
+        async refresh_token(context) {
+            /* send a dummy request to check token valid */
+            await axios
+                .get("users/userviewset?name=" + user.username)
+                .then((response) => {
+                    if (response.code == "token_not_valid") {
+                    } else {
+                        return;
+                    }
+                });
+            await axios
+                .post("api/token/refresh/", context.get_refresh)
+                .then((response) => {
+                    if (response.access) {
+                        context.set_token(response.access);
+                    }
+                });
+        },
     },
     getters: {
         get_isAuthenticated: (state) => {
@@ -99,6 +115,9 @@ const store = new Vuex.Store({
         },
         get_token: (state) => {
             return state.token;
+        },
+        get_refresh: (state) => {
+            return state.refresh;
         },
     },
     plugins: [createPersistedState()],

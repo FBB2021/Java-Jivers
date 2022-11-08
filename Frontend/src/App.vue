@@ -19,7 +19,6 @@ export default {
         this.$store.commit("initialiseStore");
 
         const token = this.$store.state.token;
-        const refresh = this.$store.state.refresh;
 
         if (token) {
             axios.defaults.headers.common = {
