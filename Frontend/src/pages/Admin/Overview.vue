@@ -21,7 +21,7 @@
                         <div class="col-md-4 col-xl-4">
                             <div class="image-items">
                                 <img
-                                    src="img/apple1.jpg"
+                                    src="weightData[0].picture"
                                     class="img-thumbnail"
                                     alt="placeholder"
                                 />
@@ -31,7 +31,7 @@
                         <div class="col-md-4 col-xl-4">
                             <div class="image-items">
                                 <img
-                                    src="img/iphone.jpg"
+                                    src="weightData[1].picture"
                                     class="img-thumbnail"
                                     alt="placeholder"
                                 />
@@ -41,7 +41,7 @@
                         <div class="col-md-4 col-xl-4">
                             <div class="image-items">
                                 <img
-                                    src="img/chair.jpg"
+                                    src="weightData[2].picture"
                                     class="img-thumbnail"
                                     alt="placeholder"
                                 />
@@ -64,7 +64,7 @@
                             </template>
                             <el-row :gutter="20">
                                 <el-table
-                                    :data="tableData.slice(0, pageSize)"
+                                    :data="stockData.slice(0, pageSize)"
                                     style="width: 100%"
                                     v-loading="loading"
                                 >
@@ -128,6 +128,8 @@ export default {
             loading: true,
             searchInput: "",
             tableData: [],
+            stockData: [],
+            weightData: [],
             todoItem: {},
             editMode: false,
             currentPage: 1,
@@ -141,17 +143,13 @@ export default {
         getTableData() {
             Axios.get(backendUrl).then((response) => {
                 this.tableData = response.data;
-                this.totalPage = (this.tableData.length / this.pageSize) * 10;
-                console.log(response.data);
-                console.log(response);
-                console.log(this.totalPage);
                 this.loading = false;
+                this.getLowestStock();
+                this.getLargestTotalWeight();
+                console.log(this.stockData);
             });
         },
         searchItem() {
-            console.log("The input is: ");
-            console.log(this.searchInput);
-            cosole.log(typeof tableData);
             // for(item in this.tableData){
             //     console.log(item);
             // //     if(item.name == this.searchInput){
@@ -160,21 +158,18 @@ export default {
             // //     }
             // }
         },
+        getLowestStock() {
+            this.stockData = this.tableData.sort(function (a, b) {
+                return a.quantity - b.quantity;
+            });
+        },
+        getLargestTotalWeight() {
+            this.weightData = this.tableData.sort(function (a, b) {
+                return b.quantity * b.weight - a.quantity * a.weight;
+            });
+        },
         openNewItem() {
             this.$router.push("/admin/newitem");
-        },
-
-        // edit item
-
-        edit(row) {
-            console.log(row);
-            console.log(row.idItem);
-            this.$root.ITEMID = row.idItem;
-            console.log(this.$root.ITEMID);
-            // this.$currentID = (row.idItem);
-            // console.log(this.$currentID);
-
-            this.$router.push("/admin/edititem");
         },
     },
     // The get request at the begining to get all data
