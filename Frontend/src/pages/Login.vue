@@ -78,6 +78,10 @@ export default {
             };
 
             if (this.input.username != "" && this.input.password != "") {
+                this.$message({
+                    message: "Waiting to log you in",
+                    type: "info",
+                });
                 try {
                     await this.$store.dispatch("login", formData);
                     if (this.$store.state.isAdmin) {
@@ -85,7 +89,17 @@ export default {
                     } else {
                         this.$router.push("/user/overview");
                     }
-                } catch (error) {}
+                } catch (error) {
+                    this.$message({
+                        message: "Incorrect username or password",
+                        type: "error",
+                    });
+                }
+            } else {
+                this.$message({
+                    message: "Password cannot be empty",
+                    type: "error",
+                });
             }
         },
     },

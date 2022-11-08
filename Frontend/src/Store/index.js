@@ -64,11 +64,12 @@ const store = new Vuex.Store({
             });
             /* Now we have to determine the role of the user */
             /* get the user based on username from database, then check role and store it*/
-
+            /* Currently bugged as backend returns more than one username in certain situations
+               such as when a username is the substring of another, it returns both, and it 
+               is not case sensitive either */
             await axios
                 .get("users/userviewset?name=" + user.username)
                 .then((response) => {
-                    console.log(response.data[0].role);
                     const user_role = response.data[0].role;
                     if (user_role == "Admin") {
                         context.commit("set_isAdmin", true);
