@@ -1,69 +1,28 @@
-<!-- This is the homepage for the user -->
-<!-- Three sections. First is a searh bar, for searching items. No current functionality. Second is a display of three items that are nearly out of stock. No functionality yet. Third is a table below that shows recent items. Was displaying placeholder data, but no longer works for unknown reason-->
+<!-- Overview page copied from Product page code, then edited -->
 <template>
     <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-4 col-xl-4">
-                    <div class="search-bar">
-                        <base-input
-                            type="text"
-                            label="Search"
-                            :disabled="false"
-                            placeholder="Try typing 'new'"
-                            v-model="model"
-                        >
-                        </base-input>
-                    </div>
-                </div>
-                <div class="col-md-8 col-xl-8">
-                    <h3>
-                        Items close to out of stock</h3>
-                    <div class="row">
-                        <div class="col-md-4 col-xl-4">
-                            <div class="image-items">
-                                <img
-                                    src="img/apple1.jpg"
-                                    class="img-thumbnail"
-                                    alt="placeholder"
-                                />
-                                Apple : 2 left
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-xl-4">
-                            <div class="image-items">
-                                <img
-                                    src="img/iphone.jpg"
-                                    class="img-thumbnail"
-                                    alt="placeholder"
-                                />
-                                iphone 13 plus: 247 left
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-xl-4">
-                            <div class="image-items">
-                                <img
-                                    src="img/chair.jpg"
-                                    class="img-thumbnail"
-                                    alt="placeholder"
-                                />
-                                Chair: 260 left
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="container">
+            <el-form :inline="true" :model="formInline" class="form-inline">
+                <!-- Search bar -->
+                <el-form-item>
+                    <el-input
+                        placeholder="Type item name to search"
+                        prefix-icon="el-icon-search"
+                        v-model="searchInput"
+                    >
+                    </el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="searchItem"
+                        >Search</el-button
+                    >
+                </el-form-item>
+            </el-form>
 
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <card class="card-plain">
-                        <template slot="header">
-                            <h4 class="card-title">Recent Searches</h4>
-                        </template>
-                        <el-table
-                    :data="tableData1"
+            <!-- Display of table -->
+            <el-row :gutter="20">
+                <el-table
+                    :data="tableData.slice(0, pageSize)"
                     style="width: 100%"
                     v-loading="loading"
                 >
@@ -107,89 +66,81 @@
                         sortable
                     ></el-table-column>
                 </el-table>
-                        <div class="table-responsive">
-                            <l-table
-                                class="table-hover"
-                                :columns="table2.columns"
-                                :data="table2.data"
-                            >
-                            </l-table>
-                        </div>
-                    </card>
-                </div>
-            </div>
+            </el-row>
         </div>
     </div>
 </template>
+
 <script>
-import LTable from "src/components/Table.vue";
-import Card from "src/components/Cards/Card.vue";
-const tableColumns = [
-    "ID",
-    "Name",
-    "Brand",
-    "Category",
-    "Quantity",
-    "Price",
-    "Location",
-];
-const tableData = [
-    {
-        id: 1,
-        name: "Chicken Magnet",
-        brand: "KfC",
-        category: "Tool",
-        quantity: "1",
-        price: "$5.00",
-        location: "K",
-    },
-    {
-        id: 2,
-        name: "Chicken Magnet",
-        brand: "KfC",
-        category: "Tool",
-        quantity: "1",
-        price: "$5.00",
-        location: "K",
-    },
-];
+// put the Url here
+import Axios from "axios";
+const backendUrl = "https://java-jivers-ims.herokuapp.com/item";
+
 export default {
-    components: {
-        LTable,
-        Card,
-    },
     data() {
         return {
-            tableData1:[    {
-        id: 1,
-        name: "Chicken Magnet",
-        nameBrand: "KFC",
-        category: "Tool",
-        quantity: "2415",
-        price: "$5.00",
-        nameLocation: "K3",
-    }],
-            table1: {
-                columns: [...tableColumns],
-                data: [...tableData],
-            },
-            table2: {
-                columns: [...tableColumns],
-                data: [...tableData],
-            },
+            loading: true,
+            searchInput: "",
+            tableData: [],
+            todoItem: {},
+            editMode: false,
+            currentPage: 1,
+            pageSize: 4,
+            totalPage: 0,
         };
+    },
+    // Most of the method doesn't work yet, wokring on to fix it
+    methods: {
+        // Send a get request to backend and request data
+        getTableData() {
+            Axios.get(backendUrl).then((response) => {
+                this.tableData = response.data;
+                this.totalPage = (this.tableData.length / this.pageSize) * 10;
+                console.log(response.data);
+                console.log(response);
+                console.log(this.totalPage);
+                this.loading = false;
+            });
+        },
+        searchItem() {
+            console.log("The input is: ");
+            console.log(this.searchInput);
+            cosole.log(typeof tableData);
+            // for(item in this.tableData){
+            //     console.log(item);
+            // //     if(item.name == this.searchInput){
+            // //         console.log("The item is " + item.name)
+            // //         console.log("Equal!!")
+            // //     }
+            // }
+        },
+        openNewItem() {
+            this.$router.push("/admin/newitem");
+        },
+
+        // edit item
+
+        edit(row) {
+            console.log(row);
+            console.log(row.idItem);
+            this.$root.ITEMID = row.idItem;
+            console.log(this.$root.ITEMID);
+            // this.$currentID = (row.idItem);
+            // console.log(this.$currentID);
+
+            this.$router.push("/admin/edititem");
+        },
+    },
+    // The get request at the begining to get all data
+    // created() {
+    //   Axios.get(todoUrl).then((response) => (this.todoList = response.data));
+    // },
+
+    // The get request at the begining to get all data
+    created() {
+        this.getTableData();
     },
 };
 </script>
-<style>
-.search-bar {
-    color: rgb(54, 53, 56);
-}
 
-.search-bar label {
-    margin: 10px;
-}
-.image-items {
-    text-align: center;
-}
-</style>
+<style></style>
