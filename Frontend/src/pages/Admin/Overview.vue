@@ -183,15 +183,20 @@ export default {
             // }
         },
         getLowestStock() {
-            this.stockData = this.tableData.sort(function (a, b) {
-                return a.quantity - b.quantity;
-            });
-            console.log(this.stockData.slice(0, 4));
+            this.stockData = this.tableData
+                .sort(function (a, b) {
+                    return a.quantity - b.quantity;
+                })
+                .slice(0, this.pageSize);
+
+            console.log(this.stockData);
         },
         getLargestTotalWeight() {
-            this.largestTotalWeightData = this.tableData.sort(function (a, b) {
-                return b.quantity * b.weight - a.quantity * a.weight;
-            });
+            this.largestTotalWeightData = this.tableData
+                .sort(function (a, b) {
+                    return b.quantity * b.weight - a.quantity * a.weight;
+                })
+                .slice(0, 3);
         },
     },
     // The get request at the begining to get all data
