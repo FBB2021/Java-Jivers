@@ -141,18 +141,21 @@
                 <el-form-item label="Username" :label-width="formLabelWidth">
                     <el-input
                         v-model="form.username"
+                        placeholder="Mandatory"
                         autocomplete="off"
                     ></el-input>
                 </el-form-item>
                 <el-form-item label="Password" :label-width="formLabelWidth">
                     <el-input
                         v-model="form.password"
+                        placeholder="Mandatory"
                         autocomplete="off"
                     ></el-input>
                 </el-form-item>
                 <el-form-item label="Email" :label-width="formLabelWidth">
                     <el-input
                         v-model="form.email"
+                        placeholder="Mandatory"
                         autocomplete="off"
                     ></el-input>
                 </el-form-item>
@@ -165,7 +168,7 @@
                 <el-form-item label="Role" :label-width="formLabelWidth">
                     <el-select
                         v-model="form.role"
-                        placeholder="Choose a role of the user"
+                        placeholder="Choose a role of the user, mandatory"
                     >
                         <el-option label="General" value="General"></el-option>
                         <el-option label="Admin" value="Admin"></el-option>
