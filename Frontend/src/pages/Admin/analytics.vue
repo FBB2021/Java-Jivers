@@ -23,13 +23,26 @@ const backendUrl = "https://java-jivers-ims.herokuapp.com/item";
 export default {
     data(){
         return{
-            tableData: [],
+            tableData: ["Test"],
             name: ['Apple','Mango','iKiwi','Pluots','Kpwi plus','Rambutam','omni-Apple','Manuo','Pluors','Kiwi','Orange'],
             quantity:[439,915,219,333,45,315,930,399,85,640,564],
             names: [],
+            quantities: []
         }
     },
-    mounted(){
+    async mounted(){
+        await Axios.get(backendUrl).then((response) => {
+                this.tableData = response.data;
+            });
+
+             for (var i = 0; i < this.tableData.length; i++) {
+                this.names.push(this.tableData[i].name)
+                this.quantities.push(this.tableData[i].quantity)
+            }
+            console.log("Mounted!")
+            console.log(this.tableData)
+            console.log(this.names)
+
 
         let myChart = this.$echarts.init(document.getElementById('graph1'))
         myChart.setOption({
@@ -38,15 +51,15 @@ export default {
             },
             tooltip:{},
             xAxis:{
-                data: this.name
+                data: this.names
                 // data:this.tableData.name
             },
             yAxis:{},
             series:[{
-                name: 'quantit',
+                name: 'quantity',
                 type: 'bar',
                 // data:this.tableData.quantity
-                data: this.quantity
+                data: this.quantities
             }]
         })
 
@@ -86,17 +99,9 @@ export default {
         })
 
     },
-created(){
-    Axios.get(backendUrl).then((response) => {
-                this.tableData = response.data;
-            });
-            console.log(this.tableData)
-
-             for (var i = 0; i < this.tableData.length; i++) {
-                this.names.push(this.tableData[i].name)
-            }
-            console.log(this.names)
-}
+// created(){
+//     console.log("Created!")
+// }
 }
 
 </script>
