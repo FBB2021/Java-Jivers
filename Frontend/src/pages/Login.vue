@@ -101,7 +101,7 @@ export default {
                 }
             } else {
                 this.$message({
-                    message: "Password cannot be empty",
+                    message: "Neither Password nor Username can be empty",
                     type: "error",
                 });
             }

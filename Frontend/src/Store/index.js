@@ -52,32 +52,40 @@ const store = new Vuex.Store({
     actions: {
         /* Login based on https://github.com/SteinOveHelset/djackets_vue/blob/master/src/store/index.js */
         async login(context, user) {
-            /* Check if the token needs to be refreshed */
-            context.refresh_token;
             /* Check if the login details are correct, and login user */
             await axios.post("api/token/", user).then((response) => {
-                const token = response.data.access;
-                const refresh = response.data.refresh;
-                context.commit("set_isAuthenticated", true);
-                context.commit("set_user", user.username);
-                context.commit("set_token", token);
-                context.commit("set_refresh", refresh);
+                console.log(reponse.headers);
+                if (response.data.detail) {
+                    context.refresh_token;
+                } else {
+                    const token = response.data.access;
+                    const refresh = response.data.refresh;
+                    context.commit("set_isAuthenticated", true);
+                    context.commit("set_user", user.username);
+                    context.commit("set_token", token);
+                    context.commit("set_refresh", refresh);
+                    /* Check if the token needs to be refreshed */
+                    context.refresh_token;
+                }
             });
             /* Now we have to determine the role of the user */
             /* get the user based on username from database, then check role and store it*/
             /* Currently bugged as backend returns more than one username in certain situations
                such as when a username is the substring of another, it returns both, and it 
                is not case sensitive either */
-            await axios
-                .get("users/userviewset?name=" + user.username)
-                .then((response) => {
-                    const user_role = response.data[0].role;
-                    if (user_role == "Admin") {
-                        context.commit("set_isAdmin", true);
-                    } else {
-                        context.commit("set_isAdmin", false);
-                    }
-                });
+            if (isAuthenticated == true) {
+                context.commit("set_isAdmin", true);
+                await axios
+                    .get("users/userviewset?name=" + user.username)
+                    .then((response) => {
+                        const user_role = response.data[0].role;
+                        if (user_role == "Admin") {
+                            context.commit("set_isAdmin", true);
+                        } else {
+                            context.commit("set_isAdmin", false);
+                        }
+                    });
+            }
         },
         async logout(context) {
             context.commit("set_isAuthenticated", false);
@@ -88,6 +96,7 @@ const store = new Vuex.Store({
         },
         async refresh_token(context) {
             /* send a dummy request to check token valid */
+
             await axios
                 .get("users/userviewset?name=" + context.get_username)
                 .then((response) => {
