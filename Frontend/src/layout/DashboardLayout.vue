@@ -24,13 +24,6 @@
                 <i class="nc-icon nc-atom"></i>
                 <p>Analytics</p>
             </sidebar-link>
-
-            <template slot="bottom-links">
-                <sidebar-link class="active" to="/admin/NotFoundPage">
-                    <i class="nc-icon nc-settings-gear-64"></i>
-                    <p>Settings</p>
-                </sidebar-link>
-            </template>
         </side-bar>
         <div class="main-panel">
             <top-navbar></top-navbar>
