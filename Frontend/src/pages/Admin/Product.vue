@@ -5,7 +5,6 @@
             <!-- The black row at the top of product page, showing the total statics -->
             <div class="p-3 mb-2 bg-dark text-white">
                 Total items in Inventory: {{ this.tableData.length }} Inventory
-                value by price: $51.4k
             </div>
             <el-form :inline="true" :model="formInline" class="form-inline">
                 <!-- Search bar -->
@@ -168,23 +167,33 @@ export default {
             Axios.get(backendUrl).then((response) => {
                 this.tableData = response.data;
                 this.totalPage = (this.tableData.length / this.pageSize) * 10;
-                console.log(response.data);
-                console.log(response);
-                console.log(this.totalPage);
+                this.loading = false;
+            });
+        },
+        reset() {
+            Axios.get(backendUrl).then((response) => {
+                this.tableData = response.data;
+                this.totalPage = (this.tableData.length / this.pageSize) * 10;
                 this.loading = false;
             });
         },
         searchItem() {
-            console.log("The input is: ");
-            console.log(this.searchInput);
-            cosole.log(typeof tableData);
-            // for(item in this.tableData){
-            //     console.log(item);
-            // //     if(item.name == this.searchInput){
-            // //         console.log("The item is " + item.name)
-            // //         console.log("Equal!!")
-            // //     }
-            // }
+            try {
+                Axios.get("items/itemviewset/", {
+                    params: { name: this.searchInput },
+                }).then((response) => {
+                    console.log(response.data);
+                    this.tableData = response.data;
+                    this.totalPage =
+                        (this.tableData.length / this.pageSize) * 10;
+                    this.loading = false;
+                });
+            } catch (error) {
+                this.$message({
+                    message: "Product not found",
+                    type: "error",
+                });
+            }
         },
         // handle page change for pagination
         handleCurrentChange(val) {
@@ -197,20 +206,14 @@ export default {
         // edit item
 
         edit(row) {
-            console.log(row);
-            console.log(row.idItem);
             this.$root.ITEMID = row.idItem;
-            console.log(this.$root.ITEMID);
+
             // this.$currentID = (row.idItem);
-            // console.log(this.$currentID);
 
             this.$router.push("/admin/edititem");
         },
         // delete function
         async del(row) {
-            console.log(row);
-            console.log(row.idItem);
-
             this.$confirm(
                 "Are you sure ?",
                 row.name + " is deleting...",

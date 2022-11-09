@@ -3,18 +3,7 @@
     <div class="content">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 col-xl-4">
-                    <div class="search-bar">
-                        <base-input
-                            type="text"
-                            label="Search"
-                            :disabled="false"
-                            placeholder="Try typing 'new'"
-                            v-model="searchInput"
-                        >
-                        </base-input>
-                    </div>
-                </div>
+                <div class="col-md-4 col-xl-4"></div>
                 <div class="col-md-8 col-xl-8">
                     <h3>Items with total largest weight</h3>
                     <div class="row">
@@ -172,15 +161,6 @@ export default {
                 this.getLowestStock();
                 this.getLargestTotalWeight();
             });
-        },
-        searchItem() {
-            // for(item in this.tableData){
-            //     console.log(item);
-            // //     if(item.name == this.searchInput){
-            // //         console.log("The item is " + item.name)
-            // //         console.log("Equal!!")
-            // //     }
-            // }
         },
         getLowestStock() {
             this.stockData = this.tableData

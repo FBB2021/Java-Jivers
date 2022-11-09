@@ -5,12 +5,8 @@
             <!-- The black row at the top of product page, showing the total statics -->
             <div class="p-3 mb-2 bg-dark text-white">
                 Total items in Inventory: {{ this.tableData.length }} Inventory
-                value by price: $51.4k
             </div>
-            <div class="row justify-content-center">
-                <!-- Search bar -->
-                <div class="col-7">
-                    <el-form :inline="true" :model="formInline" class="form-inline">
+            <el-form :inline="true" :model="formInline" class="form-inline">
                 <!-- Search bar -->
                 <el-form-item>
                     <el-input
@@ -40,39 +36,8 @@
                         Filter
                     </button> -->
                 </el-form-item>
-                <!-- Add item button -->
-                <!-- <el-form-item>
-                    <button
-                        type="button"
-                        class="btn btn-info btn-fill float-center btn-block"
-                        @click="openNewItem"
-                    >
-                        + New Item
-                    </button>
-                </el-form-item> -->
-
-                <!-- Delete item button -->
-                <!-- <el-form-item>
-                    <button
-                        type="button"
-                        class="btn btn-warning btn-fill float-center btn-block"
-                    >
-                        - Delete Item
-                    </button>
-                </el-form-item> -->
             </el-form>
 
-                </div>
-                <!-- Filter Button -->
-                <!-- <div class="col">
-                    <button
-                        type="button"
-                        class="btn btn-secondary btn-fill float-center btn-block"
-                    >
-                        Filter
-                    </button>
-                </div> -->
-            </div>
             <!-- Display of table -->
             <el-row :gutter="20">
                 <el-table
@@ -138,22 +103,21 @@
         </div>
     </div>
 </template>
-
 <script>
 // put the Url here
 import Axios from "axios";
-// const backendUrl = "https://java-jivers.herokuapp.com/item";
 const backendUrl = "https://java-jivers-ims.herokuapp.com/item";
 
 export default {
     data() {
         return {
             loading: true,
+            searchInput: "",
             tableData: [],
             todoItem: {},
             editMode: false,
             currentPage: 1,
-            pageSize: 15,
+            pageSize: 7,
             totalPage: 0,
         };
     },
@@ -164,21 +128,43 @@ export default {
             Axios.get(backendUrl).then((response) => {
                 this.tableData = response.data;
                 this.totalPage = (this.tableData.length / this.pageSize) * 10;
-                console.log(response.data);
-                console.log(response);
-                console.log(this.totalPage);
                 this.loading = false;
             });
+        },
+        reset() {
+            Axios.get(backendUrl).then((response) => {
+                this.tableData = response.data;
+                this.totalPage = (this.tableData.length / this.pageSize) * 10;
+                this.loading = false;
+            });
+        },
+        searchItem() {
+            try {
+                Axios.get("items/itemviewset/", {
+                    params: { name: this.searchInput },
+                }).then((response) => {
+                    console.log(response.data);
+                    this.tableData = response.data;
+                    this.totalPage =
+                        (this.tableData.length / this.pageSize) * 10;
+                    this.loading = false;
+                });
+            } catch (error) {
+                this.$message({
+                    message: "Product not found",
+                    type: "error",
+                });
+            }
         },
         // handle page change for pagination
         handleCurrentChange(val) {
             this.currentPage = val;
         },
-        openNewItem() {
-            this.$router.push("/admin/newitem");
-        },
     },
-
+    // The get request at the begining to get all data
+    // created() {
+    //   Axios.get(todoUrl).then((response) => (this.todoList = response.data));
+    // },
 
     // The get request at the begining to get all data
     created() {
