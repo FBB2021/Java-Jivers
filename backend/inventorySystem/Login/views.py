@@ -88,7 +88,7 @@ class UserViewSet(viewsets.ModelViewSet):
         name = self.request.query_params.get('name', None)
         print(name)
         if name is not None:
-            queryset = queryset.filter(Q(username__contains=name) | Q(username__icontains=name))
+            queryset = queryset.filter(username__exact = name)
         return queryset
 
     def create(self, request, *args, **kwargs):
