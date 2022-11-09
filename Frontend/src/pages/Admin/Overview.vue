@@ -23,9 +23,8 @@
                                 <img
                                     src="weightData[0].picture"
                                     class="img-thumbnail"
-                                    alt="placeholder"
+                                    alt="Image unavailable"
                                 />
-                                Apple : 2 left
                             </div>
                         </div>
                         <div class="col-md-4 col-xl-4">
@@ -33,9 +32,8 @@
                                 <img
                                     src="weightData[1].picture"
                                     class="img-thumbnail"
-                                    alt="placeholder"
+                                    alt="Image unavailable"
                                 />
-                                iphone 13 plus: 247 left
                             </div>
                         </div>
                         <div class="col-md-4 col-xl-4">
@@ -43,9 +41,8 @@
                                 <img
                                     src="weightData[2].picture"
                                     class="img-thumbnail"
-                                    alt="placeholder"
+                                    alt="Image unavailable"
                                 />
-                                Chair: 260 left
                             </div>
                         </div>
                     </div>
@@ -53,6 +50,7 @@
             </div>
 
             <!-- Display of table -->
+
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
@@ -64,7 +62,7 @@
                             </template>
                             <el-row :gutter="20">
                                 <el-table
-                                    :data="stockData.slice(0, pageSize)"
+                                    :data="stockData"
                                     style="width: 100%"
                                     v-loading="loading"
                                 >
@@ -144,9 +142,8 @@ export default {
             Axios.get(backendUrl).then((response) => {
                 this.tableData = response.data;
                 this.loading = false;
-                this.getLowestStock();
                 this.getLargestTotalWeight();
-                console.log(this.stockData);
+                this.getLowestStock();
             });
         },
         searchItem() {
