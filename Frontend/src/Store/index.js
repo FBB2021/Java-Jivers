@@ -98,10 +98,12 @@ const store = new Vuex.Store({
             /* send a dummy request to check token valid */
 
             await axios
-                .get("users/userviewset?name=" + user.username)
+                .get("users/userviewset?name=" + context.get_username)
                 .then((response) => {
                     if (response.code == "token_not_valid") {
+                        console.log("Token is not up to date");
                     } else {
+                        console.log("Token up to date");
                         return;
                     }
                 });
