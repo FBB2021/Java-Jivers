@@ -25,6 +25,15 @@
                                     class="img-thumbnail"
                                     alt="Image unavailable"
                                 />
+                                <figcaption>
+                                    {{
+                                        "Product: " +
+                                        largestTotalWeightData[0].name +
+                                        " Total weight: " +
+                                        largestTotalWeightData[0].quantity *
+                                            largestTotalWeightData[0].weight
+                                    }}
+                                </figcaption>
                             </div>
                         </div>
                         <div class="col-md-4 col-xl-4">
@@ -34,6 +43,15 @@
                                     class="img-thumbnail"
                                     alt="Image unavailable"
                                 />
+                                <figcaption>
+                                    {{
+                                        "Product: " +
+                                        largestTotalWeightData[1].name +
+                                        " Total weight: " +
+                                        largestTotalWeightData[1].quantity *
+                                            largestTotalWeightData[1].weight
+                                    }}
+                                </figcaption>
                             </div>
                         </div>
                         <div class="col-md-4 col-xl-4">
@@ -43,6 +61,15 @@
                                     class="img-thumbnail"
                                     alt="Image unavailable"
                                 />
+                                <figcaption>
+                                    {{
+                                        "Product: " +
+                                        largestTotalWeightData[2].name +
+                                        " Total weight: " +
+                                        largestTotalWeightData[2].quantity *
+                                            largestTotalWeightData[2].weight
+                                    }}
+                                </figcaption>
                             </div>
                         </div>
                     </div>
@@ -62,7 +89,7 @@
                             </template>
                             <el-row :gutter="20">
                                 <el-table
-                                    :data="stockData"
+                                    :data="stockData.slice(0, pageSize)"
                                     style="width: 100%"
                                     v-loading="loading"
                                 >
@@ -127,7 +154,7 @@ export default {
             searchInput: "",
             tableData: [],
             stockData: [],
-            weightData: [],
+            largestTotalWeightData: [],
             todoItem: {},
             editMode: false,
             currentPage: 1,
@@ -142,8 +169,8 @@ export default {
             Axios.get(backendUrl).then((response) => {
                 this.tableData = response.data;
                 this.loading = false;
-                this.getLargestTotalWeight();
                 this.getLowestStock();
+                this.getLargestTotalWeight();
             });
         },
         searchItem() {
@@ -159,14 +186,12 @@ export default {
             this.stockData = this.tableData.sort(function (a, b) {
                 return a.quantity - b.quantity;
             });
+            console.log(this.stockData.slice(0, 4));
         },
         getLargestTotalWeight() {
-            this.weightData = this.tableData.sort(function (a, b) {
+            this.largestTotalWeightData = this.tableData.sort(function (a, b) {
                 return b.quantity * b.weight - a.quantity * a.weight;
             });
-        },
-        openNewItem() {
-            this.$router.push("/admin/newitem");
         },
     },
     // The get request at the begining to get all data
