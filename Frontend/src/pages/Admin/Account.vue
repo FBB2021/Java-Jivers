@@ -222,9 +222,6 @@ export default {
             Axios.get(backendUrl).then((response) => {
                 this.tableData = response.data;
                 this.totalPage = (this.tableData.length / this.pageSize) * 10;
-                console.log(response.data);
-                console.log(response);
-                console.log(this.totalPage);
                 this.loading = false;
             });
         },

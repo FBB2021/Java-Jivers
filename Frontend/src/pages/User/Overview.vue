@@ -168,8 +168,6 @@ export default {
                     return a.quantity - b.quantity;
                 })
                 .slice(0, this.pageSize);
-
-            console.log(this.stockData);
         },
         getLargestTotalWeight() {
             this.largestTotalWeightData = this.tableData
