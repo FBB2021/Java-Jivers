@@ -266,7 +266,7 @@ export default {
                 message: "Added Sucessful",
                 type: "success",
             });
-            this.$router.go(0);
+            // this.$router.go(0);
         },
     },
     // The get request at the begining to get all data

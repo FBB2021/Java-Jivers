@@ -35,25 +35,6 @@
                 ></el-input>
               </el-form-item>
 
-              <el-form-item label="Item Image (currently not linked yet)">
-                <el-upload
-                  class="upload-demo"
-                  drag
-                  action="https://jsonplaceholder.typicode.com/posts/"
-                  multiple
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    Drag File overhere, or
-                    <em>Click to upload</em> <br />jpg/png file only and no more
-                    than 500kb
-                  </div>
-                  <!-- <div class="el-upload__tip" slot="tip">
-                  jpg/png file only and no more than 500kb
-                </div> -->
-                </el-upload>
-              </el-form-item>
-
               <el-form-item
                 label="cost"
                 prop="cost"
@@ -102,7 +83,7 @@
         <div class="col">
           <!-- <el-form ref="form" :model="form"> -->
           <Card>
-            <el-form ref="form" :model="form">
+            <el-form ref="form" :model="form" label-width="95px">
               <el-form-item
                 label="Item ID"
                 prop="idItem"
@@ -132,16 +113,7 @@
                   autocomplete="off"
                 ></el-input>
               </el-form-item>
-<!-- 
-              <el-form-item label="Category">
-                <el-select
-                  v-model="form.category"
-                  placeholder="Choose a Category"
-                >
-                  <el-option label="Computer" value="Computer"></el-option>
-                  <el-option label="Food" value="Food"></el-option>
-                </el-select>
-              </el-form-item> -->
+
               <el-form-item label="Vendor">
                 <el-input v-model="form.nameBrand"></el-input>
               </el-form-item>
@@ -175,7 +147,7 @@
             </el-form>
           </Card>
           <!-- </el-form> -->
-          <el-button type="danger" @click="saveItem"> Save Changes </el-button>
+          <el-button type="danger" @click="goback"> Cancel Change </el-button>
           <el-button type="primary" @click="postItem">
             Update Item change to WareHouse
           </el-button>

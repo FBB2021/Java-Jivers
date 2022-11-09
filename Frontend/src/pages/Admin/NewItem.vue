@@ -11,7 +11,6 @@
 
       <div class="row">
         <div class="col">
-          <!-- <el-form ref="form" :model="form" label-width="95px"> -->
           <Card>
             <el-form ref="form" :model="form" label-width="95px">
               <el-form-item
@@ -34,26 +33,7 @@
                   v-model="form.desciption"
                 ></el-input>
               </el-form-item>
-
-              <el-form-item label="Item Image (currently not linked yet)">
-                <el-upload
-                  class="upload-demo"
-                  drag
-                  action="https://jsonplaceholder.typicode.com/posts/"
-                  multiple
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    Drag File overhere, or
-                    <em>Click to upload</em> <br />jpg/png file only and no more
-                    than 500kb
-                  </div>
-                  <!-- <div class="el-upload__tip" slot="tip">
-                  jpg/png file only and no more than 500kb
-                </div> -->
-                </el-upload>
-              </el-form-item>
-
+               
               <el-form-item
                 label="cost"
                 prop="cost"
@@ -62,16 +42,9 @@
                     required: true,
                     message: 'cost cannot be empty',
                   },
-                  {
-                    type: 'number',
-                    message: 'cost must be number',
-                  },
                 ]"
               >
-                <el-input
-                  v-model.number="form.cost"
-                  autocomplete="off"
-                ></el-input>
+                <el-input v-model="form.cost" autocomplete="off"></el-input>
               </el-form-item>
 
               <el-form-item
@@ -82,17 +55,11 @@
                     required: true,
                     message: 'price cannot be empty',
                   },
-                  {
-                    type: 'number',
-                    message: 'price must be number',
-                  },
                 ]"
               >
-                <el-input
-                  v-model.number="form.price"
-                  autocomplete="off"
-                ></el-input>
+                <el-input v-model="form.price" autocomplete="off"></el-input>
               </el-form-item>
+
 
               <el-form-item label="Expire date">
                 <el-date-picker
@@ -110,7 +77,7 @@
         <div class="col">
           <!-- <el-form ref="form" :model="form"> -->
           <Card>
-            <el-form ref="form" :model="form">
+            <el-form ref="form" :model="form" label-width="95px">
               <el-form-item
                 label="quantity"
                 prop="quantity"
@@ -131,16 +98,14 @@
                 ></el-input>
               </el-form-item>
 
-              <el-form-item label="Category">
-                <el-select
-                  v-model="form.category"
-                  placeholder="Choose a Category"
-                >
-                  <el-option label="Computer" value="Computer"></el-option>
-                  <el-option label="Food" value="Food"></el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item label="Vendor">
+  
+              <el-form-item label="Vendor"
+              :rules="[
+                  {
+                    required: true,
+                    message: 'Vender cannot be empty',
+                  },
+                ]">
                 <el-input v-model="form.nameBrand"></el-input>
               </el-form-item>
               <el-form-item
@@ -151,28 +116,25 @@
                     required: true,
                     message: 'weight cannot be empty',
                   },
-                  {
-                    type: 'number',
-                    message: 'weight must be number',
-                  },
                 ]"
               >
                 <el-input
-                  v-model.number="form.weight"
+                  v-model="form.weight"
                   autocomplete="off"
                 ></el-input>
               </el-form-item>
-              <el-form-item label="Storage Location">
-                <el-select
-                  v-model="form.region"
-                  placeholder="Please choose location"
-                >
-                  <el-option label="A" value="A"></el-option>
-                  <el-option label="B" value="B"></el-option>
-                  <el-option label="C" value="C"></el-option>
-                  <el-option label="D" value="D"></el-option>
-                </el-select>
+              <el-form-item
+                label="Storage Location"
+                :rules="[
+                  {
+                    required: true,
+                    message: 'Location cannot be empty',
+                  },
+                ]"
+              >
+                <el-input v-model="form.nameLocation" autocomplete="off"></el-input>
               </el-form-item>
+
             </el-form>
           </Card>
           <!-- </el-form> -->
@@ -204,9 +166,9 @@ export default {
          price: "",
         // expDate: "",
         quantity: "",
-        // category: "",
         nameBrand: "",
         weight: "",
+        nameLocation: "",
       },
     };
   },
