@@ -55,6 +55,7 @@ const store = new Vuex.Store({
             /* Check if the token needs to be refreshed */
             /* Check if the login details are correct, and login user */
             await axios.post("api/token/", user).then((response) => {
+                //context.refresh_token();
                 const token = response.data.access;
                 const refresh = response.data.refresh;
                 context.commit("set_isAuthenticated", true);
@@ -86,8 +87,11 @@ const store = new Vuex.Store({
             context.commit("set_refresh", "");
         },
         async refresh_token(context) {
+            const formData = {
+                refresh: context.get_refresh,
+            };
             await axios
-                .post("api/token/refresh/", context.get_refresh)
+                .post("api/token/refresh/", formData)
                 .then((response) => {
                     if (response.status == 200) {
                         context.set_token(response.data.access);
