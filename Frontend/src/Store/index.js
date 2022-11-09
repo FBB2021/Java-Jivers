@@ -53,7 +53,7 @@ const store = new Vuex.Store({
         /* Login based on https://github.com/SteinOveHelset/djackets_vue/blob/master/src/store/index.js */
         async login(context, user) {
             /* Check if the token needs to be refreshed */
-            context.refresh_token;
+            //context.refresh_token;
             /* Check if the login details are correct, and login user */
             await axios.post("api/token/", user).then((response) => {
                 const token = response.data.access;
@@ -87,22 +87,11 @@ const store = new Vuex.Store({
             context.commit("set_refresh", "");
         },
         async refresh_token(context) {
-            /* send a dummy request to check token valid */
-            await axios
-                .get("users/userviewset?name=" + context.get_username)
-                .then((response) => {
-                    if (response.code == "token_not_valid") {
-                        console.log("Token is not up to date");
-                    } else {
-                        console.log("Token up to date");
-                        return;
-                    }
-                });
             await axios
                 .post("api/token/refresh/", context.get_refresh)
                 .then((response) => {
-                    if (response.access) {
-                        context.set_token(response.access);
+                    if (response.data.access) {
+                        context.set_token(response.data.access);
                     }
                 });
         },
