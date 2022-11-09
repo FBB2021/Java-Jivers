@@ -21,7 +21,7 @@
                         <div class="col-md-4 col-xl-4">
                             <div class="image-items">
                                 <img
-                                    src="weightData[0].picture"
+                                    src="require(weightData[0].picture)"
                                     class="img-thumbnail"
                                     alt="Image unavailable"
                                 />
@@ -39,7 +39,7 @@
                         <div class="col-md-4 col-xl-4">
                             <div class="image-items">
                                 <img
-                                    src="weightData[1].picture"
+                                    src="require(weightData[1].picture)"
                                     class="img-thumbnail"
                                     alt="Image unavailable"
                                 />
@@ -57,7 +57,7 @@
                         <div class="col-md-4 col-xl-4">
                             <div class="image-items">
                                 <img
-                                    src="weightData[2].picture"
+                                    src="require(weightData[2].picture)"
                                     class="img-thumbnail"
                                     alt="Image unavailable"
                                 />
