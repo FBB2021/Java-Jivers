@@ -20,7 +20,6 @@ const store = new Vuex.Store({
     mutations: {
         /* initialiseStore based on https://github.com/SteinOveHelset/djackets_vue/blob/master/src/store/index.js */
         initialiseStore(state) {
-            state.isAdmin = true;
             state.token = "";
             state.isAuthenticated = false;
             if (localStorage.getItem("token")) {

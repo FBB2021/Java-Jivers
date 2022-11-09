@@ -27,11 +27,7 @@
                 <el-form-item>
                     <button
                         type="button"
-                        class="
-                            btn btn-secondary btn-fill
-                            float-center
-                            btn-block
-                        "
+                        class="btn btn-secondary btn-fill float-center btn-block"
                     >
                         Filter
                     </button>
@@ -191,7 +187,7 @@
 import Axios from "axios";
 // const backendUrl = "https://java-jivers.herokuapp.com/item";
 const backendUrl = "https://java-jivers-ims.herokuapp.com/user";
-const postUrl = "https://java-jivers-ims.herokuapp.com/users/userviewset/"
+const postUrl = "https://java-jivers-ims.herokuapp.com/users/userviewset/";
 
 export default {
     data() {
