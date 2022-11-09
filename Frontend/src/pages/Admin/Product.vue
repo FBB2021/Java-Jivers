@@ -171,13 +171,24 @@ export default {
                 this.loading = false;
             });
         },
+        reset() {
+            Axios.get(backendUrl).then((response) => {
+                this.tableData = response.data;
+                this.totalPage = (this.tableData.length / this.pageSize) * 10;
+                this.loading = false;
+            });
+        },
         searchItem() {
-            const formData = {
-                name: this.searchInput,
-            };
-
             try {
-                axios.get("items/itemviewset/", formData);
+                Axios.get("items/itemviewset/", {
+                    params: { name: this.searchInput },
+                }).then((response) => {
+                    console.log(response.data);
+                    this.tableData = response.data;
+                    this.totalPage =
+                        (this.tableData.length / this.pageSize) * 10;
+                    this.loading = false;
+                });
             } catch (error) {
                 this.$message({
                     message: "Product not found",
