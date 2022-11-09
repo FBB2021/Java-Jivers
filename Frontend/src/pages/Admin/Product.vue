@@ -5,7 +5,6 @@
             <!-- The black row at the top of product page, showing the total statics -->
             <div class="p-3 mb-2 bg-dark text-white">
                 Total items in Inventory: {{ this.tableData.length }} Inventory
-                value by price: $51.4k
             </div>
             <el-form :inline="true" :model="formInline" class="form-inline">
                 <!-- Search bar -->
