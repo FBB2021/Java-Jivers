@@ -168,23 +168,22 @@ export default {
             Axios.get(backendUrl).then((response) => {
                 this.tableData = response.data;
                 this.totalPage = (this.tableData.length / this.pageSize) * 10;
-                console.log(response.data);
-                console.log(response);
-                console.log(this.totalPage);
                 this.loading = false;
             });
         },
         searchItem() {
-            console.log("The input is: ");
-            console.log(this.searchInput);
-            cosole.log(typeof tableData);
-            // for(item in this.tableData){
-            //     console.log(item);
-            // //     if(item.name == this.searchInput){
-            // //         console.log("The item is " + item.name)
-            // //         console.log("Equal!!")
-            // //     }
-            // }
+            const formData = {
+                name: this.searchInput,
+            };
+
+            try {
+                axios.get("items/itemviewset/", formData);
+            } catch (error) {
+                this.$message({
+                    message: "Product not found",
+                    type: "error",
+                });
+            }
         },
         // handle page change for pagination
         handleCurrentChange(val) {
@@ -197,20 +196,14 @@ export default {
         // edit item
 
         edit(row) {
-            console.log(row);
-            console.log(row.idItem);
             this.$root.ITEMID = row.idItem;
-            console.log(this.$root.ITEMID);
+
             // this.$currentID = (row.idItem);
-            // console.log(this.$currentID);
 
             this.$router.push("/admin/edititem");
         },
         // delete function
         async del(row) {
-            console.log(row);
-            console.log(row.idItem);
-
             this.$confirm(
                 "Are you sure ?",
                 row.name + " is deleting...",
