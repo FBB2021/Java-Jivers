@@ -1,8 +1,7 @@
-<!-- This is the homepage for the user -->
-<!-- Three sections. First is a searh bar, for searching items. No current functionality. Second is a display of three items that are nearly out of stock. No functionality yet. Third is a table below that shows recent items. Was displaying placeholder data, but no longer works for unknown reason-->
+<!-- Overview page copied from Product page code, then edited -->
 <template>
     <div class="content">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-md-4 col-xl-4">
                     <div class="search-bar">
@@ -11,185 +10,205 @@
                             label="Search"
                             :disabled="false"
                             placeholder="Try typing 'new'"
-                            v-model="model"
+                            v-model="searchInput"
                         >
                         </base-input>
                     </div>
                 </div>
                 <div class="col-md-8 col-xl-8">
-                    <h3>
-                        Items close to out of stock</h3>
+                    <h3>Items with total largest weight</h3>
                     <div class="row">
                         <div class="col-md-4 col-xl-4">
                             <div class="image-items">
                                 <img
-                                    src="img/apple1.jpg"
+                                    src="require(weightData[0].picture)"
                                     class="img-thumbnail"
-                                    alt="placeholder"
+                                    alt="Image unavailable"
                                 />
-                                Apple : 2 left
+                                <figcaption>
+                                    {{
+                                        "Product: " +
+                                        largestTotalWeightData[0].name +
+                                        " Total weight: " +
+                                        largestTotalWeightData[0].quantity *
+                                            largestTotalWeightData[0].weight
+                                    }}
+                                </figcaption>
                             </div>
                         </div>
                         <div class="col-md-4 col-xl-4">
                             <div class="image-items">
                                 <img
-                                    src="img/iphone.jpg"
+                                    src="require(weightData[1].picture)"
                                     class="img-thumbnail"
-                                    alt="placeholder"
+                                    alt="Image unavailable"
                                 />
-                                iphone 13 plus: 247 left
+                                <figcaption>
+                                    {{
+                                        "Product: " +
+                                        largestTotalWeightData[1].name +
+                                        " Total weight: " +
+                                        largestTotalWeightData[1].quantity *
+                                            largestTotalWeightData[1].weight
+                                    }}
+                                </figcaption>
                             </div>
                         </div>
                         <div class="col-md-4 col-xl-4">
                             <div class="image-items">
                                 <img
-                                    src="img/chair.jpg"
+                                    src="require(weightData[2].picture)"
                                     class="img-thumbnail"
-                                    alt="placeholder"
+                                    alt="Image unavailable"
                                 />
-                                Chair: 260 left
+                                <figcaption>
+                                    {{
+                                        "Product: " +
+                                        largestTotalWeightData[2].name +
+                                        " Total weight: " +
+                                        largestTotalWeightData[2].quantity *
+                                            largestTotalWeightData[2].weight
+                                    }}
+                                </figcaption>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <card class="card-plain">
-                        <template slot="header">
-                            <h4 class="card-title">Recent Searches</h4>
-                        </template>
-                        <el-table
-                    :data="tableData1"
-                    style="width: 100%"
-                    v-loading="loading"
-                >
-                    <el-table-column
-                        prop="name"
-                        label="Name"
-                        align="center"
-                        sortable
-                    >
-                    </el-table-column>
-                    <el-table-column
-                        prop="nameBrand"
-                        label="Brand"
-                        align="center"
-                        sortable
-                    >
-                    </el-table-column>
-                    <el-table-column
-                        prop="category"
-                        label="Category"
-                        :formatter="formatter"
-                    >
-                    </el-table-column>
-                    <el-table-column
-                        prop="nameLocation"
-                        label="Location"
-                        align="center"
-                        sortable
-                    >
-                    </el-table-column>
-                    <el-table-column
-                        prop="quantity"
-                        label="Quantity"
-                        align="center"
-                        sortable
-                    ></el-table-column>
-                    <el-table-column
-                        prop="weight"
-                        label="Weight(kg)"
-                        align="center"
-                        sortable
-                    ></el-table-column>
-                </el-table>
-                        <div class="table-responsive">
-                            <l-table
-                                class="table-hover"
-                                :columns="table2.columns"
-                                :data="table2.data"
-                            >
-                            </l-table>
-                        </div>
-                    </card>
+            <!-- Display of table -->
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <card class="card-plain">
+                            <template slot="header">
+                                <h4 class="card-title">
+                                    Items nearly out of stock
+                                </h4>
+                            </template>
+                            <el-row :gutter="20">
+                                <el-table
+                                    :data="stockData.slice(0, pageSize)"
+                                    style="width: 100%"
+                                    v-loading="loading"
+                                >
+                                    <el-table-column
+                                        prop="name"
+                                        label="Name"
+                                        align="center"
+                                        sortable
+                                    >
+                                    </el-table-column>
+                                    <el-table-column
+                                        prop="nameBrand"
+                                        label="Brand"
+                                        align="center"
+                                        sortable
+                                    >
+                                    </el-table-column>
+                                    <el-table-column
+                                        prop="category"
+                                        label="Category"
+                                        :formatter="formatter"
+                                    >
+                                    </el-table-column>
+                                    <el-table-column
+                                        prop="nameLocation"
+                                        label="Location"
+                                        align="center"
+                                        sortable
+                                    >
+                                    </el-table-column>
+                                    <el-table-column
+                                        prop="quantity"
+                                        label="Quantity"
+                                        align="center"
+                                        sortable
+                                    ></el-table-column>
+                                    <el-table-column
+                                        prop="weight"
+                                        label="Weight(kg)"
+                                        align="center"
+                                        sortable
+                                    ></el-table-column>
+                                </el-table>
+                            </el-row>
+                        </card>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
 <script>
-import LTable from "src/components/Table.vue";
-import Card from "src/components/Cards/Card.vue";
-const tableColumns = [
-    "ID",
-    "Name",
-    "Brand",
-    "Category",
-    "Quantity",
-    "Price",
-    "Location",
-];
-const tableData = [
-    {
-        id: 1,
-        name: "Chicken Magnet",
-        brand: "KfC",
-        category: "Tool",
-        quantity: "1",
-        price: "$5.00",
-        location: "K",
-    },
-    {
-        id: 2,
-        name: "Chicken Magnet",
-        brand: "KfC",
-        category: "Tool",
-        quantity: "1",
-        price: "$5.00",
-        location: "K",
-    },
-];
+// put the Url here
+import Axios from "axios";
+const backendUrl = "https://java-jivers-ims.herokuapp.com/item";
+
 export default {
-    components: {
-        LTable,
-        Card,
-    },
     data() {
         return {
-            tableData1:[    {
-        id: 1,
-        name: "Chicken Magnet",
-        nameBrand: "KFC",
-        category: "Tool",
-        quantity: "2415",
-        price: "$5.00",
-        nameLocation: "K3",
-    }],
-            table1: {
-                columns: [...tableColumns],
-                data: [...tableData],
-            },
-            table2: {
-                columns: [...tableColumns],
-                data: [...tableData],
-            },
+            loading: true,
+            searchInput: "",
+            tableData: [],
+            stockData: [],
+            largestTotalWeightData: [],
+            todoItem: {},
+            editMode: false,
+            currentPage: 1,
+            pageSize: 4,
+            totalPage: 0,
         };
+    },
+    // Most of the method doesn't work yet, wokring on to fix it
+    methods: {
+        // Send a get request to backend and request data
+        getTableData() {
+            Axios.get(backendUrl).then((response) => {
+                this.tableData = response.data;
+                this.loading = false;
+                this.getLowestStock();
+                this.getLargestTotalWeight();
+            });
+        },
+        searchItem() {
+            // for(item in this.tableData){
+            //     console.log(item);
+            // //     if(item.name == this.searchInput){
+            // //         console.log("The item is " + item.name)
+            // //         console.log("Equal!!")
+            // //     }
+            // }
+        },
+        getLowestStock() {
+            this.stockData = this.tableData
+                .sort(function (a, b) {
+                    return a.quantity - b.quantity;
+                })
+                .slice(0, this.pageSize);
+
+            console.log(this.stockData);
+        },
+        getLargestTotalWeight() {
+            this.largestTotalWeightData = this.tableData
+                .sort(function (a, b) {
+                    return b.quantity * b.weight - a.quantity * a.weight;
+                })
+                .slice(0, 3);
+        },
+    },
+    // The get request at the begining to get all data
+    // created() {
+    //   Axios.get(todoUrl).then((response) => (this.todoList = response.data));
+    // },
+
+    // The get request at the begining to get all data
+    created() {
+        this.getTableData();
     },
 };
 </script>
-<style>
-.search-bar {
-    color: rgb(54, 53, 56);
-}
 
-.search-bar label {
-    margin: 10px;
-}
-.image-items {
-    text-align: center;
-}
-</style>
+<style></style>

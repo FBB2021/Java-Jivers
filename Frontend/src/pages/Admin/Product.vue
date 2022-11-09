@@ -214,16 +214,16 @@ export default {
             this.$confirm(
                 "Are you sure ?",
                 row.name + " is deleting...",
-                'warning'
+                "warning"
             ).then(() => {
-                Axios.delete(`${backendUrl}/${row.idItem}`).then((response) => {
+                Axios.delete(`${backendUrl}/${row.idItem}`)
+                    .then((response) => {
                         this.getTableData();
                         // this.$alert(response.data.message, "Succes", "success");
-                       this.$message({
-                        message: row.name + " is Deleted",
-                        type: "success",
+                        this.$message({
+                            message: row.name + " is Deleted",
+                            type: "success",
                         });
-                    
                     })
                     .catch((error) => {
                         this.$alert(
