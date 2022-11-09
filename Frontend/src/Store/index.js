@@ -53,7 +53,6 @@ const store = new Vuex.Store({
         /* Login based on https://github.com/SteinOveHelset/djackets_vue/blob/master/src/store/index.js */
         async login(context, user) {
             /* Check if the token needs to be refreshed */
-            //context.refresh_token;
             /* Check if the login details are correct, and login user */
             await axios.post("api/token/", user).then((response) => {
                 const token = response.data.access;
@@ -90,7 +89,7 @@ const store = new Vuex.Store({
             await axios
                 .post("api/token/refresh/", context.get_refresh)
                 .then((response) => {
-                    if (response.data.access) {
+                    if (response.status == 200) {
                         context.set_token(response.data.access);
                     }
                 });
