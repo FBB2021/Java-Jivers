@@ -38,11 +38,6 @@ urlpatterns = [
     # login tokens
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-
-    url(r'^item$', viewsInventory.itemApi),
-    url(r'^item/([0-9]+)$', viewsInventory.itemApi),
-    url(r'^user$', viewsLogin.userApi),
-    url(r'^user/([0-9]+)$', viewsLogin.userApi),
     url(r'^item/savefile', viewsLogin.SaveFile),
     url(r'^user/savefile', viewsLogin.SaveFile),
 ] +static(settings.MEDIA_URL, documnet_root = settings.MEDIA_ROOT)
