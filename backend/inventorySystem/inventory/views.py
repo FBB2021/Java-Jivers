@@ -11,6 +11,8 @@ from django.core.files.storage import default_storage
 
 from django.db.models import Q
 
+from django.db.models import Sum,Count
+
 # viewsets
 from rest_framework import viewsets, status
 from rest_framework.response import Response
@@ -116,3 +118,17 @@ class ItemViewSet(viewsets.ModelViewSet):
         if name is not None:
             queryset = queryset.filter(Q(name__contains=name) | Q(name__icontains=name))
         return queryset
+
+class brandViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    http_method_names = ['get']
+    queryset = Item.objects.all()
+    serializer_class = itemSerializer
+    def get_queryset(self):
+        queryset = Item.objects.values('nameBrand').annotate(Count('name'))
+        return queryset
+    
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        return Response(queryset)
+    

@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import index
 from inventory import views
-from .views import ItemViewSet
+from .views import ItemViewSet,brandViewSet
 from rest_framework.routers import DefaultRouter
 from django.urls import re_path as url
 from django.contrib import admin
@@ -13,6 +13,9 @@ from django.conf import settings
 router = DefaultRouter()
 router.register(
     'itemviewset',ItemViewSet,basename='item'
+)
+router.register(
+    'brandviewset',brandViewSet,basename='item'
 )
 
 admin.site.site_header = 'Java Jivers Database'
