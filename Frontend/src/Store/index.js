@@ -100,7 +100,7 @@ const store = new Vuex.Store({
             await axios
                 .get("users/userviewset?name=" + user.username)
                 .then((response) => {
-                    if (response.data.code == "token_not_valid") {
+                    if (response.code == "token_not_valid") {
                     } else {
                         return;
                     }
@@ -108,8 +108,8 @@ const store = new Vuex.Store({
             await axios
                 .post("api/token/refresh/", context.get_refresh)
                 .then((response) => {
-                    if (response.data.access) {
-                        context.set_token(response.data.access);
+                    if (response.access) {
+                        context.set_token(response.access);
                     }
                 });
         },
