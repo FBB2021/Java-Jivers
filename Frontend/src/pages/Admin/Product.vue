@@ -4,7 +4,7 @@
             <!-- <h3>Products</h3> -->
             <!-- The black row at the top of product page, showing the total statics -->
             <div class="p-3 mb-2 bg-dark text-white">
-                Total items in Inventory: {{ this.tableData.length }} 
+                Total items in Inventory: {{ this.tableData.length }}
             </div>
             <el-form :inline="true" :model="formInline" class="form-inline">
                 <!-- Search bar -->
@@ -122,7 +122,7 @@
                                 type="danger"
                                 size="mini"
                                 icon="el-icon-delete"
-                                @click="del(scope.row)"
+                                @click="openDialog(scope.row)"
                             >
                             </el-button>
                         </template>
@@ -139,6 +139,22 @@
                 </el-pagination>
             </el-row>
         </div>
+
+        <el-dialog
+            title="Are you sure to delete?"
+            :visible.sync="dialogFormVisible"
+            center
+            width="500px"
+        >
+            <el-form :model="form" :rules="rules" ref="form">
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">Cancel</el-button>
+                <el-button type="primary" @click="del"
+                    >Confirm</el-button
+                >
+            </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -158,6 +174,8 @@ export default {
             currentPage: 1,
             pageSize: 7,
             totalPage: 0,
+            dialogFormVisible: false,
+            currRow: []
         };
     },
     // Most of the method doesn't work yet, wokring on to fix it
@@ -167,23 +185,33 @@ export default {
             Axios.get(backendUrl).then((response) => {
                 this.tableData = response.data;
                 this.totalPage = (this.tableData.length / this.pageSize) * 10;
-                console.log(response.data);
-                console.log(response);
-                console.log(this.totalPage);
+                this.loading = false;
+            });
+        },
+        reset() {
+            Axios.get(backendUrl).then((response) => {
+                this.tableData = response.data;
+                this.totalPage = (this.tableData.length / this.pageSize) * 10;
                 this.loading = false;
             });
         },
         searchItem() {
-            console.log("The input is: ");
-            console.log(this.searchInput);
-            cosole.log(typeof tableData);
-            // for(item in this.tableData){
-            //     console.log(item);
-            // //     if(item.name == this.searchInput){
-            // //         console.log("The item is " + item.name)
-            // //         console.log("Equal!!")
-            // //     }
-            // }
+            try {
+                Axios.get("items/itemviewset/", {
+                    params: { name: this.searchInput },
+                }).then((response) => {
+                    console.log(response.data);
+                    this.tableData = response.data;
+                    this.totalPage =
+                        (this.tableData.length / this.pageSize) * 10;
+                    this.loading = false;
+                });
+            } catch (error) {
+                this.$message({
+                    message: "Product not found",
+                    type: "error",
+                });
+            }
         },
         // handle page change for pagination
         handleCurrentChange(val) {
@@ -194,33 +222,35 @@ export default {
         },
 
         // edit item
+        openDialog(row){
+            console.log("在opendialog的row:")
+            console.log(row)
+            this.currRow = row
+            this.dialogFormVisible = true;
+            console.log(this.currRow)
+        },
 
         edit(row) {
-            console.log(row);
-            console.log(row.idItem);
             this.$root.ITEMID = row.idItem;
-            console.log(this.$root.ITEMID);
+
             // this.$currentID = (row.idItem);
-            // console.log(this.$currentID);
 
             this.$router.push("/admin/edititem");
         },
         // delete function
-        async del(row) {
-            console.log(row);
-            console.log(row.idItem);
-
-            this.$confirm(
-                "Are you sure ?",
-                row.name + " is deleting...",
-                "warning"
-            ).then(() => {
-                Axios.delete(`${backendUrl}/${row.idItem}`)
+        async del(){
+            console.log(this.currRow)
+            // this.$confirm(
+            //     "Are you sure ?",
+            //     row.name + " is deleting...",
+            //     "warning"
+            // ).then(() => {
+                Axios.delete(`${backendUrl}/${this.currRow.idItem}`)
                     .then((response) => {
                         this.getTableData();
                         // this.$alert(response.data.message, "Succes", "success");
                         this.$message({
-                            message: row.name + " is Deleted",
+                            message: this.currRow.name + " is Deleted",
                             type: "success",
                         });
                     })
@@ -231,19 +261,10 @@ export default {
                             "error"
                         );
                     });
-            });
-            // await Axios.delete(`${backendUrl}/${row.idItem}`);
-            // this.$message({
-            //     message: "Delete Sucessful",
-            //     type: "success",
-            // });
-            // this.getTableData();
+                    this.dialogFormVisible = false
         },
     },
-    // The get request at the begining to get all data
-    // created() {
-    //   Axios.get(todoUrl).then((response) => (this.todoList = response.data));
-    // },
+
 
     // The get request at the begining to get all data
     created() {

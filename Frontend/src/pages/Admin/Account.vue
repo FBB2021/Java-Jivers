@@ -262,6 +262,7 @@ export default {
             this.dialogFormVisible = false;
 
             Axios.post(backendUrl, form).then((res) => console.log(res));
+            this.getTableData();
             this.$message({
                 message: "Added Sucessful",
                 type: "success",
