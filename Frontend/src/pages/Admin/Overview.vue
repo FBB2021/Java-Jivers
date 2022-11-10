@@ -8,58 +8,34 @@
                     <h3>Items with total largest weight</h3>
                     <div class="row">
                         <div class="col-md-4 col-xl-4">
-                            <div class="image-items">
-                                <img
-                                    src="require(weightData[0].picture)"
-                                    class="img-thumbnail"
-                                    alt="Image unavailable"
-                                />
-                                <figcaption>
-                                    {{
-                                        "Product: " +
-                                        largestTotalWeightData[0].name +
-                                        " Total weight: " +
-                                        largestTotalWeightData[0].quantity *
-                                            largestTotalWeightData[0].weight
-                                    }}
-                                </figcaption>
-                            </div>
+                            {{ "Product: " + largestTotalWeightData[0].name
+                            }}<br />
+                            {{
+                                " Total weight: " +
+                                largestTotalWeightData[0].quantity *
+                                    largestTotalWeightData[0].weight +
+                                "kg"
+                            }}
                         </div>
                         <div class="col-md-4 col-xl-4">
-                            <div class="image-items">
-                                <img
-                                    src="require(weightData[1].picture)"
-                                    class="img-thumbnail"
-                                    alt="Image unavailable"
-                                />
-                                <figcaption>
-                                    {{
-                                        "Product: " +
-                                        largestTotalWeightData[1].name +
-                                        " Total weight: " +
-                                        largestTotalWeightData[1].quantity *
-                                            largestTotalWeightData[1].weight
-                                    }}
-                                </figcaption>
-                            </div>
+                            {{ "Product: " + largestTotalWeightData[1].name
+                            }}<br />
+                            {{
+                                " Total weight: " +
+                                largestTotalWeightData[1].quantity *
+                                    largestTotalWeightData[1].weight +
+                                "kg"
+                            }}
                         </div>
                         <div class="col-md-4 col-xl-4">
-                            <div class="image-items">
-                                <img
-                                    src="require(weightData[2].picture)"
-                                    class="img-thumbnail"
-                                    alt="Image unavailable"
-                                />
-                                <figcaption>
-                                    {{
-                                        "Product: " +
-                                        largestTotalWeightData[2].name +
-                                        " Total weight: " +
-                                        largestTotalWeightData[2].quantity *
-                                            largestTotalWeightData[2].weight
-                                    }}
-                                </figcaption>
-                            </div>
+                            {{ "Product: " + largestTotalWeightData[2].name
+                            }}<br />
+                            {{
+                                " Total weight: " +
+                                largestTotalWeightData[2].quantity *
+                                    largestTotalWeightData[2].weight +
+                                "kg"
+                            }}
                         </div>
                     </div>
                 </div>
