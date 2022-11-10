@@ -23,10 +23,14 @@ export default {
           enabled: false,
         },
         chart: {
+        
+
+          // background: '#008FFB',
           toolbar: {
             show: false,
           },
         },
+        
         colors: ["#008FFB"],
         xaxis: {
           type: "category",
@@ -35,57 +39,40 @@ export default {
       series: [
         {
           name: "A",
-          data: this.generateData(24, {
+          data: this.generateData(10, {
             min: 0,
-            max: 90,
+            max: 21,
           }),
         },
         {
           name: "B",
-          data: this.generateData(24, {
+          data: this.generateData(10, {
             min: 0,
-            max: 90,
+            max: 21,
           }),
         },
         {
           name: "C",
-          data: this.generateData(24, {
+          data: this.generateData(10, {
             min: 0,
-            max: 90,
+            max: 21,
           }),
         },
         {
           name: "D",
-          data: this.generateData(24, {
+          data: this.generateData(10, {
             min: 0,
-            max: 90,
-          }),
-        },
-        {
-          name: "E",
-          data: this.generateData(24, {
-            min: 0,
-            max: 90,
-          }),
-        },
-        {
-          name: "F",
-          data: this.generateData(24, {
-            min: 0,
-            max: 90,
-          }),
-        },
-        {
-          name: "G",
-          data: this.generateData(24, {
-            min: 0,
-            max: 90,
+            max: 21,
           }),
         },
       ],
     };
   },
+  mounted(){
+
+  },
   methods: {
+
     generateData(count, yrange) {
       var i = 0;
       var series = [];
@@ -101,6 +88,7 @@ export default {
         });
         i++;
       }
+      console.log(series)
       return series;
     },
   },
