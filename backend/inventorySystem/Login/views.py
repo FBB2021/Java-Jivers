@@ -90,7 +90,8 @@ class UserViewSet(viewsets.ModelViewSet):
         name = self.request.query_params.get('name', None)
         print(name)
         if name is not None:
-            queryset = queryset.filter(Q(username__contains=name) | Q(username__icontains=name))
+            #queryset = queryset.filter(Q(username__contains=name) | Q(username__icontains=name))
+            queryset = queryset.filter(username__exact = name)
         return queryset
 
     # for cases an user to create another user
@@ -98,6 +99,7 @@ class UserViewSet(viewsets.ModelViewSet):
         username = request.data['username']
         pwd_raw = request.data['password']
         email = request.data['email']
+        role = request.data['role']
 
         serializer = self.get_serializer(data=request.data)
         try:
@@ -113,6 +115,7 @@ class UserViewSet(viewsets.ModelViewSet):
         user_info.set_password(pwd_raw)
         user_info.is_active = "True"
         user_info.email = email
+        user_info.role = role
         # Uncomment the below if wanna login with this instance in Django Admin
         #user_info.is_superuser = "True" 
         user_info.is_staff = "True"
@@ -148,60 +151,3 @@ class UserViewSet(viewsets.ModelViewSet):
             instance._prefetched_objects_cache = {}
 
         return Response(serializer.data)
-
-class UserCreateViewSet(viewsets.ModelViewSet):
-    # this class is for user sign up without any login.
-    permission_classes = []
-    http_method_names = ['post','get']
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-    def list(self, request, *args, **kwargs):
-        feedback = "Have you forgot login to the system?"
-        return Response(feedback, status=status.HTTP_403_FORBIDDEN)
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = User.objects.get(UUID=kwargs['pk'])
-        instance.is_active = True
-        instance.save()
-        data = {
-            'status': 'Fantastic, your account is now activated :)',
-        }
-        return Response(data, status=status.HTTP_200_OK)
-
-    def create(self, request, *args, **kwargs):
-        username = request.data['username']
-        pwd_raw = request.data['password']
-        email = request.data['email']
-
-        serializer = self.get_serializer(data=request.data)
-        try:
-            serializer.is_valid(raise_exception=True)
-        except Exception:
-            return Response("A user with that username already exists.", \
-                status=status.HTTP_406_NOT_ACCEPTABLE)
-
-
-        # create user_info as a User typed instence of serializer
-        user_info = User(serializer)
-        user_info.username = username
-        user_info.set_password(pwd_raw)
-        user_info.is_superuser= "False"
-        user_info.is_active = "False" # waiting for email authentication
-        # can only create general user by this method by safety concerns
-        # modify role of this instance by another admin user
-        user_info.role = "General" 
-        # Uncomment the below if wanna login with this instance in Django Admin
-        #user_info.is_superuser = "True" 
-        user_info.email = email
-
-        self.perform_create(user_info)
-        user_info.save()
-
-        uuid = user_info.UUID
-        url = request.build_absolute_uri(uuid)
-        
-        sendAuthEmail(url,user_info,settings)
-
-        headers = self.get_success_headers(user_info)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)

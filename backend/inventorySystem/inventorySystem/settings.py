@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*m%$n^v61ze!keb1eva7o5v57#x$prxstzt^v#*io30a)37h55'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['java-jivers-ims.herokuapp.com', '127.0.0.1']
 
