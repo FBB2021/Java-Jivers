@@ -6,45 +6,23 @@
             <div class="p-3 mb-2 bg-dark text-white">
                 Total numbers of users: {{ this.tableData.length }}
             </div>
-            <el-form :inline="true" :model="formInline" class="form-inline">
-                <!-- Search bar -->
-                <el-form-item>
-                    <el-input
-                        placeholder="Type User name to search"
-                        prefix-icon="el-icon-search"
-                        v-model="searchInput"
-                    >
-                    </el-input>
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" @click="searchItem"
-                        >Search</el-button
-                    >
-                    <el-button type="info" @click="reset">Reset</el-button>
-                </el-form-item>
 
-                <!-- Filter Button -->
-                <el-form-item>
-                    <button
-                        type="button"
-                        class="btn btn-secondary btn-fill float-center btn-block"
-                    >
-                        Filter
-                    </button>
-                </el-form-item>
-                <!-- Add item button -->
-                <el-form-item>
-                    <button
-                        type="button"
-                        class="btn btn-info btn-fill float-center btn-block"
-                        @click="openNewItem"
-                    >
-                        + Add User
-                    </button>
-                </el-form-item>
+            <div class="row">
+                <div class="col-md-10 col-xl-10"></div>
+                <el-form :inline="true" :model="formInline" class="form-inline">
+                    <!-- Add item button -->
+                    <el-form-item>
+                        <button
+                            type="button"
+                            class="btn btn-info btn-fill float-right btn-block"
+                            @click="openNewItem"
+                        >
+                            + Add User
+                        </button>
+                    </el-form-item>
 
-                <!-- Delete item button -->
-                <!-- <el-form-item>
+                    <!-- Delete item button -->
+                    <!-- <el-form-item>
                     <button
                         type="button"
                         class="btn btn-warning btn-fill float-center btn-block"
@@ -52,7 +30,8 @@
                         - Delete User
                     </button>
                 </el-form-item> -->
-            </el-form>
+                </el-form>
+            </div>
 
             <!-- Display of table -->
             <el-row :gutter="20">
